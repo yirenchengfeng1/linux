@@ -1,0 +1,31 @@
+一、在域名管理平台添加一条A记录
+
+二、下载并安装脚本：
+curl  https://get.acme.sh | sh
+
+三、取别名
+alias acme.sh=~/.acme.sh/acme.sh
+
+四、指定let'encrypt为当前默认申请证书机构
+acme.sh --set-default-ca --server letsencrypt 
+
+五、开启tcp80端口
+firewall-cmd --zone=public --add-port=80/tcp --permanent 
+firewall-cmd --reload 
+firewall-cmd --list-ports
+
+六、以虚拟站点的方式申请证书
+acme.sh --issue  --standalone -k ec-256 -d example.com -d *.*.*  -d *.*.*
+
+七、安装证书和密钥
+
+mkdir /etc/shadowsocks
+acme.sh --installcert -d *.* -d *.*.*  -d *.*.*   --fullchainpath /etc/shadowsocks/v2ray.crt --keypath /etc/shadowsocks/v2ray.key --ecc
+
+
+
+
+
+
+
+
