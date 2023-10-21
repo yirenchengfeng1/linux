@@ -1,0 +1,64 @@
+#####客户端黑白名单+广告屏蔽配置文件网站####
+https://johnshall.github.io/Shadowrocket-ADBlock-Rules-Forever/
+========================================================
+手搓搭建教学步骤，请结合视频参考搭建：
+一、下载并解压
+wget https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.16.1/shadowsocks-v1.16.1.x86_64-unknown-linux-gnu.tar.xz
+tar -xf  压缩文件 -C /usr/local/bin/
+
+wget https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.3.2/v2ray-plugin-linux-amd64-v1.3.2.tar.gz
+tar -xf  压缩文件 -C /usr/local/bin/
+
+二、配置文件
+mkdir -p /etc/shadowsocks
+vi /etc/shadowsocks/config.json
+
+配置一：
+{
+    "server":"0.0.0.0",
+    "server_port":9000,
+    "password":"输入你的密码",
+    "timeout":300,
+    "method":"aes-256-gcm",
+    "plugin":"v2ray-plugin",
+    "plugin_opts":"server"
+}
+
+三、解决库文件缺失操作
+curl -O http://ftp.gnu.org/gnu/glibc/glibc-2.18.tar.gz
+tar zxf glibc-2.18.tar.gz 
+cd glibc-2.18/
+mkdir build
+cd build/
+../configure --prefix=/usr
+make -j2
+make install
+
+四、使用 systemd 守护进程
+vi /etc/systemd/system/shadowsocks.service
+
+[Unit]
+Description=Shadowsocks Server
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/ssserver -c /etc/shadowsocks/config.json
+
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
+
+五、开启防火墙的端口
+firewall-cmd --list-ports 
+firewall-cmd --zone=public --add-port=9000/tcp --permanent 
+firewall-cmd --reload 
+
+六、配置ss开机自启动
+systemctl daemon-reload #Systemctl重载
+
+systemctl start shadowsocks #启动
+
+systemctl enable shadowsocks #添加开机自启动
+
+systemctl status shadowsocks #查看状态
