@@ -1,5 +1,5 @@
 #!/bin/bash
-# VPS日常管理一键脚本
+# VPS日常管理一键脚本v1.0.1
 # Author: 爱分享的小企鹅
 
 
@@ -917,7 +917,7 @@ menu() {
     do
       clear
       echo    "#####################################################################################"
-      echo -e "#                         ${RED}VPS日常管理一键脚本${PLAIN}                                         #"
+      echo -e "#                         ${RED}VPS日常管理一键脚本V1.0.1${PLAIN}                                         #"
 	  echo -e "# ${GREEN}支持${PLAIN}: CentOS 7、Ubuntu、Debian                                                      #"
       echo -e "# ${GREEN}作者${PLAIN}: 爱分享的小企鹅                                                                #"
       echo -e "# ${GREEN}Youtube频道${PLAIN}: https://youtube.com/@user-wr7rz2jq4z?si=meznAMaijxYA9S2J               #"
