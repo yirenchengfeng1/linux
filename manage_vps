@@ -651,7 +651,7 @@ man_firewall(){
                   
 
 
-			read -p "请输入需要开启的端口号：" PORT
+			read -p "请输入需要关闭的端口号：" PORT
 	
 			read -p "请输入协议类型 (tcp/udp/both):" PROTOCOL
 
