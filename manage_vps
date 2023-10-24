@@ -879,7 +879,7 @@ man_vnstat(){
 				;;
 			  5)
 			        if [ "$system_str" = "0" ]; then	         
-			           vnstat --remove -i $selected_interface
+			           vnstat --delete -i $selected_interface
 				  else
 				      vnstat --remove  --force -i $selected_interface
 				  fi
