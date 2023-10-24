@@ -1,5 +1,5 @@
 #!/bin/bash
-# VPS日常管理一键脚本v1.0.1
+# VPS日常管理一键脚本
 # Author: 爱分享的小企鹅
 
 
@@ -21,11 +21,11 @@ OS=`hostnamectl | grep -i system | cut -d: -f2`
 #install necessary lib
 yum_install(){
     if [ "$system_str" = "0" ]; then
-    yum -y install wget curl lrzsz net-tools htop iftop vnstat 
+    yum -y install wget curl lrzsz net-tools htop iftop vnstat ncdu
 	echo -e "  ${GREEN}已安装wget、curl、lrzsz、net-tools等命令   ${PLAIN}"
 	sleep 2
     else
-    apt install -y wget curl lrzsz net-tools htop iftop vnstat 
+    apt install -y wget curl lrzsz net-tools htop iftop vnstat ncdu
 	echo -e "  ${GREEN}已安装wget、curl、lrzsz、net-tools等命令   ${PLAIN}"	
 	sleep 2	
     fi
@@ -33,12 +33,12 @@ yum_install(){
 
 yum_remove(){
     if [ "$system_str" = "0" ]; then
-    yum -y remove wget curl lrzsz net-tools htop iftop vnstat 
+    yum -y remove wget curl lrzsz net-tools htop iftop vnstat ncdu
 	yum clean all
 	echo -e "  ${GREEN}已卸载wget、curl、lrzsz、net-tools等命令   ${PLAIN}"	
 	sleep 2    
 	else
-    apt remove -y wget curl lrzsz net-tools htop iftop vnstat 
+    apt remove -y wget curl lrzsz net-tools htop iftop vnstat ncdu
 	apt-get clean
 	echo -e "  ${GREEN}已卸载wget、curl、lrzsz、net-tools等命令   ${PLAIN}"	
 	sleep 2    
@@ -833,6 +833,12 @@ man_iftop(){
 
 }
 
+man_disk(){
+
+     ncdu
+}
+
+
 man_vnstat(){
   
 
@@ -917,7 +923,7 @@ menu() {
     do
       clear
       echo    "#####################################################################################"
-      echo -e "#                         ${RED}VPS日常管理一键脚本V1.0.1${PLAIN}                                         #"
+      echo -e "#                         ${RED}VPS日常管理一键脚本${PLAIN}                                         #"
 	  echo -e "# ${GREEN}支持${PLAIN}: CentOS 7、Ubuntu、Debian                                                      #"
       echo -e "# ${GREEN}作者${PLAIN}: 爱分享的小企鹅                                                                #"
       echo -e "# ${GREEN}Youtube频道${PLAIN}: https://youtube.com/@user-wr7rz2jq4z?si=meznAMaijxYA9S2J               #"
@@ -936,17 +942,18 @@ menu() {
 	  echo -e "  ${GREEN}9.${PLAIN}  管理系统防火墙"
 	  echo " -------------------"
 	  echo -e "  ${GREEN}三、服务器资源监控${PLAIN}"
-      echo -e "  ${GREEN}10.${PLAIN}  实时CPU、内存等运行监控" 	  
-	  echo -e "  ${GREEN}11.${PLAIN}  实时网络流量监控"
-      echo -e "  ${GREEN}12.${PLAIN}  历史网络流量查询"  
+      echo -e "  ${GREEN}10.${PLAIN}  实时CPU、内存等运行监控" 	 
+      echo -e "  ${GREEN}11.${PLAIN}  磁盘使用情况监控"     	  
+	  echo -e "  ${GREEN}12.${PLAIN}  实时网络流量监控"
+      echo -e "  ${GREEN}13.${PLAIN}  历史网络流量查询"  
       echo " -------------------"	  
 	  echo -e "  ${GREEN}四、服务器性能测试${PLAIN}"
-      echo -e "  ${GREEN}13.${PLAIN}  显示系统信息以及CPU、内存、硬盘性能测试"  
-	  echo -e "  ${GREEN}14.${PLAIN}  三网回程路由和延迟测试"  
-	  echo -e "  ${GREEN}15.${PLAIN}  三网测试节点速度"  
+      echo -e "  ${GREEN}14.${PLAIN}  显示系统信息以及CPU、内存、硬盘性能测试"  
+	  echo -e "  ${GREEN}15.${PLAIN}  三网回程路由和延迟测试"  
+	  echo -e "  ${GREEN}16.${PLAIN}  三网测试节点速度"  
 	  echo " -------------------"
 	  echo -e "  ${GREEN}五、开启额外功能${PLAIN}" 
-	  echo -e "  ${GREEN}16.${PLAIN}  敬请关注！"
+	  echo -e "  ${GREEN}17.${PLAIN}  敬请关注！"
       echo " -------------"
       echo -e "  ${GREEN}0.${PLAIN} 退出"
       echo 
@@ -986,19 +993,22 @@ menu() {
         10)
             man_htop
             ;;
-        11)
-            man_iftop
+		11)
+             man_disk
             ;;
         12)
+            man_iftop
+            ;;
+        13)
             man_vnstat
             ;;
-		13)
+		14)
             disk_test
             ;;	
-		14)
+		15)
             netback_test
             ;;	
-		15)
+		16)
             speed_test
             ;;				
         *)
@@ -1014,11 +1024,12 @@ check_system
 action=$1
 [[ -z $1 ]] && action=menu
 case "$action" in
-    menu|update_app|man_tools|change_timezone|spead_ssh|man_ssh_port|ssh_login|powercontrol|dis_ip|man_firewall|man_htop|man_iftop|man_vnstat|disk_test|netback_test|speed_test)
+    menu|update_app|man_tools|change_timezone|spead_ssh|man_ssh_port|ssh_login|powercontrol|dis_ip|man_firewall|man_htop|man_disk|man_iftop|man_vnstat|disk_test|netback_test|speed_test)
         ${action}
         ;;
     *)
         echo " 参数错误"
-        echo " 用法: `basename $0` [menu|update_app|man_tools|change_timezone|spead_ssh|man_ssh_port|ssh_login|powercontrol|dis_ip|man_firewall|man_htop|man_iftop|man_vnstat|disk_test|netback_test|speed_test]"
+        echo " 用法: `basename $0` [menu|update_app|man_tools|change_timezone|spead_ssh|man_ssh_port|ssh_login|powercontrol|dis_ip|man_firewall|man_htop|man_disk|man_iftop|man_vnstat|disk_test|netback_test|speed_test]"
         ;;
 esac
+
