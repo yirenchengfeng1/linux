@@ -878,7 +878,11 @@ man_vnstat(){
 				vnstat -m
 				;;
 			  5)
-				vnstat --remove  --force -i $selected_interface
+			        if [ "$system_str" = "0" ]; then	         
+			           vnstat --remove -i $selected_interface
+				  else
+				      vnstat --remove  --force -i $selected_interface
+				  fi
 				;;
 			  *)
 				echo "无效的选择"
