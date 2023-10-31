@@ -275,7 +275,7 @@ EOF
     systemctl daemon-reload
     systemctl enable ${NAME}
 
-    rm -rf shadowsocks-rust.tar.xz
+
     colorEcho $BLUE "ss安装成功!"
 }
 
@@ -368,32 +368,9 @@ if [[ "$choice" != "yes" ]]; then
     colorEcho $YELLOW " 取消安装BBR"
     return
 fi
-    wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+    wget --no-check-certificate https://raw.githubusercontent.com/yirenchengfeng1/linux/main/bbr && chmod +x bbr && ./bbr
     INSTALL_BBR=true
   
-}
-
-
-get_cert(){
-    read -p "您确定要安装TLS证书吗？输入 'yes' 继续安装，其他任何输入将取消安装: " choice
-if [[ "$choice" != "yes" ]]; then
-    colorEcho $YELLOW " 取消安装TLS证书"
-    return
-fi
-    wget -N --no-check-certificate https://raw.githubusercontent.com/senqi77/Acme-Script/main/acme.sh && bash acme.sh
-    CERT=true
-
-}
-
-man_cert(){
-    read -p "输入 'yes' 进入证书管理界面，包括申请、删除、查看等，其他任何输入将取消: " choice
-if [[ "$choice" != "yes" ]]; then
-    colorEcho $YELLOW " 取消管理TLS证书"
-    return
-fi
-    wget -N --no-check-certificate https://raw.githubusercontent.com/senqi77/Acme-Script/main/acme.sh && bash acme.sh
-    CERT=true
-
 }
 
 setFirewall() {
@@ -508,7 +485,6 @@ install() {
     preinstall
     installSS
 	install_v2
-	get_cert
     configSS
     installBBR
     setFirewall
@@ -619,20 +595,18 @@ menu() {
     echo "#############################################################"
     echo ""
 
-    echo -e "  ${GREEN}1.${PLAIN}  安装SS、v2ray_plugin、BBR、证书"
+    echo -e "  ${GREEN}1.${PLAIN}  安装SS和v2ray_plugin"
     echo -e "  ${GREEN}2.${PLAIN}  更新SS和v2ray_plugin"
     echo -e "  ${GREEN}3.  ${RED}卸载SS和v2ray_plugin${PLAIN}"
-	echo -e "  ${GREEN}4.  ${YELLOW}单独安装BBR${PLAIN}"
-	echo -e "  ${GREEN}5.  ${YELLOW}单独管理TLS证书${PLAIN}"
     echo " -------------"
-    echo -e "  ${GREEN}6.${PLAIN}  启动SS"
-    echo -e "  ${GREEN}7.${PLAIN}  重启SS"
-    echo -e "  ${GREEN}8.${PLAIN}  停止SS"
+    echo -e "  ${GREEN}4.${PLAIN}  启动SS"
+    echo -e "  ${GREEN}5.${PLAIN}  重启SS"
+    echo -e "  ${GREEN}6.${PLAIN}  停止SS"
     echo " -------------"
-    echo -e "  ${GREEN}9.${PLAIN}  查看SS配置"
-    echo -e "  ${GREEN}10.${PLAIN}  查看配置二维码"
-    echo -e "  ${GREEN}11.  ${RED}修改SS配置${PLAIN}"
-    echo -e "  ${GREEN}12.${PLAIN} 查看SS日志"
+    echo -e "  ${GREEN}7.${PLAIN}  查看SS配置"
+    echo -e "  ${GREEN}8.${PLAIN}  查看配置二维码"
+    echo -e "  ${GREEN}9.  ${RED}修改SS配置${PLAIN}"
+    echo -e "  ${GREEN}10.${PLAIN} 查看SS日志"
     echo " -------------"
     echo -e "  ${GREEN}0.${PLAIN} 退出"
     echo 
@@ -655,31 +629,24 @@ menu() {
             uninstall
             ;;
         4)
-            installBBR
-            ;;
-		5)
-            man_cert
-            ;;
-        6)
             start
-            ;;	
-			
-        7)
+            ;;
+        5)
             restart
             ;;
-        8)
+        6)
             stop
             ;;
-        9)
+        7)
             showInfo
             ;;
-        10)
+        8)
             showQR
             ;;
-        11)
+        9)
             reconfig
             ;;
-        12)
+        10)
             showLog
             ;;
         *)
@@ -694,11 +661,11 @@ checkSystem
 action=$1
 [[ -z $1 ]] && action=menu
 case "$action" in
-    menu|install|update|uninstall|installBBR|get_cert|start|restart|stop|showInfo|showQR|showLog)
+    menu|install|update|uninstall|start|restart|stop|showInfo|showQR|showLog)
         ${action}
         ;;
     *)
         echo " 参数错误"
-        echo " 用法: `basename $0` [menu|install|update|uninstall|installBBR|get_cert|start|restart|stop|showInfo|showQR|showLog]"
+        echo " 用法: `basename $0` [menu|install|update|uninstall|start|restart|stop|showInfo|showQR|showLog]"
         ;;
 esac
