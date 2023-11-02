@@ -416,7 +416,7 @@ showInfo() {
 	
 	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
 	#echo $res1
-    res2=`echo -n "{"path":"/","mux":true,"host":"bing.com","mode":"websocket"}" | base64 -w 0`
+    res2=`echo -n "{"path":"/","mux":true,"host":"cloudfront.com","mode":"websocket"}" | base64 -w 0`
 	#echo $res2
 	link="ss://${res1}?v2ray-plugin=${res2}"
 	#echo $link
@@ -434,7 +434,8 @@ showInfo() {
     echo -e "  ${BLUE}插件方式(plugin)：${PLAIN} ${RED}v2ray-plugin${PLAIN}"
     echo
     echo -e " ${BLUE}ss链接${PLAIN}： ${link}"
-    qrencode -o - -t utf8 ${link}
+    qrencode -o - -t utf8 ${link} > /tmp/qrcode.png
+	sz qrcode.png
 }
 
 showQR() {
@@ -454,7 +455,9 @@ showQR() {
   	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
     res2=`echo -n "{"path":"/","mux":true,"host":"cloudfront.com","mode":"websocket"}" | base64 -w 0`
 	link="ss://${res1}?v2ray-plugin=${res2}"
-	qrencode -o - -t utf8 ${link}
+	qrencode -o - -t utf8 ${link} > /tmp/qrcode
+	sz qrcode.png
+	
 	
 }
 
