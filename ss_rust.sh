@@ -255,8 +255,8 @@ normalizeVersion() {
 
 installNewVer() {
     new_ver=$1
-    if ! wget "${V6_PROXY}https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.17.0/shadowsocks-v${new_ver}.x86_64-unknown-linux-gnu.tar.xz" -O ${NAME}.tar.xz; then
-        colorEcho $RED " 下载安装文件失败！"
+    if ! wget "${V6_PROXY}https://github.com/shadowsocks/shadowsocks-rust/releases/download/v${new_ver}/shadowsocks-v${new_ver}.x86_64-unknown-linux-gnu.tar.xz" -O ${NAME}.tar.xz; then
+	   colorEcho $RED " 下载安装文件失败！"
         exit 1
     fi
 	tar -xf ${NAME}.tar.xz  -C /usr/local/bin/
@@ -427,7 +427,7 @@ showInfo() {
 	
 	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
 	#echo $res1
-    res2=`echo -n "{"path":"/","mux":true,"host":"cloudfront.com","mode":"websocket"}" | base64 -w 0`
+    res2=`echo -n "{"path":"/","mux":true,"host":"bing.com","mode":"websocket"}" | base64 -w 0`
 	#echo $res2
 	link="ss://${res1}?v2ray-plugin=${res2}"
 	#echo $link
