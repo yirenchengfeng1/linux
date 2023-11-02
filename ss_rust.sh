@@ -226,11 +226,11 @@ preinstall() {
              colorEcho $BULE " 系统已安装 glibc 2.18 或更高版本，跳过安装"
         fi
 	fi	
-    $CMD_INSTALL wget vim net-tools unzip tar qrencode
-    res=`which wget 2>/dev/null`
-    [[ "$?" != "0" ]] && $CMD_INSTALL wget
-    res=`which netstat 2>/dev/null`
-    [[ "$?" != "0" ]] && $CMD_INSTALL net-tools
+    $CMD_INSTALL wget vim net-tools unzip tar qrencode lrzsz
+    #res=`which wget 2>/dev/null`
+    #[[ "$?" != "0" ]] && $CMD_INSTALL wget
+    #res=`which netstat 2>/dev/null`
+    #[[ "$?" != "0" ]] && $CMD_INSTALL net-tools
 
     if [[ -s /etc/selinux/config ]] && grep 'SELINUX=enforcing' /etc/selinux/config; then
         sed -i 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/selinux/config
@@ -434,8 +434,15 @@ showInfo() {
     echo -e "  ${BLUE}插件方式(plugin)：${PLAIN} ${RED}v2ray-plugin${PLAIN}"
     echo
     echo -e " ${BLUE}ss链接${PLAIN}： ${link}"
-    qrencode -o - -t utf8 ${link} > /tmp/qrcode.png
-	sz qrcode.png
+	qrencode -o - -t utf8 ${link}
+	read -p " 是否要将图片下载到本地，输入yes同意，其它任意退出:" choice
+	if [[ $choic -lt "yes" ]]; then
+        qrencode -o - -t utf8 ${link} > /tmp/qrcode.png
+	    sz qrcode.png
+	else
+	    exit 0
+    fi
+ 
 }
 
 showQR() {
@@ -455,8 +462,14 @@ showQR() {
   	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
     res2=`echo -n "{"path":"/","mux":true,"host":"cloudfront.com","mode":"websocket"}" | base64 -w 0`
 	link="ss://${res1}?v2ray-plugin=${res2}"
-	qrencode -o - -t utf8 ${link} > /tmp/qrcode
-	sz qrcode.png
+	qrencode -o - -t utf8 ${link}
+	read -p " 是否要将图片下载到本地，输入yes同意，其它任意退出:" choice
+	if [[ $choic -lt "yes" ]]; then
+        qrencode -o - -t utf8 ${link} > /tmp/qrcode.png
+	    sz qrcode.png
+	else
+	    exit 0
+    fi
 	
 	
 }
