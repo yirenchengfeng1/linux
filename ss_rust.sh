@@ -361,17 +361,6 @@ EOF
 }
 
 
-# 有问题，需要更换
-installBBR() {
-    read -p "您确定要安装BBR吗？输入 'yes' 继续安装，其他任何输入将取消安装: " choice
-if [[ "$choice" != "yes" ]]; then
-    colorEcho $YELLOW " 取消安装BBR"
-    return
-fi
-    wget --no-check-certificate https://raw.githubusercontent.com/yirenchengfeng1/linux/main/bbr && chmod +x bbr && ./bbr
-    INSTALL_BBR=true
-  
-}
 
 setFirewall() {
     res=`which firewall-cmd 2>/dev/null`
@@ -469,15 +458,6 @@ showQR() {
 	
 }
 
-#function bbrReboot() {
- #   if [ "${INSTALL_BBR}" == "true" ]; then
-  #      echo  
-   #     colorEcho $BLUE " 为使BBR模块生效，系统将在30秒后重启"
-    #    echo  
-     #   echo -e " 您可以按 ctrl + c 取消重启，稍后输入 ${RED}reboot${PLAIN} 重启系统"
-      ## reboot
-    #fi
-#}
 
 install() {
     getData
@@ -486,7 +466,7 @@ install() {
     installSS
 	install_v2
     configSS
-    installBBR
+	
     setFirewall
 
     start
@@ -595,7 +575,7 @@ menu() {
     echo "#############################################################"
     echo ""
 
-    echo -e "  ${GREEN}1.${PLAIN}  安装SS和v2ray_plugin"
+    echo -e "  ${GREEN}1.${PLAIN}  安装SS和v2ray_plugin（无需域名）"
     echo -e "  ${GREEN}2.${PLAIN}  更新SS和v2ray_plugin"
     echo -e "  ${GREEN}3.  ${RED}卸载SS和v2ray_plugin${PLAIN}"
     echo " -------------"
