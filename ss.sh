@@ -226,11 +226,11 @@ preinstall() {
              colorEcho $BULE " 系统已安装 glibc 2.18 或更高版本，跳过安装"
         fi
 	fi	
-    $CMD_INSTALL wget vim net-tools unzip tar qrencode
-    res=`which wget 2>/dev/null`
-    [[ "$?" != "0" ]] && $CMD_INSTALL wget
-    res=`which netstat 2>/dev/null`
-    [[ "$?" != "0" ]] && $CMD_INSTALL net-tools
+    $CMD_INSTALL wget vim net-tools unzip tar qrencode lrzsz
+    #res=`which wget 2>/dev/null`
+    #[[ "$?" != "0" ]] && $CMD_INSTALL wget
+    #res=`which netstat 2>/dev/null`
+    #[[ "$?" != "0" ]] && $CMD_INSTALL net-tools
 
     if [[ -s /etc/selinux/config ]] && grep 'SELINUX=enforcing' /etc/selinux/config; then
         sed -i 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/selinux/config
@@ -255,8 +255,8 @@ normalizeVersion() {
 
 installNewVer() {
     new_ver=$1
-    if ! wget "${V6_PROXY}https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.17.0/shadowsocks-v${new_ver}.x86_64-unknown-linux-gnu.tar.xz" -O ${NAME}.tar.xz; then
-        colorEcho $RED " 下载安装文件失败！"
+    if ! wget "${V6_PROXY}https://github.com/shadowsocks/shadowsocks-rust/releases/download/v${new_ver}/shadowsocks-v${new_ver}.x86_64-unknown-linux-gnu.tar.xz" -O ${NAME}.tar.xz; then
+	   colorEcho $RED " 下载安装文件失败！"
         exit 1
     fi
 	tar -xf ${NAME}.tar.xz  -C /usr/local/bin/
@@ -275,7 +275,7 @@ EOF
     systemctl daemon-reload
     systemctl enable ${NAME}
 
-    rm -rf shadowsocks-rust.tar.xz
+
     colorEcho $BLUE "ss安装成功!"
 }
 
@@ -361,40 +361,6 @@ EOF
 }
 
 
-# 有问题，需要更换
-installBBR() {
-    read -p "您确定要安装BBR吗？输入 'yes' 继续安装，其他任何输入将取消安装: " choice
-if [[ "$choice" != "yes" ]]; then
-    colorEcho $YELLOW " 取消安装BBR"
-    return
-fi
-    wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
-    INSTALL_BBR=true
-  
-}
-
-
-get_cert(){
-    read -p "您确定要安装TLS证书吗？输入 'yes' 继续安装，其他任何输入将取消安装: " choice
-if [[ "$choice" != "yes" ]]; then
-    colorEcho $YELLOW " 取消安装TLS证书"
-    return
-fi
-    wget -N --no-check-certificate https://raw.githubusercontent.com/senqi77/Acme-Script/main/acme.sh && bash acme.sh
-    CERT=true
-
-}
-
-man_cert(){
-    read -p "输入 'yes' 进入证书管理界面，包括申请、删除、查看等，其他任何输入将取消: " choice
-if [[ "$choice" != "yes" ]]; then
-    colorEcho $YELLOW " 取消管理TLS证书"
-    return
-fi
-    wget -N --no-check-certificate https://raw.githubusercontent.com/senqi77/Acme-Script/main/acme.sh && bash acme.sh
-    CERT=true
-
-}
 
 setFirewall() {
     res=`which firewall-cmd 2>/dev/null`
@@ -450,7 +416,7 @@ showInfo() {
 	
 	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
 	#echo $res1
-    res2=`echo -n "{"path":"/","mux":true,"host":"cloudfront.com","mode":"websocket"}" | base64 -w 0`
+    res2=`echo -n "{"path":"/","mux":true,"host":"bing.com","mode":"websocket"}" | base64 -w 0`
 	#echo $res2
 	link="ss://${res1}?v2ray-plugin=${res2}"
 	#echo $link
@@ -468,7 +434,15 @@ showInfo() {
     echo -e "  ${BLUE}插件方式(plugin)：${PLAIN} ${RED}v2ray-plugin${PLAIN}"
     echo
     echo -e " ${BLUE}ss链接${PLAIN}： ${link}"
-    qrencode -o - -t utf8 ${link}
+	#qrencode -o - -t utf8 ${link}
+	read -p " 是否要将图片下载到本地，输入yes同意，其它任意退出:" choice
+	if [[ $choic -lt "yes" ]]; then
+        qrencode -o /tmp/qrcode.png -s 10 ${link}
+	    /usr/bin/sz /tmp/qrcode.png
+	else
+	    exit 0
+    fi
+ 
 }
 
 showQR() {
@@ -488,19 +462,18 @@ showQR() {
   	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
     res2=`echo -n "{"path":"/","mux":true,"host":"cloudfront.com","mode":"websocket"}" | base64 -w 0`
 	link="ss://${res1}?v2ray-plugin=${res2}"
-	qrencode -o - -t utf8 ${link}
+	#qrencode -o - -t utf8 ${link}
+	read -p " 是否要将图片下载到本地，输入yes同意，其它任意退出:" choice
+	if [[ $choic -lt "yes" ]]; then
+        qrencode -o /tmp/qrcode.png -s 10 ${link}
+	    /usr/bin/sz /tmp/qrcode.png
+	else
+	    exit 0
+    fi
+	
 	
 }
 
-#function bbrReboot() {
- #   if [ "${INSTALL_BBR}" == "true" ]; then
-  #      echo  
-   #     colorEcho $BLUE " 为使BBR模块生效，系统将在30秒后重启"
-    #    echo  
-     #   echo -e " 您可以按 ctrl + c 取消重启，稍后输入 ${RED}reboot${PLAIN} 重启系统"
-      ## reboot
-    #fi
-#}
 
 install() {
     getData
@@ -508,9 +481,8 @@ install() {
     preinstall
     installSS
 	install_v2
-	get_cert
     configSS
-    installBBR
+	
     setFirewall
 
     start
@@ -619,20 +591,18 @@ menu() {
     echo "#############################################################"
     echo ""
 
-    echo -e "  ${GREEN}1.${PLAIN}  安装SS、v2ray_plugin、BBR、证书"
+    echo -e "  ${GREEN}1.${PLAIN}  安装SS和v2ray_plugin（无需域名）"
     echo -e "  ${GREEN}2.${PLAIN}  更新SS和v2ray_plugin"
     echo -e "  ${GREEN}3.  ${RED}卸载SS和v2ray_plugin${PLAIN}"
-	echo -e "  ${GREEN}4.  ${YELLOW}单独安装BBR${PLAIN}"
-	echo -e "  ${GREEN}5.  ${YELLOW}单独管理TLS证书${PLAIN}"
     echo " -------------"
-    echo -e "  ${GREEN}6.${PLAIN}  启动SS"
-    echo -e "  ${GREEN}7.${PLAIN}  重启SS"
-    echo -e "  ${GREEN}8.${PLAIN}  停止SS"
+    echo -e "  ${GREEN}4.${PLAIN}  启动SS"
+    echo -e "  ${GREEN}5.${PLAIN}  重启SS"
+    echo -e "  ${GREEN}6.${PLAIN}  停止SS"
     echo " -------------"
-    echo -e "  ${GREEN}9.${PLAIN}  查看SS配置"
-    echo -e "  ${GREEN}10.${PLAIN}  查看配置二维码"
-    echo -e "  ${GREEN}11.  ${RED}修改SS配置${PLAIN}"
-    echo -e "  ${GREEN}12.${PLAIN} 查看SS日志"
+    echo -e "  ${GREEN}7.${PLAIN}  查看SS配置"
+    echo -e "  ${GREEN}8.${PLAIN}  查看配置二维码"
+    echo -e "  ${GREEN}9.  ${RED}修改SS配置${PLAIN}"
+    echo -e "  ${GREEN}10.${PLAIN} 查看SS日志"
     echo " -------------"
     echo -e "  ${GREEN}0.${PLAIN} 退出"
     echo 
@@ -655,31 +625,24 @@ menu() {
             uninstall
             ;;
         4)
-            installBBR
-            ;;
-		5)
-            man_cert
-            ;;
-        6)
             start
-            ;;	
-			
-        7)
+            ;;
+        5)
             restart
             ;;
-        8)
+        6)
             stop
             ;;
-        9)
+        7)
             showInfo
             ;;
-        10)
+        8)
             showQR
             ;;
-        11)
+        9)
             reconfig
             ;;
-        12)
+        10)
             showLog
             ;;
         *)
@@ -694,11 +657,11 @@ checkSystem
 action=$1
 [[ -z $1 ]] && action=menu
 case "$action" in
-    menu|install|update|uninstall|installBBR|get_cert|start|restart|stop|showInfo|showQR|showLog)
+    menu|install|update|uninstall|start|restart|stop|showInfo|showQR|showLog)
         ${action}
         ;;
     *)
         echo " 参数错误"
-        echo " 用法: `basename $0` [menu|install|update|uninstall|installBBR|get_cert|start|restart|stop|showInfo|showQR|showLog]"
+        echo " 用法: `basename $0` [menu|install|update|uninstall|start|restart|stop|showInfo|showQR|showLog]"
         ;;
 esac
