@@ -438,7 +438,7 @@ showInfo() {
 	read -p " 是否要将图片下载到本地，输入yes同意，其它任意退出:" choice
 	if [[ $choic -lt "yes" ]]; then
         qrencode -o /tmp/qrcode.png -s 10 ${link}
-	    /usr/bin/sz /tmp/qrcode.png
+	    colorEcho $BLUE " 图片已保存在/tmp/qrcode.png，请自行下载使用..."
 	else
 	    exit 0
     fi
@@ -466,7 +466,7 @@ showQR() {
 	read -p " 是否要将图片下载到本地，输入yes同意，其它任意退出:" choice
 	if [[ $choic -lt "yes" ]]; then
         qrencode -o /tmp/qrcode.png -s 10 ${link}
-	    /usr/bin/sz /tmp/qrcode.png
+	    colorEcho $BLUE " 图片已保存在/tmp/qrcode.png，请自行下载使用..."
 	else
 	    exit 0
     fi
