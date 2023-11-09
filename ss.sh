@@ -435,8 +435,9 @@ showInfo() {
     echo
     echo -e " ${BLUE}ss链接${PLAIN}： ${link}"
 	qrencode -o - -t utf8 ${link}
+    qrencode -o /tmp/qrcode.png -s 10 ${link}
+	colorEcho $BLUE " 图片已保存在/tmp/qrcode.png，请自行下载使用..."
 
- 
 }
 
 showQR() {
@@ -456,15 +457,7 @@ showQR() {
   	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
     res2=`echo -n "{"path":"/","mux":true,"host":"cloudfront.com","mode":"websocket"}" | base64 -w 0`
 	link="ss://${res1}?v2ray-plugin=${res2}"
-	#qrencode -o - -t utf8 ${link}
-	read -p " 是否要将图片下载到本地，输入yes同意，其它任意退出:" choice
-	if [[ $choic -lt "yes" ]]; then
-        qrencode -o /tmp/qrcode.png -s 10 ${link}
-	    colorEcho $BLUE " 图片已保存在/tmp/qrcode.png，请自行下载使用..."
-	else
-	    exit 0
-    fi
-	
+	qrencode -o - -t utf8 ${link}	
 	
 }
 
