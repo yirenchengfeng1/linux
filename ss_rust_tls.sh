@@ -438,7 +438,7 @@ showInfo() {
     domain=$(grep plugin_opts /etc/shadowsocks-rust/config.json | cut -d';' -f3 | cut -d'=' -f2)
 	
 	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
-    res2=`echo -n '{"path":"/","mux":true,"host":"${domain}","tls":true}' | base64 -w 0`
+    res2=`echo -n "{"path":"/","mux":true,"host":"${domain}","tls":true}" | base64 -w 0`
 	link="ss://${res1}?v2ray-plugin=${res2}"
 
 	
@@ -475,7 +475,7 @@ showQR() {
 	domain=$(grep plugin_opts /etc/shadowsocks-rust/config.json | cut -d';' -f3 | cut -d'=' -f2)
 	
   	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
-    res2=`echo -n '{"path":"/","mux":true,"host":"${domain}","tls":true}' | base64 -w 0`
+    res2=`echo -n "{"path":"/","mux":true,"host":"${domain}","tls":true}" | base64 -w 0`
 	link="ss://${res1}?v2ray-plugin=${res2}"
 	qrencode -o - -t utf8 ${link}
 	
