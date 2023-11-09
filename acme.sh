@@ -154,6 +154,7 @@ acme_standalone(){
     [[ -z $domain ]] && red "未输入域名，无法执行操作！" && exit 1
     green "已输入的域名：$domain" && sleep 1
     domainIP=$(curl -sm8 ipget.net/?ip="${domain}")
+    export domain
     
     if [[ $domainIP == $ipv6 ]]; then
         bash ~/.acme.sh/acme.sh --issue -d ${domain} --standalone -k ec-256 --listen-v6 --insecure
