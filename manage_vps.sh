@@ -388,11 +388,11 @@ man_ssh_port() {
 				  ufw deny $ssh_port/tcp
 			      ufw allow $new_port/tcp
 			      ufw reload
-			elif [ -x "$(command -v iptables)" ]; then
-			     iptables -A INPUT -p tcp --dport $ssh_port -j DROP
-			     iptables -A INPUT -p tcp --dport $new_port -j ACCEPT
+			#elif [ -x "$(command -v iptables)" ]; then
+			     #iptables -A INPUT -p tcp --dport $ssh_port -j DROP
+			     #iptables -A INPUT -p tcp --dport $new_port -j ACCEPT
 			
-			     service iptables save
+			    # service iptables save
 			else
 			       echo "无法配置防火墙规则。请手动配置以确保新SSH端口可用。"
 			fi
@@ -440,8 +440,8 @@ man_firewall(){
 
 		elif [ -x "$(command -v ufw)" ];  then
 		  fw=ufw
-	    elif [ -x "$(command -v iptables)" ]; then
-		  fw=iptables  
+	    #elif [ -x "$(command -v iptables)" ]; then
+		  #fw=iptables  
 		else
 		  echo "未检测到支持的防火墙"
 		  
@@ -483,9 +483,9 @@ man_firewall(){
 		    elif [ "$fw" = "ufw" ]; then
 		          echo -n "防火墙运行状态：`ufw status`"
 				  sleep 3
-			elif [ "$fw" = "iptables" ]; then
-		         echo -n "防火墙运行状态：`iptables -L -n`"
-				 sleep 3
+			#elif [ "$fw" = "iptables" ]; then
+		         #echo -n "防火墙运行状态：`iptables -L -n`"
+				# sleep 3
 		    fi
 			clear
 			    ;;
@@ -511,15 +511,15 @@ man_firewall(){
                        echo "防火墙停止失败"
 					   sleep 3
                 fi
-			elif [ "$fw" = "iptables" ]; then
-		         systemctl stop iptables  
-				 if [ $? -eq 0 ]; then
-                       echo "防火墙已停止"
-					   sleep 3
-                  else
-                       echo "防火墙停止失败"
-					   sleep 3
-                 fi
+			#elif [ "$fw" = "iptables" ]; then
+		        # systemctl stop iptables  
+				# if [ $? -eq 0 ]; then
+                   #    echo "防火墙已停止"
+					#   sleep 3
+                  #else
+                      # echo "防火墙停止失败"
+					 #  sleep 3
+                # fi
 		    fi
 			    clear
 			    ;;
@@ -546,15 +546,15 @@ man_firewall(){
 					   sleep 3
                 fi
 				
-		    elif [ "$fw" = "iptables" ]; then
-		         systemctl start iptables  
-				 if [ $? -eq 0 ]; then
-                       echo "防火墙已开启"
-					   sleep 3
-                  else
-                       echo "防火墙开启失败"
-					   sleep 3
-                 fi
+		   # elif [ "$fw" = "iptables" ]; then
+		        # systemctl start iptables  
+				# if [ $? -eq 0 ]; then
+                  #     echo "防火墙已开启"
+				#	   sleep 3
+                #  else
+                #       echo "防火墙开启失败"
+				#	   sleep 3
+                # fi
 		    fi
 			clear
 			    ;;
@@ -583,15 +583,15 @@ man_firewall(){
                 fi
 		    
 
-		    elif [ "$fw" = "iptables" ]; then
-		         systemctl restart iptables  
-				 if [ $? -eq 0 ]; then
-                       echo "防火墙已重启"
-					   sleep 3
-                  else
-                       echo "防火墙重启失败"
-					   sleep 3
-                 fi
+		   # elif [ "$fw" = "iptables" ]; then
+		        # systemctl restart iptables  
+				# if [ $? -eq 0 ]; then
+                     #  echo "防火墙已重启"
+					  # sleep 3
+                  #else
+                     #  echo "防火墙重启失败"
+					  # sleep 3
+                 #fi
 		    fi
 			clear
 			    ;;
@@ -605,8 +605,8 @@ man_firewall(){
 		    elif [ "$fw" = "ufw" ]; then
                    ufw status numbered  
 			                
-		    elif [ "$fw" = "iptables" ]; then
-                   iptables -L -n --line-numbers | grep -i accept
+		   # elif [ "$fw" = "iptables" ]; then
+                  # iptables -L -n --line-numbers | grep -i accept
 		    fi
 			    ;;
 		    6)
@@ -640,16 +640,16 @@ man_firewall(){
 			    ufw reload
 			    echo "端口 $PORT ($PROTOCOL) 已开启"
 				sleep 3
-	        elif [ "$fw" = "iptables" ]; then
-			  if [ "$PROTOCOL" = "both" ]; then
-				iptables -I INPUT -p tcp --dport ${PORT} -j ACCEPT
-				iptables -I INPUT -p udp --dport ${PORT} -j ACCEPT
-			  else
-				iptables -I INPUT -p ${PROTOCOL} --dport ${PORT} -j ACCEPT
-			  fi
-			    service iptables save
-			    echo "端口 $PORT ($PROTOCOL) 已开启"
-				sleep 3		    
+	       # elif [ "$fw" = "iptables" ]; then
+			 # if [ "$PROTOCOL" = "both" ]; then
+				#iptables -I INPUT -p tcp --dport ${PORT} -j ACCEPT
+				#iptables -I INPUT -p udp --dport ${PORT} -j ACCEPT
+			 # else
+				#iptables -I INPUT -p ${PROTOCOL} --dport ${PORT} -j ACCEPT
+			 # fi
+			  #  service iptables save
+			  #  echo "端口 $PORT ($PROTOCOL) 已开启"
+			#	sleep 3		    
 			else
 			    echo "未知的防火墙类型: $fw"
 			fi
@@ -686,16 +686,16 @@ man_firewall(){
 			    ufw reload
 			    echo "端口 $PORT ($PROTOCOL) 已关闭"
 				sleep 3
-			elif [ "$fw" = "iptables" ]; then
-			  if [ "$PROTOCOL" = "both" ]; then
-				iptables -D INPUT -p tcp --dport ${PORT} -j ACCEPT
-				iptables -D INPUT -p udp --dport ${PORT} -j ACCEPT
-			  else
-				iptables -D INPUT -p ${PROTOCOL} --dport ${PORT} -j ACCEPT
-			  fi
-			    service iptables save
-			    echo "端口 $PORT ($PROTOCOL) 已关闭"
-				sleep 3
+			#elif [ "$fw" = "iptables" ]; then
+			 # if [ "$PROTOCOL" = "both" ]; then
+			#	iptables -D INPUT -p tcp --dport ${PORT} -j ACCEPT
+			#	iptables -D INPUT -p udp --dport ${PORT} -j ACCEPT
+			 # else
+			#	iptables -D INPUT -p ${PROTOCOL} --dport ${PORT} -j ACCEPT
+			#  fi
+			 #   service iptables save
+			 #   echo "端口 $PORT ($PROTOCOL) 已关闭"
+			#	sleep 3
 			else
 			    echo "未知的防火墙类型: $fw"
 			fi
