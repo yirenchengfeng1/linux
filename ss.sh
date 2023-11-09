@@ -584,11 +584,11 @@ showLog() {
 
 menu() {
     clear
-    echo "#######################################################################"
-    echo -e "#              ${RED}Shadowsocks_rust 一键安装脚本${PLAIN}                #"
-    echo -e "# ${GREEN}作者${PLAIN}: 爱分享的小企鹅                                      #"
+    echo "#########################################################################"
+    echo -e "#              ${RED}Shadowsocks_rust 一键安装脚本${PLAIN}                            #"
+    echo -e "# ${GREEN}作者${PLAIN}: 爱分享的小企鹅                                                  #"
     echo -e "# ${GREEN}Youtube频道${PLAIN}: https://youtube.com/@user-wr7rz2jq4z?si=meznAMaijxYA9S2J #"
-    echo "#######################################################################"
+    echo "#########################################################################"
     echo ""
 
     echo -e "  ${GREEN}1.${PLAIN}  安装SS和v2ray_plugin（无需域名）"
