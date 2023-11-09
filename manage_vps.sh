@@ -486,6 +486,8 @@ man_firewall(){
 			#elif [ "$fw" = "iptables" ]; then
 		         #echo -n "防火墙运行状态：`iptables -L -n`"
 				# sleep 3
+			else
+			     echo -n "未知的防火墙类型，建议自行开启ufw后再尝试..."
 		    fi
 			clear
 			    ;;
@@ -520,6 +522,8 @@ man_firewall(){
                       # echo "防火墙停止失败"
 					 #  sleep 3
                 # fi
+			else
+			     echo -n "未知的防火墙类型，建议自行开启ufw后再尝试..."
 		    fi
 			    clear
 			    ;;
@@ -555,6 +559,8 @@ man_firewall(){
                 #       echo "防火墙开启失败"
 				#	   sleep 3
                 # fi
+			else
+			     echo -n "未知的防火墙类型，建议自行开启ufw后再尝试..."
 		    fi
 			clear
 			    ;;
@@ -592,6 +598,8 @@ man_firewall(){
                      #  echo "防火墙重启失败"
 					  # sleep 3
                  #fi
+			else
+			     echo -n "未知的防火墙类型，建议自行开启ufw后再尝试..."
 		    fi
 			clear
 			    ;;
@@ -607,6 +615,8 @@ man_firewall(){
 			                
 		   # elif [ "$fw" = "iptables" ]; then
                   # iptables -L -n --line-numbers | grep -i accept
+			else
+			     echo -n "未知的防火墙类型，建议自行开启ufw后再尝试..."
 		    fi
 			    ;;
 		    6)
@@ -650,8 +660,8 @@ man_firewall(){
 			  #  service iptables save
 			  #  echo "端口 $PORT ($PROTOCOL) 已开启"
 			#	sleep 3		    
-			else
-			    echo "未知的防火墙类型: $fw"
+            else
+			     echo -n "未知的防火墙类型，建议自行开启ufw后再尝试..."
 			fi
 
 
@@ -696,8 +706,8 @@ man_firewall(){
 			 #   service iptables save
 			 #   echo "端口 $PORT ($PROTOCOL) 已关闭"
 			#	sleep 3
-			else
-			    echo "未知的防火墙类型: $fw"
+             else
+			     echo -n "未知的防火墙类型，建议自行开启ufw后再尝试..."
 			fi
 
 
