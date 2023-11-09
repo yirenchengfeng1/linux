@@ -435,10 +435,10 @@ showInfo() {
     [[ -z "$res" ]] && status="${RED}已停止${PLAIN}" || status="${GREEN}正在运行${PLAIN}"
     password=`grep password $CONFIG_FILE| cut -d: -f2 | tr -d \",' '`
     method=`grep method $CONFIG_FILE| cut -d: -f2 | tr -d \",' '`
-    domain=$(grep plugin_opts /etc/shadowsocks-rust/config.json | cut -d';' -f3 | cut -d'=' -f2)
+    domain=$(grep plugin_opts  $CONFIG_FILE | cut -d';' -f3 | cut -d'=' -f2)
 	
 	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
-    res2=`echo -n "{"path":"/","mux":true,"host":"${domain}","tls":true}" | base64 -w 0`
+    res2=`echo -n "{"path":"/","mux":true,"host":${domain},"tls":true}" | base64 -w 0`
 	link="ss://${res1}?v2ray-plugin=${res2}"
 
 	
@@ -472,10 +472,10 @@ showQR() {
     [[ -z "$res" ]] && status="${RED}已停止${PLAIN}" || status="${GREEN}正在运行${PLAIN}"
     password=`grep password $CONFIG_FILE| cut -d: -f2 | tr -d \",' '`
     method=`grep method $CONFIG_FILE| cut -d: -f2 | tr -d \",' '`
-	domain=$(grep plugin_opts /etc/shadowsocks-rust/config.json | cut -d';' -f3 | cut -d'=' -f2)
+	domain=$(grep plugin_opts  $CONFIG_FILE | cut -d';' -f3 | cut -d'=' -f2)
 	
   	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
-    res2=`echo -n "{"path":"/","mux":true,"host":"${domain}","tls":true}" | base64 -w 0`
+    res2=`echo -n "{"path":"/","mux":true,"host":${domain},"tls":true}" | base64 -w 0`
 	link="ss://${res1}?v2ray-plugin=${res2}"
 	qrencode -o - -t utf8 ${link}
 	
