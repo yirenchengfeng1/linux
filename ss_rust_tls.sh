@@ -228,9 +228,9 @@ preinstall() {
 	fi	
     $CMD_INSTALL wget vim net-tools unzip tar qrencode lrzsz
     #res=`which wget 2>/dev/null`
-    #[[ "$?" != "0" ]] && $CMD_INSTALL wget
-    #res=`which netstat 2>/dev/null`
-    #[[ "$?" != "0" ]] && $CMD_INSTALL net-tools
+    # [[ "$?" != "0" ]] && $CMD_INSTALL wget
+    # res=`which netstat 2>/dev/null`
+    # [[ "$?" != "0" ]] && $CMD_INSTALL net-tools
 
     if [[ -s /etc/selinux/config ]] && grep 'SELINUX=enforcing' /etc/selinux/config; then
         sed -i 's/SELINUX=enforcing/SELINUX=permissive/g' /etc/selinux/config
@@ -256,7 +256,7 @@ normalizeVersion() {
 installNewVer() {
     new_ver=$1
     if ! wget "${V6_PROXY}https://github.com/shadowsocks/shadowsocks-rust/releases/download/v${new_ver}/shadowsocks-v${new_ver}.x86_64-unknown-linux-gnu.tar.xz" -O ${NAME}.tar.xz; then
-	   colorEcho $RED " 下载安装文件失败！"
+       colorEcho $RED " 下载安装文件失败！"
         exit 1
     fi
 	tar -xf ${NAME}.tar.xz  -C /usr/local/bin/
@@ -275,7 +275,7 @@ EOF
     systemctl daemon-reload
     systemctl enable ${NAME}
 
-
+    rm -rf shadowsocks-rust.tar.xz
     colorEcho $BLUE "ss安装成功!"
 }
 
@@ -296,7 +296,7 @@ install_v2(){
             echo "\033[1;31mFailed to install v2ray-plugin.\033[0m"
             exit 1
         fi
-		rm -rf v2ray-plugin_linux_amd64*
+		rm -rf v2ray-plugin-linux-amd64*
     fi
 }
 
@@ -345,6 +345,9 @@ configSS(){
     fi
 
     mkdir -p /etc/${NAME}
+	read -rp "请再次输入解析完成的域名: " DOMAIN
+    [[ -z $DOMAIN ]] && colorEcho $YELLOW "未输入域名，无法执行操作！" 
+    colorEcho $GREEN "已输入的域名：$DOMAIN" && sleep 1
     cat > $CONFIG_FILE<<-EOF
 {
     "server":"$interface",
@@ -355,12 +358,34 @@ configSS(){
     "method":"${METHOD}",
     "nameserver":"8.8.8.8",
 	"plugin":"v2ray-plugin",
-	"plugin_opts":"server"
+	"plugin_opts":"server;tls;host=${DOMAIN};cert=/root/${DOMAIN}/cert.crt;key=/root/${DOMAIN}/private.key"
 }
 EOF
 }
 
 
+
+get_cert(){
+    read -p "您确定要安装TLS证书吗？输入 'yes' 继续安装，其他任何输入将取消安装: " choice
+if [[ "$choice" != "yes" ]]; then
+    colorEcho $YELLOW " 取消安装TLS证书"
+    return
+fi
+    wget -N --no-check-certificate https://raw.githubusercontent.com/yirenchengfeng1/linux/main/acme.sh && bash acme.sh
+    CERT=true
+
+}
+
+man_cert(){
+    read -p "输入 'yes' 进入证书管理界面，包括申请、删除、查看等，其他任何输入将取消: " choice
+if [[ "$choice" != "yes" ]]; then
+    colorEcho $YELLOW " 取消管理TLS证书"
+    return
+fi
+    wget -N --no-check-certificate https://raw.githubusercontent.com/yirenchengfeng1/linux/main/acme.sh && bash acme.sh
+    CERT=true
+
+}
 
 setFirewall() {
     res=`which firewall-cmd 2>/dev/null`
@@ -410,16 +435,12 @@ showInfo() {
     [[ -z "$res" ]] && status="${RED}已停止${PLAIN}" || status="${GREEN}正在运行${PLAIN}"
     password=`grep password $CONFIG_FILE| cut -d: -f2 | tr -d \",' '`
     method=`grep method $CONFIG_FILE| cut -d: -f2 | tr -d \",' '`
-    
-    #res=`echo -n "${method}:${password}@${IP}:${port}/v2ray-plugin={"path":"/","mux":true,"host":"cloudfront.com","mode":"websocket"}" | base64 -w 0`
-    #link="ss://${res}"
+    domain=$(grep plugin_opts /etc/shadowsocks-rust/config.json | cut -d';' -f3 | cut -d'=' -f2)
 	
 	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
-	#echo $res1
-    res2=`echo -n "{"path":"/","mux":true,"host":"cloudfront.com","mode":"websocket"}" | base64 -w 0`
-	#echo $res2
+    res2=`echo -n "{"path":"/","mux":true,"host":"${domain}","tls":"true"}" | base64 -w 0`
 	link="ss://${res1}?v2ray-plugin=${res2}"
-	#echo $link
+
 	
 
     echo ============================================
@@ -434,15 +455,9 @@ showInfo() {
     echo -e "  ${BLUE}插件方式(plugin)：${PLAIN} ${RED}v2ray-plugin${PLAIN}"
     echo
     echo -e " ${BLUE}ss链接${PLAIN}： ${link}"
-	qrencode -o - -t utf8 ${link}
-	read -p " 是否要将图片下载到本地，输入yes同意，其它任意退出:" choice
-	if [[ $choic -lt "yes" ]]; then
-        qrencode -o /tmp/qrcode.png -s 10 ${link}
-	    sz /tmp/qrcode.png
-	else
-	    exit 0
-    fi
- 
+    qrencode -o - -t utf8 ${link}
+	qrencode -o /tmp/qrcode.png -s 10 ${link}
+	colorEcho $BLUE " 图片已保存在/tmp/qrcode.png，请自行下载使用..."										 
 }
 
 showQR() {
@@ -457,38 +472,30 @@ showQR() {
     [[ -z "$res" ]] && status="${RED}已停止${PLAIN}" || status="${GREEN}正在运行${PLAIN}"
     password=`grep password $CONFIG_FILE| cut -d: -f2 | tr -d \",' '`
     method=`grep method $CONFIG_FILE| cut -d: -f2 | tr -d \",' '`
-	
+	domain=$(grep plugin_opts /etc/shadowsocks-rust/config.json | cut -d';' -f3 | cut -d'=' -f2)
 	
   	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
-    res2=`echo -n "{"path":"/","mux":true,"host":"cloudfront.com","mode":"websocket"}" | base64 -w 0`
+    res2=`echo -n "{"path":"/","mux":true,"host":"${domain}","tls":"true"}" | base64 -w 0`
 	link="ss://${res1}?v2ray-plugin=${res2}"
 	qrencode -o - -t utf8 ${link}
-	read -p " 是否要将图片下载到本地，输入yes同意，其它任意退出:" choice
-	if [[ $choic -lt "yes" ]]; then
-        qrencode -o /tmp/qrcode.png -s 10 ${link}
-	    sz /tmp/qrcode.png
-	else
-	    exit 0
-    fi
-	
 	
 }
+
 
 
 install() {
     getData
-
     preinstall
     installSS
 	install_v2
+	get_cert
     configSS
-	
     setFirewall
-
     start
     showInfo
 
 }
+
 
 reconfig() {
     res=`status`
@@ -500,9 +507,9 @@ reconfig() {
     configSS
     restart
     setFirewall
-
     showInfo
 }
+
 
 update() {
     res=`status`
@@ -561,7 +568,7 @@ uninstall() {
     fi
 
     echo ""
-    read -p " 确定卸载SS吗？(y/n)" answer
+    read -p " 确定卸载SS吗？(y/n)：" answer
     [[ -z ${answer} ]] && answer="n"
 
     if [[ "${answer}" == "y" ]] || [[ "${answer}" == "Y" ]]; then
@@ -584,25 +591,27 @@ showLog() {
 
 menu() {
     clear
-    echo "#############################################################"
-    echo -e "#              ${RED}Shadowsocks_rust 一键安装脚本${PLAIN}                #"
-    echo -e "# ${GREEN}作者${PLAIN}: 爱分享的小企鹅                                      #"
+    echo "#########################################################################"
+    echo -e "#              ${RED}Shadowsocks_rust 一键安装脚本${PLAIN}                            #"
+    echo -e "# ${GREEN}作者${PLAIN}: 爱分享的小企鹅                                                  #"
     echo -e "# ${GREEN}Youtube频道${PLAIN}: https://youtube.com/@user-wr7rz2jq4z?si=meznAMaijxYA9S2J #"
-    echo "#############################################################"
+    echo "#########################################################################"
     echo ""
 
-    echo -e "  ${GREEN}1.${PLAIN}  安装SS和v2ray_plugin（无需域名）"
+    echo -e "  ${GREEN}1.${PLAIN}  安装SS和v2ray_plugin并开启tls加密（需要域名）"																				 
     echo -e "  ${GREEN}2.${PLAIN}  更新SS和v2ray_plugin"
-    echo -e "  ${GREEN}3.  ${RED}卸载SS和v2ray_plugin${PLAIN}"
+    echo -e "  ${GREEN}3.  ${RED}卸载SS、v2ray_plugin${PLAIN}"
+	echo -e "  ${GREEN}4.  ${RED}管理TLS证书${PLAIN}"
+														 
     echo " -------------"
-    echo -e "  ${GREEN}4.${PLAIN}  启动SS"
-    echo -e "  ${GREEN}5.${PLAIN}  重启SS"
-    echo -e "  ${GREEN}6.${PLAIN}  停止SS"
+    echo -e "  ${GREEN}5.${PLAIN}  启动SS"
+    echo -e "  ${GREEN}6.${PLAIN}  重启SS"
+    echo -e "  ${GREEN}7.${PLAIN}  停止SS"
     echo " -------------"
-    echo -e "  ${GREEN}7.${PLAIN}  查看SS配置"
-    echo -e "  ${GREEN}8.${PLAIN}  查看配置二维码"
-    echo -e "  ${GREEN}9.  ${RED}修改SS配置${PLAIN}"
-    echo -e "  ${GREEN}10.${PLAIN} 查看SS日志"
+    echo -e "  ${GREEN}8.${PLAIN}  查看SS配置"
+    echo -e "  ${GREEN}9.${PLAIN}  查看配置二维码"
+    echo -e "  ${GREEN}10.  ${RED}修改SS配置${PLAIN}"
+    echo -e "  ${GREEN}11.${PLAIN} 查看SS日志"
     echo " -------------"
     echo -e "  ${GREEN}0.${PLAIN} 退出"
     echo 
@@ -610,7 +619,7 @@ menu() {
     statusText
     echo 
 
-    read -p " 请选择操作[0-10]：" answer
+    read -p " 请选择操作[0-11]：" answer
     case $answer in
         0)
             exit 0
@@ -618,31 +627,34 @@ menu() {
         1)
             install
             ;;
-        2)
+        2)		  
             update
             ;;
         3)
             uninstall
             ;;
         4)
+            man_cert
+            ;;					
+        5)
             start
             ;;
-        5)
+        6)	  
             restart
             ;;
-        6)
+        7)
             stop
             ;;
-        7)
+        8)
             showInfo
             ;;
-        8)
+        9)
             showQR
             ;;
-        9)
+        10)
             reconfig
             ;;
-        10)
+        11)
             showLog
             ;;
         *)
@@ -657,11 +669,11 @@ checkSystem
 action=$1
 [[ -z $1 ]] && action=menu
 case "$action" in
-    menu|install|update|uninstall|start|restart|stop|showInfo|showQR|showLog)
+    menu|install|update|uninstall|man_cert|start|restart|stop|showInfo|showQR|showLog)
         ${action}
         ;;
     *)
         echo " 参数错误"
-        echo " 用法: `basename $0` [menu|install|update|uninstall|start|restart|stop|showInfo|showQR|showLog]"
+        echo " 用法: `basename $0` [menu|install|update|uninstall|man_cert|start|restart|stop|showInfo|showQR|showLog]"
         ;;
 esac
