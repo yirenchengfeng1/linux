@@ -434,14 +434,8 @@ showInfo() {
     echo -e "  ${BLUE}插件方式(plugin)：${PLAIN} ${RED}v2ray-plugin${PLAIN}"
     echo
     echo -e " ${BLUE}ss链接${PLAIN}： ${link}"
-	#qrencode -o - -t utf8 ${link}
-	read -p " 是否要将图片下载到本地，输入yes同意，其它任意退出:" choice
-	if [[ $choic -lt "yes" ]]; then
-        qrencode -o /tmp/qrcode.png -s 10 ${link}
-	    colorEcho $BLUE " 图片已保存在/tmp/qrcode.png，请自行下载使用..."
-	else
-	    exit 0
-    fi
+	qrencode -o - -t utf8 ${link}
+
  
 }
 
