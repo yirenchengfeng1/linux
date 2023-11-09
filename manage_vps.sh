@@ -91,12 +91,12 @@ dis_ip() {
         done
 }
 
-# 进行彩色打印
+
 colorEcho() {
     echo -e "${1}${@:2}${PLAIN}"
 }
 
-# 检查系统是不是支持的linux版本
+
 check_system(){
     if grep -Eqi "CentOS" /etc/issue || grep -Eq "CentOS" /etc/*-release; then
         system_str="0"
@@ -138,10 +138,7 @@ powercontrol() {
 
 get_time() {
 	   clear    
-       # 获取当前系统时区
 	   current_timezone=$(timedatectl | grep "Time zone" | awk '{print $3}')
-       #current_timezone=$(timedatectl show --property=Timezone --value)
-       # 获取当前系统时间
        current_time=$(date +"%Y-%m-%d %H:%M:%S")
 	   
 }
@@ -170,13 +167,9 @@ spead_ssh() {
                echo "未找到SSH配置文件！"
                exit 1
            fi
-           # 禁用 DNS 反查，将 UseDNS 设置为 no，并去掉注释符
            sed -i -e '/UseDNS/s/yes/no/g; /^#.*UseDNS/s/#//g' /etc/ssh/sshd_config
-
-           # 禁用 GSSAPI 身份验证，将 GSSAPIAuthentication 设置为 no 并保留注释符
            sed -i -e '/^#.*GSSAPIAuthentication/s/yes/no/g' /etc/ssh/sshd_config
 
-           # 重启SSH服务
            if [ -x "$(command -v systemctl)" ]; then
                systemctl restart sshd
            elif [ -x "$(command -v service)" ]; then
@@ -199,7 +192,7 @@ spead_ssh() {
 
 ssh_login() {
       
-     # 备份原有的sshd配置文件
+
      cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak  
     while true
        do  
@@ -224,11 +217,10 @@ ssh_login() {
                  ;;
 		     1)
 			 
-	     	# 检查lrzsz命令是否存在
 				lrzsz_exist=$(which lrzsz)
 
 			if [ -z "$lrzsz_exist" ]; then
-				  # lrzsz命令不存在,进行安装
+
 
 				  if [ "$system_str" = "0" ]; then
 						yum install -y lrzsz
@@ -246,10 +238,9 @@ ssh_login() {
                 echo -e "  ${RED}SSH密钥已生成，请在本地保管好你的私钥！！！${PLAIN}"
 	            ;;
 			 2)
-                # 修改SSH配置文件，取消PubkeyAuthentication#
 				sed -i 's/^\#*RSAAuthentication.*/RSAAuthentication yes/' /etc/ssh/sshd_config
 				sed -i 's/^\#*PubkeyAuthentication.*/PubkeyAuthentication yes/' /etc/ssh/sshd_config
-				   # 重启SSH服务
+
                 if [ -x "$(command -v systemctl)" ]; then
                      systemctl restart sshd
 					 echo -e "  ${GREEN}SSH密钥登录已开启！${PLAIN}"
@@ -269,7 +260,7 @@ ssh_login() {
 				sed -i 's/^\#*PubkeyAuthentication.*/PubkeyAuthentication no/' /etc/ssh/sshd_config
 				
 
-				   # 重启SSH服务
+			
                 if [ -x "$(command -v systemctl)" ]; then
                      systemctl restart sshd
 					 echo -e "  ${GREEN}SSH密钥登录已关闭！${PLAIN}"
@@ -286,7 +277,7 @@ ssh_login() {
 			 4)
 			    sed -i 's/^\#*PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
 				sed -i 's/^\#*ChallengeResponseAuthentication.*/ChallengeResponseAuthentication no/' /etc/ssh/sshd_config
-				   # 重启SSH服务
+			
                 if [ -x "$(command -v systemctl)" ]; then
                      systemctl restart sshd
 					 echo -e "  ${GREEN}SSH密码登录已关闭！${PLAIN}"
@@ -303,7 +294,7 @@ ssh_login() {
 	     	 5)
 			    sed -i 's/^\#*PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
 				sed -i 's/^\#*ChallengeResponseAuthentication.*/ChallengeResponseAuthentication yes/' /etc/ssh/sshd_config
-				   # 重启SSH服务
+			
                 if [ -x "$(command -v systemctl)" ]; then
                      systemctl restart sshd
 					 echo -e "  ${GREEN}SSH密码登录已开启！${PLAIN}"
@@ -329,7 +320,7 @@ ssh_login() {
 man_ssh_port() {
     clear
     
-    # 提示用户更改SSH端口
+
 	echo -e "  ${RED}请注意：更改SSH端口可能会影响远程连接。  ${PLAIN}"
     while true
        do   
@@ -340,7 +331,7 @@ man_ssh_port() {
           echo "------------------------"
           echo "0. 返回上一级选单"
           echo "------------------------"
-	      # 询问用户是否继续
+
           read -p "请输入你的选择: " choice
 		  case $choice in
 		     0)
@@ -352,7 +343,7 @@ man_ssh_port() {
 			
                  ;;
 	         2)       
-			# 备份原始SSH配置文件
+
 			if [ -f "/etc/ssh/sshd_config" ]; then
 			     cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
 			else
@@ -363,22 +354,21 @@ man_ssh_port() {
 			echo "系统当前已开放的TCP端口号，选择时请避开以下端口："
 			netstat -tuln | awk '/^tcp/ {print $4}' | awk -F: '{print $NF}' | sort -n | uniq
 			
-            # 上次的SSH端口
+   
             ssh_port=`grep -E "^#*Port" /etc/ssh/sshd_config | awk '{print $2}'`
 			
-			# 询问用户要更改的新端口号
+
 			read -p "请输入新的SSH端口号: " new_port
 			
-			# 删除默认SSH端口
+
 			sed -i "/^.*Port /d" /etc/ssh/sshd_config
 			
 			
-			# 修改SSH配置文件
 			echo "Port $new_port" >> /etc/ssh/sshd_config
 
 
 
-			# 配置防火墙规则
+
 			if [ -x "$(command -v firewall-cmd)" ]; then
 		
 				   firewall-cmd --permanent --zone=public --remove-port=$ssh_port/tcp
@@ -388,17 +378,13 @@ man_ssh_port() {
 				  ufw deny $ssh_port/tcp
 			      ufw allow $new_port/tcp
 			      ufw reload
-			#elif [ -x "$(command -v iptables)" ]; then
-			     #iptables -A INPUT -p tcp --dport $ssh_port -j DROP
-			     #iptables -A INPUT -p tcp --dport $new_port -j ACCEPT
-			
-			    # service iptables save
+
 			else
 			       echo "无法配置防火墙规则。请手动配置以确保新SSH端口可用。"
 			fi
          
 		
-			# 重启SSH服务
+
 			if [ -x "$(command -v systemctl)" ]; then
 			     if [ -x "$(command -v getenforce)" ]; then
 			     semanage port -d -t ssh_port_t -p tcp $ssh_port
@@ -434,14 +420,12 @@ man_ssh_port() {
 
 man_firewall(){
  
-		# 检查防火墙类型
+
 		if [ -x "$(command -v firewall-cmd)" ]; then
 		   fw=firewall-cmd
 
 		elif [ -x "$(command -v ufw)" ];  then
 		  fw=ufw
-	    #elif [ -x "$(command -v iptables)" ]; then
-		  #fw=iptables  
 		else
 		  echo "未检测到支持的防火墙"
 		  
@@ -474,7 +458,6 @@ man_firewall(){
                  ;;
 		     1)
                   
-		     # 显示状态 
 		    if [ "$fw" = "firewall-cmd" ]; then
 		          echo -n "防火墙运行状态："
 				  firewall-cmd --state
@@ -483,9 +466,6 @@ man_firewall(){
 		    elif [ "$fw" = "ufw" ]; then
 		          echo -n "防火墙运行状态：`ufw status`"
 				  sleep 3
-			#elif [ "$fw" = "iptables" ]; then
-		         #echo -n "防火墙运行状态：`iptables -L -n`"
-				# sleep 3
 			else
 			     echo -n "未知的防火墙类型，建议自行开启ufw后再尝试..."
 		    fi
@@ -493,7 +473,6 @@ man_firewall(){
 			    ;;
 		     2)
                   
-		     # 临时关闭防火墙
 		    if [ "$fw" = "firewall-cmd" ]; then
 		          systemctl stop firewalld
 				  if [ $? -eq 0 ]; then
@@ -513,23 +492,13 @@ man_firewall(){
                        echo "防火墙停止失败"
 					   sleep 3
                 fi
-			#elif [ "$fw" = "iptables" ]; then
-		        # systemctl stop iptables  
-				# if [ $? -eq 0 ]; then
-                   #    echo "防火墙已停止"
-					#   sleep 3
-                  #else
-                      # echo "防火墙停止失败"
-					 #  sleep 3
-                # fi
 			else
 			     echo -n "未知的防火墙类型，建议自行开启ufw后再尝试..."
 		    fi
 			    clear
 			    ;;
 		    3)
-                  
-		     # 开启防火墙
+
 		    if [ "$fw" = "firewall-cmd" ]; then
 		          systemctl start firewalld
 				  if [ $? -eq 0 ]; then
@@ -549,24 +518,13 @@ man_firewall(){
                        echo "防火墙开启失败"
 					   sleep 3
                 fi
-				
-		   # elif [ "$fw" = "iptables" ]; then
-		        # systemctl start iptables  
-				# if [ $? -eq 0 ]; then
-                  #     echo "防火墙已开启"
-				#	   sleep 3
-                #  else
-                #       echo "防火墙开启失败"
-				#	   sleep 3
-                # fi
 			else
 			     echo -n "未知的防火墙类型，建议自行开启ufw后再尝试..."
 		    fi
 			clear
 			    ;;
              4)
-                  
-		     # 重启防火墙
+
 		    if [ "$fw" = "firewall-cmd" ]; then
 		          systemctl restart firewalld
 				  if [ $? -eq 0 ]; then
@@ -587,17 +545,6 @@ man_firewall(){
                        echo "防火墙重启失败"
 					   sleep 3
                 fi
-		    
-
-		   # elif [ "$fw" = "iptables" ]; then
-		        # systemctl restart iptables  
-				# if [ $? -eq 0 ]; then
-                     #  echo "防火墙已重启"
-					  # sleep 3
-                  #else
-                     #  echo "防火墙重启失败"
-					  # sleep 3
-                 #fi
 			else
 			     echo -n "未知的防火墙类型，建议自行开启ufw后再尝试..."
 		    fi
@@ -605,26 +552,18 @@ man_firewall(){
 			    ;;
 				
 		    5)
-                  
-		     # 防火墙已放行的端口
+
 		    if [ "$fw" = "firewall-cmd" ]; then
 		         firewall-cmd --list-ports
 		  
 		    elif [ "$fw" = "ufw" ]; then
                    ufw status numbered  
-			                
-		   # elif [ "$fw" = "iptables" ]; then
-                  # iptables -L -n --line-numbers | grep -i accept
 			else
 			     echo -n "未知的防火墙类型，建议自行开启ufw后再尝试..."
 		    fi
 			    ;;
 		    6)
                   
-		     # 防火墙开启指定的端口
-
-	 
-
 			read -p "请输入需要开启的端口号：" PORT
 	
 			read -p "请输入协议类型 (tcp/udp/both):" PROTOCOL
@@ -649,27 +588,15 @@ man_firewall(){
 			  fi
 			    ufw reload
 			    echo "端口 $PORT ($PROTOCOL) 已开启"
-				sleep 3
-	       # elif [ "$fw" = "iptables" ]; then
-			 # if [ "$PROTOCOL" = "both" ]; then
-				#iptables -I INPUT -p tcp --dport ${PORT} -j ACCEPT
-				#iptables -I INPUT -p udp --dport ${PORT} -j ACCEPT
-			 # else
-				#iptables -I INPUT -p ${PROTOCOL} --dport ${PORT} -j ACCEPT
-			 # fi
-			  #  service iptables save
-			  #  echo "端口 $PORT ($PROTOCOL) 已开启"
-			#	sleep 3		    
+				sleep 3	    
             else
 			     echo -n "未知的防火墙类型，建议自行开启ufw后再尝试..."
 			fi
 
-
 			    ;;	
 				
 		    7)
-                  
-		     # 防火墙关闭指定的端口
+
 
 			read -p "请输入需要关闭的端口号：" PORT
 	
@@ -696,16 +623,6 @@ man_firewall(){
 			    ufw reload
 			    echo "端口 $PORT ($PROTOCOL) 已关闭"
 				sleep 3
-			#elif [ "$fw" = "iptables" ]; then
-			 # if [ "$PROTOCOL" = "both" ]; then
-			#	iptables -D INPUT -p tcp --dport ${PORT} -j ACCEPT
-			#	iptables -D INPUT -p udp --dport ${PORT} -j ACCEPT
-			 # else
-			#	iptables -D INPUT -p ${PROTOCOL} --dport ${PORT} -j ACCEPT
-			#  fi
-			 #   service iptables save
-			 #   echo "端口 $PORT ($PROTOCOL) 已关闭"
-			#	sleep 3
              else
 			     echo -n "未知的防火墙类型，建议自行开启ufw后再尝试..."
 			fi
@@ -729,7 +646,6 @@ man_firewall(){
 change_timezone() {
        get_time
 	   echo "系统时间信息"
-	   # 显示时区和时间
        echo "当前系统时区：$current_timezone"
        echo "当前系统时间：$current_time"
        echo ""
@@ -824,7 +740,6 @@ change_timezone() {
           esac
 	      get_time
 	      echo "修改后系统时间信息"
-	      # 显示时区和时间
 	      echo -e "  ${GREEN}修改后系统时区：$current_timezone${PLAIN}"
 	      echo -e "  ${GREEN}当前系统时间：$current_time${PLAIN}"
 		  echo -e "  ${GREEN}已经修改完成，请输入0返回上一级菜单${PLAIN}"
@@ -852,16 +767,11 @@ man_disk(){
 man_vnstat(){
   
 
-			# 列出系统上的网络接口名称
 			echo "可用的网络接口名称："
 			echo -n -e  "${GREEN}可用的网络接口名称：${PLAIN}" && ifconfig -a | grep '^[a-zA-Z]' | awk '{print $1}' | tr '\n' ' ' | sed 's/://g'
 
-			# 如果您更喜欢使用 "ip" 命令，可以使用以下行替换上述 "ifconfig" 行：
-			# ip -o link show | awk -F': ' '{print $2}'
-            # 提示用户选择网络接口
 			read -p "请输入你要监控的网络接口名称: " selected_interface
 
-			# 提示用户选择操作模式
 			echo " "
 			echo "请选择操作模式："
 			echo "0. 返回上一级菜单"
@@ -871,11 +781,9 @@ man_vnstat(){
 			echo "4. 查看每月的网络使用情况"
 			echo "5. 删除网络接口：$selected_interface数据库"
 
-			# 读取用户选择
 	   while true
        do
-            
-			# 提示用户选择网络接口
+
 			read -p "请输入你的选择: " choice
 			case $choice in
 			  0)
