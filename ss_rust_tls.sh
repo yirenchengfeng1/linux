@@ -437,7 +437,7 @@ showInfo() {
     method=`grep method $CONFIG_FILE| cut -d: -f2 | tr -d \",' '`
     domain=$(grep plugin_opts  $CONFIG_FILE | cut -d';' -f3 | cut -d'=' -f2)
 	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
-    res2=`echo -n '{"path":"\/","mux":true,"host":"${domain}","mode":"websocket","tls":true}' | base64 -w 0`	
+    res2=$(echo -n '{"path":"\/","mux":true,"host":"'$domain'","mode":"websocket","tls":true}' | base64 -w 0)
 	#echo $res2
 	link="ss://${res1}?v2ray-plugin=${res2}"
 
@@ -474,7 +474,7 @@ showQR() {
     method=`grep method $CONFIG_FILE| cut -d: -f2 | tr -d \",' '`
     domain=$(grep plugin_opts  $CONFIG_FILE | cut -d';' -f3 | cut -d'=' -f2)
 	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
-    res2=`echo -n '{"path":"\/","mux":true,"host":"${domain}","mode":"websocket","tls":true}' | base64 -w 0`	
+    res2=$(echo -n '{"path":"\/","mux":true,"host":"'$domain'","mode":"websocket","tls":true}' | base64 -w 0)	
 	#echo $res2
 	link="ss://${res1}?v2ray-plugin=${res2}"
 	
