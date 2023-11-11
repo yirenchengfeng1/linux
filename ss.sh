@@ -350,11 +350,9 @@ configSS(){
 {
     "server":"$interface",
     "server_port":${PORT},
-    "local_port":1080,
     "password":"${PASSWORD}",
-    "timeout":600,
+    "timeout":300,
     "method":"${METHOD}",
-    "nameserver":"8.8.8.8",
 	"plugin":"v2ray-plugin",
 	"plugin_opts":"server"
 }
