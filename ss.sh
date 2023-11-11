@@ -276,6 +276,7 @@ EOF
     systemctl enable ${NAME}
 
 
+	rm -rf shadowsocks-rust.tar.xz							  
     colorEcho $BLUE "ss安装成功!"
 }
 
@@ -296,7 +297,7 @@ install_v2(){
             echo "\033[1;31mFailed to install v2ray-plugin.\033[0m"
             exit 1
         fi
-		rm -rf v2ray-plugin_linux_amd64*
+		rm -rf v2ray-plugin-linux-amd64*
     fi
 }
 
@@ -347,13 +348,11 @@ configSS(){
     mkdir -p /etc/${NAME}
     cat > $CONFIG_FILE<<-EOF
 {
-    "server":"$interface",
+    "server":“0.0.0.0”,
     "server_port":${PORT},
-    "local_port":1080,
     "password":"${PASSWORD}",
-    "timeout":600,
+    "timeout":300,
     "method":"${METHOD}",
-    "nameserver":"8.8.8.8",
 	"plugin":"v2ray-plugin",
 	"plugin_opts":"server"
 }
@@ -548,7 +547,7 @@ uninstall() {
     fi
 
     echo ""
-    read -p " 确定卸载SS吗？(y/n)" answer
+    read -p " 确定卸载SS吗？(y/n)：" answer
     [[ -z ${answer} ]] && answer="n"
 
     if [[ "${answer}" == "y" ]] || [[ "${answer}" == "Y" ]]; then
