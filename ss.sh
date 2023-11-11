@@ -435,12 +435,12 @@ showInfo() {
     echo
     echo -e " ${BLUE}shadowsocks客户端订阅链接${PLAIN}： ${link2}"
 	qrencode -o - -t utf8 ${link2}
-    qrencode -o /tmp/qrcode.png -s 10 ${link2}
+    qrencode -o /tmp/Android_qrcode.png -s 10 ${link2}
 	colorEcho $BLUE " shadowsocks订阅二维码已保存在/tmp/Android_qrcode.png，请下载使用..."
 	
     echo -e " ${BLUE}小火箭客户端订阅链接${PLAIN}： ${link1}"	
 	qrencode -o - -t utf8 ${link1}
-    qrencode -o /tmp/qrcode.png -s 10 ${link1}
+    qrencode -o /tmp/ios_qrcode.png -s 10 ${link1}
 	colorEcho $BLUE " 小火箭订阅二维码已保存在/tmp/ios_qrcode.png，请下载使用..."
 
 
@@ -469,12 +469,12 @@ showQR() {
 
     echo -e -n " ${BLUE}shadowsocks客户端订阅二维码${PLAIN}："
 	qrencode -o - -t utf8 ${link2}
-    qrencode -o /tmp/qrcode.png -s 10 ${link2}
+    qrencode -o /tmp/Android_qrcode.png -s 10 ${link2}
 	colorEcho $BLUE " shadowsocks订阅二维码已保存在/tmp/Android_qrcode.png，请下载使用..."
 	
     echo -e -n " ${BLUE}小火箭客户端订阅二维码${PLAIN}： ${link1}"	
 	qrencode -o - -t utf8 ${link1}
-    qrencode -o /tmp/qrcode.png -s 10 ${link1}
+    qrencode -o /tmp/ios_qrcode.png -s 10 ${link1}
 	colorEcho $BLUE " 小火箭订阅二维码已保存在/tmp/ios_qrcode.png，请下载使用..."
 }
 
