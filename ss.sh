@@ -378,24 +378,23 @@ setFirewall() {
                 iptables -I INPUT -p udp --dport ${PORT} -j ACCEPT
             fi
         fi
-    else
-        res=`which iptables 2>/dev/null`
-        if [[ $? -eq 0 ]]; then
-            nl=`iptables -nL | nl | grep FORWARD | awk '{print $1}'`
-            if [[ "$nl" != "3" ]]; then
-                iptables -I INPUT -p tcp --dport ${PORT} -j ACCEPT
-                iptables -I INPUT -p udp --dport ${PORT} -j ACCEPT
-            fi
-        else
-            res=`which ufw 2>/dev/null`
+	else
+	    res=`which ufw 2>/dev/null`
             if [[ $? -eq 0 ]]; then
                 res=`ufw status | grep -i inactive`
                 if [[ "$res" = "" ]]; then
                     ufw allow ${PORT}/tcp
                     ufw allow ${PORT}/udp
                 fi
-            fi
-        fi
+		    else
+			  res=`which iptables 2>/dev/null`
+              if [[ $? -eq 0 ]]; then
+                  nl=`iptables -nL | nl | grep FORWARD | awk '{print $1}'`
+                     if [[ "$nl" != "3" ]]; then
+                     iptables -I INPUT -p tcp --dport ${PORT} -j ACCEPT
+                     iptables -I INPUT -p udp --dport ${PORT} -j ACCEPT
+              fi   
+            fi	
     fi
 }
 
