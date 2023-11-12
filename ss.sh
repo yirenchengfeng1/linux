@@ -364,38 +364,19 @@ EOF
 
 
 setFirewall() {
-    res=`which firewall-cmd 2>/dev/null`
-    if [[ $? -eq 0 ]]; then
-        systemctl status firewalld > /dev/null 2>&1
-        if [[ $? -eq 0 ]];then
-            firewall-cmd --permanent --add-port=${PORT}/tcp
-            firewall-cmd --permanent --add-port=${PORT}/udp
-            firewall-cmd --reload
-        else
-            nl=`iptables -nL | nl | grep FORWARD | awk '{print $1}'`
-            if [[ "$nl" != "3" ]]; then
-                iptables -I INPUT -p tcp --dport ${PORT} -j ACCEPT
-                iptables -I INPUT -p udp --dport ${PORT} -j ACCEPT
-            fi
-        fi
-	else
-	    res=`which ufw 2>/dev/null`
-            if [[ $? -eq 0 ]]; then
-                res=`ufw status | grep -i inactive`
-                if [[ "$res" = "" ]]; then
+   			if [ -x "$(command -v firewall-cmd)" ]; then		
+                   firewall-cmd --permanent --add-port=${PORT}/tcp
+                   firewall-cmd --permanent --add-port=${PORT}/udp
+                   firewall-cmd --reload
+			elif [ -x "$(command -v ufw)" ]; then
                     ufw allow ${PORT}/tcp
                     ufw allow ${PORT}/udp
-                fi
-		    else
-			  res=`which iptables 2>/dev/null`
-              if [[ $? -eq 0 ]]; then
-                  nl=`iptables -nL | nl | grep FORWARD | awk '{print $1}'`
-                     if [[ "$nl" != "3" ]]; then
-                     iptables -I INPUT -p tcp --dport ${PORT} -j ACCEPT
-                     iptables -I INPUT -p udp --dport ${PORT} -j ACCEPT
-              fi   
-            fi	
-    fi
+			        ufw reload
+
+			else
+			       echo "无法配置防火墙规则。请手动配置以确保新SSH端口可用。"
+			fi
+
 }
 
 showInfo() {
