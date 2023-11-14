@@ -353,11 +353,11 @@ uninstall() {
 
 menu() {
     clear
-    echo "#############################################################"
+    echo "##################################################################"
     echo -e "#                   ${RED}Acme  证书一键申请脚本${PLAIN}                  #"
     echo -e "# ${GREEN}作者${PLAIN}: 爱分享的小企鹅                              #"
-    echo -e "# ${GREEN}网站${PLAIN}: https://www.youtube.com/channel/UCLd2LDzFPFoUnuQsP8y1wRA                           #"                          #"
-    echo "#############################################################"
+    echo -e "# ${GREEN}网站${PLAIN}: https://www.youtube.com/channel/UCLd2LDzFPFoUnuQsP8y1wRA       #"        
+    echo "##################################################################"
     echo ""
     echo -e " ${GREEN}1.${PLAIN} 安装 Acme.sh 域名证书申请脚本"
     echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Acme.sh 域名证书申请脚本${PLAIN}"
