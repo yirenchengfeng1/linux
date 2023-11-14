@@ -96,8 +96,6 @@ install_acme(){
 }
 
 check_80(){
-    # 感谢Wulabing前辈提供的检查80端口思路
-    # Source: https://github.com/wulabing/Xray_onekey
     
     if [[ -z $(type -P lsof) ]]; then
         if [[ ! $SYSTEM == "CentOS" ]]; then
@@ -123,6 +121,18 @@ check_80(){
             exit 1
         fi
     fi
+	   
+	if [[ $SYSTEM == "CentOS" ]]; then
+     	firewall-cmd --permanent --add-port=80/tcp
+        firewall-cmd --reload
+		echo "TCP/80端口已开启"
+	else 
+	   [[ ! $SYSTEM == "CentOS" ]]
+        ufw allow 80/tcp
+		ufw reload
+		echo "TCP/80端口已开启"  
+    fi
+	
 }
 
 acme_standalone(){
@@ -154,7 +164,6 @@ acme_standalone(){
     [[ -z $domain ]] && red "未输入域名，无法执行操作！" && exit 1
     green "已输入的域名：$domain" && sleep 1
     domainIP=$(curl -sm8 ipget.net/?ip="${domain}")
-    export domain
     
     if [[ $domainIP == $ipv6 ]]; then
         bash ~/.acme.sh/acme.sh --issue -d ${domain} --standalone -k ec-256 --listen-v6 --insecure
@@ -346,9 +355,8 @@ menu() {
     clear
     echo "#############################################################"
     echo -e "#                   ${RED}Acme  证书一键申请脚本${PLAIN}                  #"
-    echo -e "# ${GREEN}作者${PLAIN}: Metabok                               #"
-    echo -e "# ${GREEN}博客${PLAIN}: https://metabok.net                            #"
-    echo -e "# ${GREEN}Github 项目${PLAIN}: https://github.com/senqi77/Acme-Script                            #"
+    echo -e "# ${GREEN}作者${PLAIN}: 爱分享的小企鹅                              #"
+    echo -e "# ${GREEN}网站${PLAIN}: https://www.youtube.com/channel/UCLd2LDzFPFoUnuQsP8y1wRA                           #"                          #"
     echo "#############################################################"
     echo ""
     echo -e " ${GREEN}1.${PLAIN} 安装 Acme.sh 域名证书申请脚本"
