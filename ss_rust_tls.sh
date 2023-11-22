@@ -417,8 +417,10 @@ showInfo() {
     domain=$(grep plugin_opts  $CONFIG_FILE | cut -d';' -f3 | cut -d'=' -f2)
 	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
     res2=$(echo -n '{"path":"\/","mux":true,"host":"'$domain'","mode":"websocket","tls":true}' | base64 -w 0)
+	res3=`echo -n "${method}:${password}" | base64 -w 0`
 	#echo $res2
-	link="ss://${res1}?v2ray-plugin=${res2}"
+	link1="ss://${res1}?v2ray-plugin=${res2}"
+	link2="ss://${res3}@${IP}:${port}/?plugin=v2ray-plugin%3btls%3bhost%3d${domain}"
 
 	
 
@@ -433,10 +435,15 @@ showInfo() {
     echo -e "  ${BLUE}加密方式(method)：${PLAIN} ${RED}${method}${PLAIN}"
     echo -e "  ${BLUE}插件方式(plugin)：${PLAIN} ${RED}v2ray-plugin${PLAIN}"
     echo
-    echo -e " ${BLUE}ss链接${PLAIN}： ${link}"
-    qrencode -o - -t utf8 ${link}
-	qrencode -o /tmp/qrcode.png -s 10 ${link}
-	colorEcho $BLUE " 图片已保存在/tmp/qrcode.png，请自行下载使用..."										 
+    echo -e " ${BLUE}shadowsocks客户端订阅链接${PLAIN}： ${link2}"
+	qrencode -o - -t utf8 ${link2}
+    qrencode -o /tmp/Android_qrcode.png -s 10 ${link2}
+	colorEcho $BLUE " shadowsocks订阅二维码已保存在/tmp/Android_qrcode.png，请下载使用..."
+	
+    echo -e " ${BLUE}小火箭客户端订阅链接${PLAIN}： ${link1}"	
+	qrencode -o - -t utf8 ${link1}
+    qrencode -o /tmp/ios_qrcode.png -s 10 ${link1}
+	colorEcho $BLUE " 小火箭订阅二维码已保存在/tmp/ios_qrcode.png，请下载使用..."								 
 }
 
 showQR() {
@@ -453,10 +460,20 @@ showQR() {
     method=`grep method $CONFIG_FILE| cut -d: -f2 | tr -d \",' '`
     domain=$(grep plugin_opts  $CONFIG_FILE | cut -d';' -f3 | cut -d'=' -f2)
 	res1=`echo -n "${method}:${password}@${IP}:${port}" | base64 -w 0`
-    res2=$(echo -n '{"path":"\/","mux":true,"host":"'$domain'","mode":"websocket","tls":true}' | base64 -w 0)	
+    res2=$(echo -n '{"path":"\/","mux":true,"host":"'$domain'","mode":"websocket","tls":true}' | base64 -w 0)
+	res3=`echo -n "${method}:${password}" | base64 -w 0`
 	#echo $res2
-	link="ss://${res1}?v2ray-plugin=${res2}"
-	qrencode -o - -t utf8 ${link}
+	link1="ss://${res1}?v2ray-plugin=${res2}"
+	link2="ss://${res3}@${IP}:${port}/?plugin=v2ray-plugin%3btls%3bhost%3d${domain}"
+	echo -e " ${BLUE}shadowsocks客户端订阅链接${PLAIN}： ${link2}"
+	qrencode -o - -t utf8 ${link2}
+    qrencode -o /tmp/Android_qrcode.png -s 10 ${link2}
+	colorEcho $BLUE " shadowsocks客户端订阅二维码已保存在/tmp/Android_qrcode.png，请下载使用..."
+	
+    echo -e " ${BLUE}小火箭客户端订阅链接${PLAIN}： ${link1}"	
+	qrencode -o - -t utf8 ${link1}
+    qrencode -o /tmp/ios_qrcode.png -s 10 ${link1}
+	colorEcho $BLUE " 小火箭订阅二维码已保存在/tmp/ios_qrcode.png，请下载使用..."
 }
 
 
