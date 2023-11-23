@@ -845,6 +845,11 @@ man_bbr() {
 
 }
 
+man_warp() {
+      bash <(curl -fsSL git.io/warp.sh) menu
+
+}
+
 menu() {
     while true
     do
@@ -881,6 +886,7 @@ menu() {
 	  echo " -------------------"
 	  echo -e "  ${GREEN}五、开启额外功能${PLAIN}" 
 	  echo -e "  ${GREEN}17.${PLAIN}  管理BBR"
+	  echo -e "  ${GREEN}18.${PLAIN}  解锁chatgpt、Netflix..."
       echo " -------------"
       echo -e "  ${GREEN}0.${PLAIN} 退出"
       echo 
@@ -940,7 +946,10 @@ menu() {
             ;;		
 		17)
             man_bbr
-            ;;				
+            ;;		
+        18)
+            man_warp
+            ;;			
         *)
             echo -e "$RED 请选择正确的操作！${PLAIN}"
             #exit 1
@@ -954,12 +963,12 @@ check_system
 action=$1
 [[ -z $1 ]] && action=menu
 case "$action" in
-    menu|update_app|man_tools|change_timezone|spead_ssh|man_ssh_port|ssh_login|powercontrol|dis_ip|man_firewall|man_htop|man_disk|man_iftop|man_vnstat|disk_test|netback_test|speed_test|man_bbr)
+    menu|update_app|man_tools|change_timezone|spead_ssh|man_ssh_port|ssh_login|powercontrol|dis_ip|man_firewall|man_htop|man_disk|man_iftop|man_vnstat|disk_test|netback_test|speed_test|man_bbr|man_warp)
         ${action}
         ;;
     *)
         echo " 参数错误"
-        echo " 用法: `basename $0` [menu|update_app|man_tools|change_timezone|spead_ssh|man_ssh_port|ssh_login|powercontrol|dis_ip|man_firewall|man_htop|man_disk|man_iftop|man_vnstat|disk_test|netback_test|speed_test|man_bbr]"
+        echo " 用法: `basename $0` [menu|update_app|man_tools|change_timezone|spead_ssh|man_ssh_port|ssh_login|powercontrol|dis_ip|man_firewall|man_htop|man_disk|man_iftop|man_vnstat|disk_test|netback_test|speed_test|man_bbr|man_warp]"
         ;;
 esac
 
