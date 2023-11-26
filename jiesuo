@@ -1,0 +1,12 @@
+一、https://gitlab.com/fscarmen/warp  更详细用法，请参考他本人的官网
+wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh [option] [lisence/url/token]
+
+二、bash <(curl -fsSL git.io/warp.sh) d
+       bash <(curl -fsSL git.io/warp.sh) menu
+
+三、一键管理助手脚本
+   wget https://raw.githubusercontent.com/yirenchengfeng1/linux/main/manage_vps.sh
+   bash main/manage_vps
+
+四、奈飞网站：https://www.netflix.com/
+      非自制剧（绝命毒师）：https://www.netflix.com/title/70143836
