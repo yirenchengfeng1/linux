@@ -5,133 +5,91 @@ mode: Rule
 log-level: info
 external-controller: :9090
 proxies:
-  - {name: _01, server: 57.180.247.46, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
-  - {name: _02, server: 43.202.52.245, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
-  - {name: _03, server: 13.112.247.107, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
-  - {name: _04, server: 52.195.236.85, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
-  - {name: _05, server: 13.230.220.51, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
-  - {name: _06, server: 193.46.56.210, port: 2443, type: ss, cipher: aes-256-gcm, password: QD5y4idwNj, udp: true}
-  - {name: _07, server: 34.209.235.189, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
-  - {name: _08, server: 8.218.63.204, port: 80, type: ss, cipher: aes-128-gcm, password: a-wym4ovY4Yw, plugin: obfs, plugin-opts: {mode: http, host: ""}, udp: true}
-  - {name: _09, server: 13.212.182.181, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
-  - {name: _10, server: 178.172.217.15, port: 51348, type: ss, cipher: chacha20-ietf-poly1305, password: UF0v532C5SY54g748v7d278YS4nyNeagTWFialLFOb5dpa4o, udp: true}
-  - {name: _11, server: 198.244.231.34, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
-  - {name: _12, server: 51.158.54.209, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
-  - {name: _13, server: 51.158.200.143, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
-  - {name: _14, server: 198.244.228.191, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
-  - {name: Relay_-🏁ZZ_15, server: fnmk003tw600lines.testnewline.xyz, port: 443, type: ss, cipher: aes-256-gcm, password: aad80772bae8, plugin: v2ray-plugin, plugin-opts: {mode: websocket, host: fnmk003tw600lines.testnewline.xyz, path: /dyqslhnnfuex, tls: true, mux: true, skip-cert-verify: true}, udp: true}
-  - {name: _16, server: 41.203.4.34, port: 989, type: ss, cipher: aes-256-cfb, password: f8f7aCzcPKbsF8p3, udp: true}
-  - {name: _17, server: 51.159.210.114, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
-  - {name: Pool__18, server: 84.17.53.163, port: 80, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
-  - {name: Relay_-🇺🇸US_19, server: jp.colacloud.site, port: 28153, type: ss, cipher: chacha20-ietf-poly1305, password: 915a1bf9-2e17-4434-82db-c6ac431275a2, udp: true}
-  - {name: _20, server: 51.158.200.143, port: 80, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
-  - {name: _21, server: 8.210.85.62, port: 80, type: ss, cipher: aes-128-gcm, password: a-wym4ovY4Yw, plugin: obfs, plugin-opts: {mode: http, host: ""}, udp: true}
-  - {name: _22, server: 1.65.139.94, port: 443, type: ss, cipher: aes-128-gcm, password: a-wym4ovY4Yw, plugin: v2ray-plugin, plugin-opts: {mode: websocket, host: "", path: "", tls: false, mux: true, skip-cert-verify: true}, udp: true}
-  - {name: _23, server: 121.127.46.147, port: 989, type: ss, cipher: aes-256-cfb, password: f8f7aCzcPKbsF8p3, udp: true}
-  - {name: _24, server: 172.233.92.117, port: 443, type: ss, cipher: chacha20-ietf-poly1305, password: cUgD3mHXLM0JEqhunBk3Oz, udp: true}
-  - {name: Relay_-🇰🇷KR_25, server: kr.colacloud.site, port: 20352, type: ss, cipher: chacha20-ietf-poly1305, password: 3112a6eb-3449-4923-b88e-136a7a90bcd7, udp: true}
-  - {name: _26, server: 13.125.30.161, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
-  - {name: _27, server: 13.213.1.132, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
-  - {name: _28, server: 35.93.149.201, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
-  - {name: _29, server: 8.217.178.215, port: 80, type: ss, cipher: aes-128-gcm, password: a-wym4ovY4Yw, plugin: obfs, plugin-opts: {mode: http, host: None}, udp: true}
-  - {name: _30, server: 43.202.41.44, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
-  - {name: _31, server: 57.129.1.22, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
-  - {name: _32, server: 31.172.76.10, port: 80, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
-  - {name: _33, server: 84.54.44.220, port: 61519, type: ss, cipher: chacha20-ietf-poly1305, password: w6ScrxpP51shOFhPdbsdS8, udp: true}
-  - {name: _34, server: 57.129.1.19, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
-  - {name: _35, server: 43.201.5.168, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
-  - {name: Relay_-🇬🇧GB_36, server: us.colacloud.site, port: 24652, type: ss, cipher: chacha20-ietf-poly1305, password: 915a1bf9-2e17-4434-82db-c6ac431275a2, udp: true}
-  - {name: _37, server: 213.169.137.221, port: 989, type: ss, cipher: aes-256-cfb, password: f8f7aCzcPKbsF8p3, udp: true}
-  - {name: _38, server: 57.129.1.21, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
-  - {name: Relay_-🇬🇧GB_39, server: sg.colacloud.site, port: 20152, type: ss, cipher: chacha20-ietf-poly1305, password: 915a1bf9-2e17-4434-82db-c6ac431275a2, udp: true}
-  - {name: _40, server: 47.128.76.42, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
-  - {name: Pool__41, server: 51.158.195.96, port: 80, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
-  - {name: Relay_-🇰🇷KR_42, server: kr.colacloud.site, port: 20352, type: ss, cipher: chacha20-ietf-poly1305, password: 915a1bf9-2e17-4434-82db-c6ac431275a2, udp: true}
-  - {name: Pool__43, server: 51.158.195.96, port: 110, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: _01, server: 146.185.198.44, port: 51348, type: ss, cipher: chacha20-ietf-poly1305, password: 9YifU2vh6NFEn44cmANykK9RNQvpoL4ErnPXhb9YYwgF4qmt, udp: true}
+  - {name: Pool__02, server: 51.158.195.96, port: 80, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: Pool__03, server: 89.187.179.192, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: _04, server: 18.143.66.245, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
+  - {name: _05, server: gtm.ktmwan.com, port: 27256, type: ss, cipher: chacha20-ietf-poly1305, password: 082abd14-73d5-4bb3-9838-c9ed82a8ecf9, udp: true}
+  - {name: _06, server: 54.36.174.181, port: 8888, type: ss, cipher: aes-256-gcm, password: Y6R9pAtvxxzmGC, udp: true}
+  - {name: _07, server: 198.244.231.34, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: _08, server: 198.244.228.191, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: _09, server: 51.158.54.167, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: _10, server: 141.95.126.193, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: _11, server: 43.202.41.44, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
+  - {name: Pool__12, server: 84.17.53.163, port: 80, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: _13, server: 51.158.54.209, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: _14, server: 57.129.1.21, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: _15, server: 13.209.83.97, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
+  - {name: _16, server: 18.142.226.100, port: 443, type: ss, cipher: aes-256-cfb, password: amazonskr05, udp: true}
+  - {name: _17, server: 54.36.174.181, port: 8008, type: ss, cipher: aes-256-gcm, password: XKFKl2rULjIp74, udp: true}
+  - {name: _18, server: 57.129.1.20, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: _19, server: 31.172.76.10, port: 80, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: _20, server: 84.54.44.220, port: 61519, type: ss, cipher: chacha20-ietf-poly1305, password: w6ScrxpP51shOFhPdbsdS8, udp: true}
+  - {name: _21, server: 54.36.174.181, port: 6697, type: ss, cipher: aes-256-gcm, password: TEzjfAYq2IjtuoS, udp: true}
+  - {name: _22, server: 121.127.46.147, port: 989, type: ss, cipher: aes-256-cfb, password: f8f7aCzcPKbsF8p3, udp: true}
+  - {name: _23, server: 54.36.174.181, port: 6679, type: ss, cipher: aes-256-gcm, password: TEzjfAYq2IjtuoS, udp: true}
+  - {name: _24, server: 54.36.174.181, port: 6379, type: ss, cipher: aes-256-gcm, password: zDNVedRFPQexG9v, udp: true}
+  - {name: Pool__25, server: 51.158.195.96, port: 110, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: _26, server: 54.36.174.181, port: 5500, type: ss, cipher: aes-256-gcm, password: KixLvKzwjekG00rm, udp: true}
+  - {name: _27, server: 54.36.174.181, port: 8882, type: ss, cipher: aes-256-gcm, password: kDWvXYZoTBcGkC4, udp: true}
+  - {name: Relay_-🏁ZZ_28, server: fnmk003tw600lines.testnewline.xyz, port: 443, type: ss, cipher: aes-256-gcm, password: aad80772bae8, plugin: v2ray-plugin, plugin-opts: {mode: websocket, host: fnmk003tw600lines.testnewline.xyz, path: /dyqslhnnfuex, tls: true, mux: true, skip-cert-verify: true}, udp: true}
+  - {name: _29, server: 54.36.174.181, port: 8090, type: ss, cipher: aes-256-gcm, password: PCnnH6SQSnfoS27, udp: true}
+  - {name: _30, server: 54.36.174.181, port: 9101, type: ss, cipher: aes-256-gcm, password: e4FCWrgpkji3QY, udp: true}
+  - {name: _31, server: 8.210.85.62, port: 80, type: ss, cipher: aes-128-gcm, password: a-wym4ovY4Yw, plugin: obfs, plugin-opts: {mode: http, host: ""}, udp: true}
+  - {name: _32, server: 57.129.1.19, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: _33, server: 54.36.174.181, port: 7001, type: ss, cipher: aes-256-gcm, password: RexnBgU7EV5ADxG, udp: true}
+  - {name: _34, server: 54.36.174.181, port: 8000, type: ss, cipher: aes-256-gcm, password: KixLvKzwjekG00rm, udp: true}
+  - {name: _35, server: 1.65.139.94, port: 443, type: ss, cipher: aes-128-gcm, password: a-wym4ovY4Yw, plugin: v2ray-plugin, plugin-opts: {mode: websocket, host: "", path: "", tls: false, mux: true, skip-cert-verify: true}, udp: true}
+  - {name: _36, server: 54.36.174.181, port: 8119, type: ss, cipher: aes-256-gcm, password: cdBIDV42DCwnfIN, udp: true}
+  - {name: _37, server: 54.36.174.181, port: 5004, type: ss, cipher: aes-256-gcm, password: g5MeD6Ft3CWlJId, udp: true}
+  - {name: _38, server: fzrb.mofacloud.com, port: 56057, type: ss, cipher: chacha20-ietf-poly1305, password: cab13669-231b-4d7a-93d1-e51dd382b738, udp: true}
+  - {name: _39, server: gtm.ktmwan.com, port: 27251, type: ss, cipher: chacha20-ietf-poly1305, password: 082abd14-73d5-4bb3-9838-c9ed82a8ecf9, udp: true}
+  - {name: _40, server: 54.36.174.181, port: 2375, type: ss, cipher: aes-256-gcm, password: faBAoD54k87UJG7, udp: true}
+  - {name: _41, server: 54.36.174.181, port: 5003, type: ss, cipher: aes-256-gcm, password: g5MeD6Ft3CWlJId, udp: true}
+  - {name: _42, server: 8.217.178.215, port: 80, type: ss, cipher: aes-128-gcm, password: a-wym4ovY4Yw, plugin: obfs, plugin-opts: {mode: http, host: None}, udp: true}
+  - {name: _43, server: gtm.ktmwan.com, port: 27266, type: ss, cipher: chacha20-ietf-poly1305, password: 082abd14-73d5-4bb3-9838-c9ed82a8ecf9, udp: true}
   - {name: Pool__44, server: 51.158.195.96, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
-  - {name: _45, server: 163.172.64.22, port: 989, type: ss, cipher: aes-256-cfb, password: f8f7aCzcPKbsF8p3, udp: true}
-  - {name: _46, server: 57.129.1.20, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
-  - {name: Pool__47, server: 150.107.46.21, port: 8083, type: ssr, cipher: aes-256-cfb, password: iFqnzSscN, protocol: origin, obfs: tls1.2_ticket_auth, protocol-param: "", obfs-param: cloudfront.net, udp: true}
-  - {name: _48, server: ee1-vmess.sshmax.xyz, port: 80, type: vmess, uuid: 34d4f393-ead9-48df-9370-ca8b52e6aabd, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /vmess, headers: {Host: ee1-vmess.sshmax.xyz}}, udp: true}
-  - {name: _49, server: 51.79.145.112, port: 80, type: vmess, uuid: 3c906bab-3b86-4fa2-b7a3-f2c60e159db4, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /vmess/}, udp: true}
-  - {name: Relay_-🇺🇸US_50, server: us-new03.gujuji.top, port: 8080, type: vmess, uuid: f8bf8790-65d4-4839-a97d-326567f96846, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: us-new03.gujuji.top}}, udp: true}
-  - {name: Relay_-🇺🇸US_51, server: us-new03.gujuji.top, port: 8080, type: vmess, uuid: e2832880-8423-4c6e-9f92-b5b627a6e144, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: us-new03.gujuji.top}}, udp: true}
-  - {name: Relay_-🇺🇸US_52, server: 183.233.187.214, port: 50965, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇺🇸US_53, server: cf-lt.sharecentre.online, port: 8880, type: vmess, uuid: 2a683a54-f098-4d98-92fc-762b85d907b9, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /api/v3/download.getFile, headers: {Host: ssrsub.v001.ssrsub.com}}, udp: true}
-  - {name: _54, server: 172.99.190.109, port: 443, type: vmess, uuid: 03fcc618-b93d-6796-6aed-8a38c975d581, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: linkvws, headers: {Host: 172.99.190.109}}, udp: true}
-  - {name: Pool__55, server: 142.4.96.59, port: 30000, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: /path/1701265991727, headers: {Host: www.72594139.xyz}}, udp: true}
-  - {name: Pool__56, server: 192.74.249.3, port: 30000, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: /path/1701265991727, headers: {Host: www.37790958.xyz}}, udp: true}
-  - {name: Relay_-🇺🇸US_57, server: au.takeshi.wiki, port: 80, type: vmess, uuid: 59517e0b-ae1c-41d3-9c44-c44cea6f7546, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /takeshi.wiki, headers: {Host: au.takeshi.wiki}}, udp: true}
-  - {name: _58, server: 47.89.229.201, port: 80, type: vmess, uuid: 0dce8b7e-4189-427b-95b7-93fc55d25115, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /PxcYlDIHtv3GtsBfhm1AaayIV}, udp: true}
-  - {name: _59, server: 5.161.155.22, port: 443, type: vmess, uuid: 3d1fab6e-3bd6-472b-8d9c-9934c04eaf40, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: http, http-opts: {method: GET, path: [/]}, udp: true}
-  - {name: _60, server: 207.148.69.120, port: 2, type: vmess, uuid: 156f3305-4a2f-47d3-887a-c31d240c48fb, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, servername: SG.linkedin.com, network: ws, ws-opts: {path: /}, udp: true}
-  - {name: _61, server: 192.227.174.7, port: 18332, type: vmess, uuid: 8c400a5f-dc8b-4197-92ed-098d5fa7e214, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇦🇺AU_62, server: 8.217.147.230, port: 2082, type: vmess, uuid: 81c08762-4fdb-4b38-81ee-b85c3369b3fc, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: "/changding-tls0?ed=2048", headers: {Host: hk-300.changding.tech}}, udp: true}
-  - {name: _63, server: fra.yj2022.gq, port: 8880, type: vmess, uuid: 4b5e4565-322f-4223-a891-78a84f189726, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /9sTFt5L554kPVWmuJ2k8baS4bEY83PZ66xb4twoBBtsiMPK2b, headers: {Host: fra.yj2022.gq}}, udp: true}
-  - {name: _64, server: 103.35.190.65, port: 443, type: vmess, uuid: ed531ebe-4971-47f9-a881-636d0b101a45, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /}, udp: true}
-  - {name: _65, server: yes.cnmjcn.net, port: 16645, type: vmess, uuid: 26173d53-6557-492e-bf03-5fd5d034b5cf, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: yes.cnmjcn.net}}, udp: true}
-  - {name: Relay_-🇨🇿CZ_66, server: jp.takeshi.wiki, port: 80, type: vmess, uuid: 59517e0b-ae1c-41d3-9c44-c44cea6f7546, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /takeshi.wiki, headers: {Host: dl.kgvn.garenanow.com}}, udp: true}
-  - {name: _67, server: t.cnmjcn.cyou, port: 16618, type: vmess, uuid: 26173d53-6557-492e-bf03-5fd5d034b5cf, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: t.cnmjcn.cyou}}, udp: true}
-  - {name: _68, server: cz1-vmess.sshmax.xyz, port: 80, type: vmess, uuid: ef7cfdf6-63e1-4307-bb61-40eb81acb5bd, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /vmess, headers: {Host: cz1-vmess.sshmax.xyz}}, udp: true}
-  - {name: _69, server: 88.198.93.175, port: 8880, type: vmess, uuid: 58531009-b664-445b-b896-7bb9026b744d, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: http, http-opts: {method: GET, path: [/], headers: {Host: [88.198.93.175]}}, udp: true}
-  - {name: Relay_-🇨🇳CN_70, server: xjp.yongdong.xyz, port: 20007, type: vmess, uuid: 9d2b07c8-3e85-49d6-ba42-98ccb344b97c, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /yongdong, headers: {Host: yongdong.xyz}}, udp: true}
-  - {name: Relay_-🇨🇳CN_71, server: rb.yongdong.xyz, port: 20009, type: vmess, uuid: 9d2b07c8-3e85-49d6-ba42-98ccb344b97c, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /yongdong, headers: {Host: yongdong.xyz}}, udp: true}
-  - {name: Relay_-🇨🇳CN_72, server: rb.yongdong.xyz, port: 20008, type: vmess, uuid: 9d2b07c8-3e85-49d6-ba42-98ccb344b97c, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /yongdong, headers: {Host: yongdong.xyz}}, udp: true}
-  - {name: _73, server: 130.162.47.123, port: 6854, type: vmess, uuid: b5f7e932-f730-4ad2-b425-40977b9db332, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: /zBLPou}, udp: true}
-  - {name: Relay_-🇫🇷FR_74, server: 104.21.33.130, port: 2052, type: vmess, uuid: 544f2e93-51b0-4d47-fd72-e7d858021bbd, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: family.mgtajhiz.ir}}, udp: true}
-  - {name: _75, server: 95.164.37.15, port: 80, type: vmess, uuid: b5aafe8c-3527-4502-8add-9ca7417cfc88, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /vmess}, udp: true}
-  - {name: Relay_-🇺🇦UA_76, server: uk1-vmess.greenssh.xyz, port: 80, type: vmess, uuid: b5aafe8c-3527-4502-8add-9ca7417cfc88, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: uk1-vmess.greenssh.xyz}}, udp: true}
-  - {name: Relay_-🇫🇷FR_77, server: family.mgtajhiz.ir, port: 2052, type: vmess, uuid: 544f2e93-51b0-4d47-fd72-e7d858021bbd, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: family.mgtajhiz.ir}}, udp: true}
-  - {name: Relay_-🇨🇳CN_78, server: rb.yongdong.xyz, port: 20007, type: vmess, uuid: 9d2b07c8-3e85-49d6-ba42-98ccb344b97c, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /yongdong, headers: {Host: yongdong.xyz}}, udp: true}
-  - {name: Relay_-🇺🇸US_79, server: fr-v2ray.freevmess.com, port: 8442, type: vmess, uuid: 6773a666-5593-4c9f-aacd-52300b6a02d4, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: http, http-opts: {method: GET, path: [/], headers: {Host: [fr-v2ray.freevmess.com]}}, udp: true}
-  - {name: Relay_-🇺🇸US_80, server: us-new01.gujuji.top, port: 8080, type: vmess, uuid: f8bf8790-65d4-4839-a97d-326567f96846, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: us-new01.gujuji.top}}, udp: true}
-  - {name: Relay_-🇺🇸US_81, server: hdfy4s2d1.foriran.trade, port: 443, type: vmess, uuid: dfbbc8de-8a4f-407d-8069-6de38d83c4e1, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: /WgCmp8pxRWBtLTlTL, headers: {Host: hdfy4s2d1.foriran.trade}}, udp: true}
-  - {name: Relay_-🇺🇸US_82, server: usd.yj2022.gq, port: 8880, type: vmess, uuid: 4b5e4565-322f-4223-a891-78a84f189726, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /XSjeg73o6ZdsheahCb5JG, headers: {Host: usd.yj2022.gq}}, udp: true}
-  - {name: Relay_-🇺🇸US_83, server: spca.114514782.xyz, port: 2052, type: vmess, uuid: 54e78c8e-2c4c-301e-bc5d-bb27409a240a, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /uasfbbc, headers: {Host: pana.5489265.xyz}}, udp: true}
-  - {name: Relay_-🇺🇸US_84, server: racknerd.gorgorchicken.one, port: 8443, type: vmess, uuid: 1df0a6ca-5812-4bce-ddb1-9cd5548f4919, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: /racknerd, headers: {Host: racknerd.gorgorchicken.one}}, udp: true}
-  - {name: Relay_-🇺🇸US_85, server: uk-new01.gujuji.top, port: 8080, type: vmess, uuid: 12f08518-69b8-4c32-80af-4cd136d78655, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: uk-new01.gujuji.top}}, udp: true}
-  - {name: Relay_-🇺🇸US_86, server: hk.yongdong.xyz, port: 20013, type: vmess, uuid: 9d2b07c8-3e85-49d6-ba42-98ccb344b97c, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /yongdong, headers: {Host: yongdong.xyz}}, udp: true}
-  - {name: _87, server: 23.94.122.147, port: 60222, type: vmess, uuid: 84134d90-e4fe-4a86-c8d6-4d7bedb3c333, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /vmess, headers: {Host: internet.life.com.by}}, udp: true}
-  - {name: Pool__88, server: 142.4.109.12, port: 30000, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: /path/1701265991727, headers: {Host: www.37915511.xyz}}, udp: true}
-  - {name: Relay_-🇺🇸US_89, server: hk.yongdong.xyz, port: 20010, type: vmess, uuid: 9d2b07c8-3e85-49d6-ba42-98ccb344b97c, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /yongdong, headers: {Host: yongdong.xyz}}, udp: true}
-  - {name: _90, server: 103.30.11.90, port: 80, type: vmess, uuid: 86c5bcd3-50d0-4336-be3c-a70488a04b59, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /zingfast.vn}, udp: true}
-  - {name: Relay_-🇺🇸US_91, server: us-new01.gujuji.top, port: 8080, type: vmess, uuid: 12f08518-69b8-4c32-80af-4cd136d78655, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: us-new01.gujuji.top}}, udp: true}
-  - {name: Relay_-🇺🇸US_92, server: hk.yongdong.xyz, port: 20014, type: vmess, uuid: 9d2b07c8-3e85-49d6-ba42-98ccb344b97c, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /yongdong, headers: {Host: yongdong.xyz}}, udp: true}
-  - {name: Relay_-🇦🇺AU_93, server: 156.251.226.139, port: 56120, type: vmess, uuid: 81c08762-4fdb-4b38-81ee-b85c3369b3fc, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: "/changding-tls1?ed=2048", headers: {Host: hk-300.changding.tech}}, udp: true}
-  - {name: Relay_-🇮🇷IR_94, server: 158.58.188.23, port: 10163, type: vmess, uuid: 87246b12-405d-4ebf-9f43-19875bb03ccc, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: 158.58.188.23}}, udp: true}
-  - {name: Relay_-🇺🇸US_95, server: hk.yongdong.xyz, port: 20012, type: vmess, uuid: 9d2b07c8-3e85-49d6-ba42-98ccb344b97c, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /yongdong, headers: {Host: yongdong.xyz}}, udp: true}
-  - {name: Relay_-🇺🇸US_96, server: hk.yongdong.xyz, port: 20015, type: vmess, uuid: 9d2b07c8-3e85-49d6-ba42-98ccb344b97c, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /yongdong, headers: {Host: yongdong.xyz}}, udp: true}
-  - {name: _97, server: 89.221.224.94, port: 80, type: trojan, password: 28c79056-ccfd-4cc1-93d4-c337cc782e65, skip-cert-verify: true, udp: true}
-  - {name: _98, server: 15.236.184.28, port: 22222, type: trojan, password: telegram-id-privatevpns, sni: trj.rollingnext.co.uk, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇷🇺RU_99, server: il.mjt000.com, port: 443, type: trojan, password: 26173d53-6557-492e-bf03-5fd5d034b5cf, sni: il.mjt000.com, skip-cert-verify: true, udp: true}
-  - {name: _100, server: sg.mjt000.com, port: 443, type: trojan, password: 26173d53-6557-492e-bf03-5fd5d034b5cf, sni: sg.mjt000.com, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇨🇭CH_101, server: jp1.lvwf8n-hh8e-2300-nmoo-d2e9naobeacn.9d8f269f96b25232-759cbb36d6548597.kaufen, port: 22352, type: trojan, password: 3a1ba041-af5f-45d4-9c1a-fe0817a086c9, sni: 13-231-155-134.nhost.00cdn.com, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇲🇩MD_102, server: pt.mjt000.com, port: 443, type: trojan, password: 26173d53-6557-492e-bf03-5fd5d034b5cf, sni: pt.mjt000.com, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇱🇺LU_103, server: lux.mjt000.com, port: 443, type: trojan, password: 26173d53-6557-492e-bf03-5fd5d034b5cf, sni: lux.mjt000.com, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇷🇺RU_104, server: ch.mjt000.com, port: 443, type: trojan, password: 26173d53-6557-492e-bf03-5fd5d034b5cf, sni: ch.mjt000.com, skip-cert-verify: true, udp: true}
-  - {name: _105, server: 103.174.73.134, port: 443, type: trojan, password: vMbujq85mD, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇺🇸US_106, server: unlk2.lvwf8n-hh8e-2300-nmoo-d2e9naobeacn.9d8f269f96b25232-759cbb36d6548597.kaufen, port: 20102, type: trojan, password: 3a1ba041-af5f-45d4-9c1a-fe0817a086c9, sni: 13-231-155-134.nhost.00cdn.com, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇺🇦UA_107, server: ua.mjt000.com, port: 443, type: trojan, password: 26173d53-6557-492e-bf03-5fd5d034b5cf, sni: ua.mjt000.com, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇺🇸US_108, server: au.mjt000.com, port: 443, type: trojan, password: 26173d53-6557-492e-bf03-5fd5d034b5cf, sni: au.mjt000.com, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇺🇸US_109, server: UNLK2.LVWF8N-HH8E-2300-NMOO-D2E9NAOBEACN.9D8F269F96B25232-759CBB36D6548597.KAUFEN, port: 20102, type: trojan, password: 3a1ba041-af5f-45d4-9c1a-fe0817a086c9, sni: 13-231-155-134.nhost.00cdn.com, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇱🇧LB_110, server: waphk.mjt000.com, port: 443, type: trojan, password: 26173d53-6557-492e-bf03-5fd5d034b5cf, sni: waphk.mjt000.com, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇫🇷FR_111, server: uk.mjt000.com, port: 443, type: trojan, password: 26173d53-6557-492e-bf03-5fd5d034b5cf, sni: uk.mjt000.com, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇯🇵JP_112, server: microsoft-hk.85413.xyz, port: 443, type: trojan, password: 51eebef7-beaa-417b-9584-2794d10377c9, sni: microsoft-hk.85413.xyz, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇰🇭KH_113, server: kh.mjt000.com, port: 443, type: trojan, password: 26173d53-6557-492e-bf03-5fd5d034b5cf, sni: kh.mjt000.com, skip-cert-verify: true, udp: true}
-  - {name: _114, server: jp2.lvwf8n-hh8e-2300-nmoo-d2e9naobeacn.9d8f269f96b25232-759cbb36d6548597.kaufen, port: 22402, type: trojan, password: 3a1ba041-af5f-45d4-9c1a-fe0817a086c9, sni: 13-231-155-134.nhost.00cdn.com, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇬🇧GB_115, server: tr.mjt000.com, port: 443, type: trojan, password: 26173d53-6557-492e-bf03-5fd5d034b5cf, sni: tr.mjt000.com, skip-cert-verify: true, udp: true}
-  - {name: _116, server: 146.190.108.167, port: 15876, type: trojan, password: FrbYUz2xeg, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇺🇸US_117, server: sg-csjc.85413.xyz, port: 443, type: trojan, password: 51eebef7-beaa-417b-9584-2794d10377c9, sni: cs-cdn-cdn-cdn.zzzcccc.top, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇺🇸US_118, server: microsoft-sg.syjd.xyz, port: 443, type: trojan, password: 51eebef7-beaa-417b-9584-2794d10377c9, sni: microsoft-sg.syjd.xyz, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇯🇵JP_119, server: jp-csjc.85413.xyz, port: 443, type: trojan, password: 51eebef7-beaa-417b-9584-2794d10377c9, sni: jp-csjc.85413.xyz, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇯🇵JP_120, server: microsoft-jp.syjd.xyz, port: 443, type: trojan, password: 51eebef7-beaa-417b-9584-2794d10377c9, sni: microsoft-jp.syjd.xyz, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇯🇵JP_121, server: aws-hk03.aikun.online, port: 443, type: trojan, password: 283a4450-028d-4f8d-94fc-0a954ab4a96d, sni: cdn-65135431546231.78321.xyz, skip-cert-verify: true, udp: true}
-  - {name: _122, server: 172.232.43.7, port: 443, type: trojan, password: 8c749204-23dc-4506-ac70-69ef6bd151a8, sni: sourceforge.net, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇯🇵JP_123, server: microsoft-hk.syjd.xyz, port: 443, type: trojan, password: 51eebef7-beaa-417b-9584-2794d10377c9, sni: microsoft-hk.syjd.xyz, skip-cert-verify: true, udp: true}
-  - {name: _124, server: 18.156.44.111, port: 22222, type: trojan, password: telegram-id-directvpn, sni: trj.rollingnext.co.uk, skip-cert-verify: true, udp: true}
-  - {name: _125, server: 118.142.17.238, port: 443, type: trojan, password: b21af1e78d194c2093aabbee770c8529, sni: www.gpt123.one, skip-cert-verify: true, udp: true}
-  - {name: _126, server: 3.124.77.59, port: 22222, type: trojan, password: telegram-id-privatevpns, sni: trj.rollingnext.co.uk, skip-cert-verify: true, udp: true}
-  - {name: Relay_-🇯🇵JP_127, server: microsoft-hk01.syjd.xyz, port: 443, type: trojan, password: 51eebef7-beaa-417b-9584-2794d10377c9, sni: microsoft-hk01.syjd.xyz, skip-cert-verify: true, udp: true}
+  - {name: _45, server: 89.187.181.179, port: 443, type: ss, cipher: aes-256-cfb, password: asdKkaskJKfnsa, udp: true}
+  - {name: _46, server: 54.36.174.181, port: 5001, type: ss, cipher: aes-256-gcm, password: Y6R9pAtvxxzmGC, udp: true}
+  - {name: Relay_-🇫🇷FR_47, server: gtm.ktmwan.com, port: 27255, type: ss, cipher: chacha20-ietf-poly1305, password: 082abd14-73d5-4bb3-9838-c9ed82a8ecf9, udp: true}
+  - {name: _48, server: 54.36.174.181, port: 3306, type: ss, cipher: aes-256-gcm, password: Y6R9pAtvxxzmGC, udp: true}
+  - {name: _49, server: gtm.ktmwan.com, port: 27258, type: ss, cipher: chacha20-ietf-poly1305, password: 082abd14-73d5-4bb3-9838-c9ed82a8ecf9, udp: true}
+  - {name: _50, server: 54.36.174.181, port: 5600, type: ss, cipher: aes-256-gcm, password: Y6R9pAtvxxzmGC, udp: true}
+  - {name: _51, server: 54.36.174.181, port: 8118, type: ss, cipher: aes-256-gcm, password: cdBIDV42DCwnfIN, udp: true}
+  - {name: _52, server: gtm.ktmwan.com, port: 27260, type: ss, cipher: chacha20-ietf-poly1305, password: 082abd14-73d5-4bb3-9838-c9ed82a8ecf9, udp: true}
+  - {name: Relay_-🇺🇸US_53, server: v4.cfnode.eu.org, port: 80, type: vmess, uuid: 9edb5c77-8818-4780-9cef-d81b7e2d932b, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: usyx.651568.xyz}}, udp: true}
+  - {name: _54, server: cm3.xn-w1yu8o.xyz, port: 80, type: vmess, uuid: e759eadc-8e71-47b0-874e-871e3d8dc31e, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: icu3.mac2win.top}}, udp: true}
+  - {name: Relay_-🇺🇸US_55, server: 38.54.185.111, port: 30000, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: /path/1700744137765, headers: {Host: www.73664999.xyz}}, udp: true}
+  - {name: Relay_-🇺🇸US_56, server: au.takeshi.wiki, port: 80, type: vmess, uuid: 59517e0b-ae1c-41d3-9c44-c44cea6f7546, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /takeshi.wiki, headers: {Host: au.takeshi.wiki}}, udp: true}
+  - {name: Relay_-🇺🇸US_57, server: us-new03.gujuji.top, port: 8080, type: vmess, uuid: e2832880-8423-4c6e-9f92-b5b627a6e144, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: us-new03.gujuji.top}}, udp: true}
+  - {name: Relay_-🇺🇸US_58, server: singapore.com, port: 80, type: vmess, uuid: 2a683a54-f098-4d98-92fc-762b85d907b9, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /api/v3/download.getFile, headers: {Host: ssrsub.v004.ssrsub.com}}, udp: true}
+  - {name: Relay_-🇺🇸US_59, server: 198.41.223.215, port: 80, type: vmess, uuid: 2a683a54-f098-4d98-92fc-762b85d907b9, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /api/v3/download.getFile, headers: {Host: ssrsub.v004.ssrsub.com}}, udp: true}
+  - {name: _60, server: 103.30.11.90, port: 80, type: vmess, uuid: 86c5bcd3-50d0-4336-be3c-a70488a04b59, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /zingfast.vn}, udp: true}
+  - {name: Relay_-🇹🇼TW_61, server: b21.ntbq.dynu.net, port: 443, type: vmess, uuid: 4727ad0a-4b52-4b01-bb36-8b43ef15d11c, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: /b21, headers: {Host: b21.ntbq.dynu.net}}, udp: true}
+  - {name: Relay_-🇹🇼TW_62, server: tc11.twtc.dynu.net, port: 443, type: vmess, uuid: b0912b17-b2d2-4c53-9d53-710f6c88251a, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, servername: tc11.twtc.dynu.net, network: ws, ws-opts: {path: /vbub1, headers: {Host: tc11.twtc.dynu.net}}, udp: true}
+  - {name: Relay_-🇮🇷IR_63, server: 158.58.188.23, port: 10163, type: vmess, uuid: 87246b12-405d-4ebf-9f43-19875bb03ccc, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: 158.58.188.23}}, udp: true}
+  - {name: Relay_-🇹🇼TW_64, server: nbq11.ntbq.dynu.net, port: 443, type: vmess, uuid: 4727ad0a-4b52-4b01-bb36-8b43ef15d11c, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: /b11, headers: {Host: nbq11.ntbq.dynu.net}}, udp: true}
+  - {name: Relay_-🇮🇷IR_65, server: unlimited1.mamaanderson.com, port: 13170, type: vmess, uuid: 0df8e0fe-3bbd-4348-9a9a-46600dca4fcf, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: unlimited1.mamaanderson.com}}, udp: true}
+  - {name: Pool__66, server: 192.74.249.3, port: 30000, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: /path/1701265991727, headers: {Host: www.37790958.xyz}}, udp: true}
+  - {name: Relay_-🇩🇪DE_67, server: de1-vmess.greenssh.xyz, port: 80, type: vmess, uuid: 12612b4e-e426-4b7c-84bd-4a02850abb1e, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /vmess, headers: {Host: de1-vmess.greenssh.xyz}}, udp: true}
+  - {name: Relay_-🇺🇸US_68, server: usd.yj2022.gq, port: 8880, type: vmess, uuid: 4b5e4565-322f-4223-a891-78a84f189726, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /XSjeg73o6ZdsheahCb5JG, headers: {Host: usd.yj2022.gq}}, udp: true}
+  - {name: Relay_-🇹🇼TW_69, server: nbq13.ntbq.dynu.net, port: 443, type: vmess, uuid: 4727ad0a-4b52-4b01-bb36-8b43ef15d11c, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: /b13, headers: {Host: nbq13.ntbq.dynu.net}}, udp: true}
+  - {name: Relay_-🇺🇸US_70, server: 38.54.185.112, port: 30000, type: vmess, uuid: 418048af-a293-4b99-9b0c-98ca3580dd24, alterId: 64, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: /path/1701265991727, headers: {Host: www.73664999.xyz}}, udp: true}
+  - {name: Relay_-🇸🇬SG_71, server: 172.66.44.52, port: 443, type: vmess, uuid: e778fdab-34ca-4ba2-a51f-f757d8ae1aa9, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: "/0TxtG?ed=2048", headers: {Host: ovh.kmoljklj.top}}, udp: true}
+  - {name: Relay_-🇫🇷FR_72, server: family.mgtajhiz.ir, port: 2052, type: vmess, uuid: 544f2e93-51b0-4d47-fd72-e7d858021bbd, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: family.mgtajhiz.ir}}, udp: true}
+  - {name: Relay_-🇩🇪DE_73, server: v2line.telegram.channel.1344.fr8678825324247b8176d59f83c30bd94d23d2e3ac5cd4a743bkwqeikvdyufr.cyou, port: 80, type: vmess, uuid: 9d5e69d2-46cf-4865-95fe-a2ee8c52a013, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: v2line.telegram.channel.1344.fr8678825324247b8176d59f83c30bd94d23d2e3ac5cd4a743bkwqeikvdyufr.cyou}}, udp: true}
+  - {name: Relay_-🇨🇿CZ_74, server: jp.takeshi.wiki, port: 80, type: vmess, uuid: 59517e0b-ae1c-41d3-9c44-c44cea6f7546, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /takeshi.wiki, headers: {Host: dl.kgvn.garenanow.com}}, udp: true}
+  - {name: Relay_-🇺🇸US_75, server: us-new01.gujuji.top, port: 8080, type: vmess, uuid: 12f08518-69b8-4c32-80af-4cd136d78655, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: us-new01.gujuji.top}}, udp: true}
+  - {name: Relay_-🇺🇸US_76, server: us-new02.gujuji.top, port: 8080, type: vmess, uuid: 12f08518-69b8-4c32-80af-4cd136d78655, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: us-new02.gujuji.top}}, udp: true}
+  - {name: Relay_-🇺🇸US_77, server: b.mac2win.top, port: 8080, type: vmess, uuid: 65ae35d1-01b8-42e4-8373-00d01623c6ed, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: icu.mac2win.top}}, udp: true}
+  - {name: Relay_-🇺🇸US_78, server: cf-lt.sharecentre.online, port: 8880, type: vmess, uuid: 2a683a54-f098-4d98-92fc-762b85d907b9, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /api/v3/download.getFile, headers: {Host: ssrsub.v001.ssrsub.com}}, udp: true}
+  - {name: _79, server: jp02.nttkk.com, port: 443, type: vmess, uuid: 9c906ced-40f7-48cf-b0d2-64b287f7bfcd, alterId: 0, cipher: auto, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: 9c906ced-40f7-48cf-b0d2-64b287f7bfcd-vm, headers: {Host: icu2.mac2win.top}}, udp: true}
+  - {name: Relay_-🇰🇷KR_80, server: krse10.ip8.shop, port: 25361, type: vmess, uuid: a5de5eb3-5760-488a-9211-e5fbd9388905, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true}
+  - {name: Relay_-🇩🇪DE_81, server: 213.202.216.14, port: 443, type: trojan, password: 3f23c1eb-ace4-49ec-a7f0-f591b006b95a, sni: downloadde.xn--mes358acgm99l.com, skip-cert-verify: true, udp: true}
+  - {name: Relay_-🇺🇸US_82, server: aws-hk03.aikun.online, port: 443, type: trojan, password: 283a4450-028d-4f8d-94fc-0a954ab4a96d, sni: cdn-65135431546231.78321.xyz, skip-cert-verify: true, udp: true}
+  - {name: _83, server: 141.94.221.127, port: 80, type: trojan, password: 65c3941e-46b9-42f6-9c89-daedf472b6db, sni: fr1-t.sshmax.xyz, skip-cert-verify: true, udp: true}
+  - {name: Relay_-🇺🇸US_84, server: unlk2.lvwf8n-hh8e-2300-nmoo-d2e9naobeacn.9d8f269f96b25232-759cbb36d6548597.kaufen, port: 20102, type: trojan, password: 9bda5d52-ebb1-44df-bacf-039182452475, sni: unlk2.lvwf8n-hh8e-2300-nmoo-d2e9naobeacn.9d8f269f96b25232-759cbb36d6548597.kaufen, skip-cert-verify: true, udp: true}
+  - {name: Relay_-🇸🇬SG_85, server: sg1.lxjc.app, port: 443, type: trojan, password: 268f7997-fc81-4607-bae2-e61e8416ac3b, sni: 16-163-218-240.nhost.00cdn.com, skip-cert-verify: true, udp: true}
 proxy-groups:
   - name: 🔰 节点选择
     type: select
@@ -139,8 +97,8 @@ proxy-groups:
       - ♻️ 自动选择
       - 🎯 全球直连
       - _01
-      - _02
-      - _03
+      - Pool__02
+      - Pool__03
       - _04
       - _05
       - _06
@@ -149,23 +107,23 @@ proxy-groups:
       - _09
       - _10
       - _11
-      - _12
+      - Pool__12
       - _13
       - _14
-      - Relay_-🏁ZZ_15
+      - _15
       - _16
       - _17
-      - Pool__18
-      - Relay_-🇺🇸US_19
+      - _18
+      - _19
       - _20
       - _21
       - _22
       - _23
       - _24
-      - Relay_-🇰🇷KR_25
+      - Pool__25
       - _26
       - _27
-      - _28
+      - Relay_-🏁ZZ_28
       - _29
       - _30
       - _31
@@ -173,106 +131,64 @@ proxy-groups:
       - _33
       - _34
       - _35
-      - Relay_-🇬🇧GB_36
+      - _36
       - _37
       - _38
-      - Relay_-🇬🇧GB_39
+      - _39
       - _40
-      - Pool__41
-      - Relay_-🇰🇷KR_42
-      - Pool__43
+      - _41
+      - _42
+      - _43
       - Pool__44
       - _45
       - _46
-      - Pool__47
+      - Relay_-🇫🇷FR_47
       - _48
       - _49
-      - Relay_-🇺🇸US_50
-      - Relay_-🇺🇸US_51
-      - Relay_-🇺🇸US_52
+      - _50
+      - _51
+      - _52
       - Relay_-🇺🇸US_53
       - _54
-      - Pool__55
-      - Pool__56
+      - Relay_-🇺🇸US_55
+      - Relay_-🇺🇸US_56
       - Relay_-🇺🇸US_57
-      - _58
-      - _59
+      - Relay_-🇺🇸US_58
+      - Relay_-🇺🇸US_59
       - _60
-      - _61
-      - Relay_-🇦🇺AU_62
-      - _63
-      - _64
-      - _65
-      - Relay_-🇨🇿CZ_66
-      - _67
-      - _68
-      - _69
-      - Relay_-🇨🇳CN_70
-      - Relay_-🇨🇳CN_71
-      - Relay_-🇨🇳CN_72
-      - _73
-      - Relay_-🇫🇷FR_74
-      - _75
-      - Relay_-🇺🇦UA_76
-      - Relay_-🇫🇷FR_77
-      - Relay_-🇨🇳CN_78
-      - Relay_-🇺🇸US_79
-      - Relay_-🇺🇸US_80
-      - Relay_-🇺🇸US_81
+      - Relay_-🇹🇼TW_61
+      - Relay_-🇹🇼TW_62
+      - Relay_-🇮🇷IR_63
+      - Relay_-🇹🇼TW_64
+      - Relay_-🇮🇷IR_65
+      - Pool__66
+      - Relay_-🇩🇪DE_67
+      - Relay_-🇺🇸US_68
+      - Relay_-🇹🇼TW_69
+      - Relay_-🇺🇸US_70
+      - Relay_-🇸🇬SG_71
+      - Relay_-🇫🇷FR_72
+      - Relay_-🇩🇪DE_73
+      - Relay_-🇨🇿CZ_74
+      - Relay_-🇺🇸US_75
+      - Relay_-🇺🇸US_76
+      - Relay_-🇺🇸US_77
+      - Relay_-🇺🇸US_78
+      - _79
+      - Relay_-🇰🇷KR_80
+      - Relay_-🇩🇪DE_81
       - Relay_-🇺🇸US_82
-      - Relay_-🇺🇸US_83
+      - _83
       - Relay_-🇺🇸US_84
-      - Relay_-🇺🇸US_85
-      - Relay_-🇺🇸US_86
-      - _87
-      - Pool__88
-      - Relay_-🇺🇸US_89
-      - _90
-      - Relay_-🇺🇸US_91
-      - Relay_-🇺🇸US_92
-      - Relay_-🇦🇺AU_93
-      - Relay_-🇮🇷IR_94
-      - Relay_-🇺🇸US_95
-      - Relay_-🇺🇸US_96
-      - _97
-      - _98
-      - Relay_-🇷🇺RU_99
-      - _100
-      - Relay_-🇨🇭CH_101
-      - Relay_-🇲🇩MD_102
-      - Relay_-🇱🇺LU_103
-      - Relay_-🇷🇺RU_104
-      - _105
-      - Relay_-🇺🇸US_106
-      - Relay_-🇺🇦UA_107
-      - Relay_-🇺🇸US_108
-      - Relay_-🇺🇸US_109
-      - Relay_-🇱🇧LB_110
-      - Relay_-🇫🇷FR_111
-      - Relay_-🇯🇵JP_112
-      - Relay_-🇰🇭KH_113
-      - _114
-      - Relay_-🇬🇧GB_115
-      - _116
-      - Relay_-🇺🇸US_117
-      - Relay_-🇺🇸US_118
-      - Relay_-🇯🇵JP_119
-      - Relay_-🇯🇵JP_120
-      - Relay_-🇯🇵JP_121
-      - _122
-      - Relay_-🇯🇵JP_123
-      - _124
-      - _125
-      - _126
-      - Relay_-🇯🇵JP_127
+      - Relay_-🇸🇬SG_85
   - name: ♻️ 自动选择
     type: url-test
     url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
       - _01
-      - _02
-      - _03
+      - Pool__02
+      - Pool__03
       - _04
       - _05
       - _06
@@ -281,23 +197,23 @@ proxy-groups:
       - _09
       - _10
       - _11
-      - _12
+      - Pool__12
       - _13
       - _14
-      - Relay_-🏁ZZ_15
+      - _15
       - _16
       - _17
-      - Pool__18
-      - Relay_-🇺🇸US_19
+      - _18
+      - _19
       - _20
       - _21
       - _22
       - _23
       - _24
-      - Relay_-🇰🇷KR_25
+      - Pool__25
       - _26
       - _27
-      - _28
+      - Relay_-🏁ZZ_28
       - _29
       - _30
       - _31
@@ -305,98 +221,56 @@ proxy-groups:
       - _33
       - _34
       - _35
-      - Relay_-🇬🇧GB_36
+      - _36
       - _37
       - _38
-      - Relay_-🇬🇧GB_39
+      - _39
       - _40
-      - Pool__41
-      - Relay_-🇰🇷KR_42
-      - Pool__43
+      - _41
+      - _42
+      - _43
       - Pool__44
       - _45
       - _46
-      - Pool__47
+      - Relay_-🇫🇷FR_47
       - _48
       - _49
-      - Relay_-🇺🇸US_50
-      - Relay_-🇺🇸US_51
-      - Relay_-🇺🇸US_52
+      - _50
+      - _51
+      - _52
       - Relay_-🇺🇸US_53
       - _54
-      - Pool__55
-      - Pool__56
+      - Relay_-🇺🇸US_55
+      - Relay_-🇺🇸US_56
       - Relay_-🇺🇸US_57
-      - _58
-      - _59
+      - Relay_-🇺🇸US_58
+      - Relay_-🇺🇸US_59
       - _60
-      - _61
-      - Relay_-🇦🇺AU_62
-      - _63
-      - _64
-      - _65
-      - Relay_-🇨🇿CZ_66
-      - _67
-      - _68
-      - _69
-      - Relay_-🇨🇳CN_70
-      - Relay_-🇨🇳CN_71
-      - Relay_-🇨🇳CN_72
-      - _73
-      - Relay_-🇫🇷FR_74
-      - _75
-      - Relay_-🇺🇦UA_76
-      - Relay_-🇫🇷FR_77
-      - Relay_-🇨🇳CN_78
-      - Relay_-🇺🇸US_79
-      - Relay_-🇺🇸US_80
-      - Relay_-🇺🇸US_81
+      - Relay_-🇹🇼TW_61
+      - Relay_-🇹🇼TW_62
+      - Relay_-🇮🇷IR_63
+      - Relay_-🇹🇼TW_64
+      - Relay_-🇮🇷IR_65
+      - Pool__66
+      - Relay_-🇩🇪DE_67
+      - Relay_-🇺🇸US_68
+      - Relay_-🇹🇼TW_69
+      - Relay_-🇺🇸US_70
+      - Relay_-🇸🇬SG_71
+      - Relay_-🇫🇷FR_72
+      - Relay_-🇩🇪DE_73
+      - Relay_-🇨🇿CZ_74
+      - Relay_-🇺🇸US_75
+      - Relay_-🇺🇸US_76
+      - Relay_-🇺🇸US_77
+      - Relay_-🇺🇸US_78
+      - _79
+      - Relay_-🇰🇷KR_80
+      - Relay_-🇩🇪DE_81
       - Relay_-🇺🇸US_82
-      - Relay_-🇺🇸US_83
+      - _83
       - Relay_-🇺🇸US_84
-      - Relay_-🇺🇸US_85
-      - Relay_-🇺🇸US_86
-      - _87
-      - Pool__88
-      - Relay_-🇺🇸US_89
-      - _90
-      - Relay_-🇺🇸US_91
-      - Relay_-🇺🇸US_92
-      - Relay_-🇦🇺AU_93
-      - Relay_-🇮🇷IR_94
-      - Relay_-🇺🇸US_95
-      - Relay_-🇺🇸US_96
-      - _97
-      - _98
-      - Relay_-🇷🇺RU_99
-      - _100
-      - Relay_-🇨🇭CH_101
-      - Relay_-🇲🇩MD_102
-      - Relay_-🇱🇺LU_103
-      - Relay_-🇷🇺RU_104
-      - _105
-      - Relay_-🇺🇸US_106
-      - Relay_-🇺🇦UA_107
-      - Relay_-🇺🇸US_108
-      - Relay_-🇺🇸US_109
-      - Relay_-🇱🇧LB_110
-      - Relay_-🇫🇷FR_111
-      - Relay_-🇯🇵JP_112
-      - Relay_-🇰🇭KH_113
-      - _114
-      - Relay_-🇬🇧GB_115
-      - _116
-      - Relay_-🇺🇸US_117
-      - Relay_-🇺🇸US_118
-      - Relay_-🇯🇵JP_119
-      - Relay_-🇯🇵JP_120
-      - Relay_-🇯🇵JP_121
-      - _122
-      - Relay_-🇯🇵JP_123
-      - _124
-      - _125
-      - _126
-      - Relay_-🇯🇵JP_127
+      - Relay_-🇸🇬SG_85
   - name: 🎥 NETFLIX
     type: select
     proxies:
@@ -404,8 +278,8 @@ proxy-groups:
       - ♻️ 自动选择
       - 🎯 全球直连
       - _01
-      - _02
-      - _03
+      - Pool__02
+      - Pool__03
       - _04
       - _05
       - _06
@@ -414,23 +288,23 @@ proxy-groups:
       - _09
       - _10
       - _11
-      - _12
+      - Pool__12
       - _13
       - _14
-      - Relay_-🏁ZZ_15
+      - _15
       - _16
       - _17
-      - Pool__18
-      - Relay_-🇺🇸US_19
+      - _18
+      - _19
       - _20
       - _21
       - _22
       - _23
       - _24
-      - Relay_-🇰🇷KR_25
+      - Pool__25
       - _26
       - _27
-      - _28
+      - Relay_-🏁ZZ_28
       - _29
       - _30
       - _31
@@ -438,98 +312,56 @@ proxy-groups:
       - _33
       - _34
       - _35
-      - Relay_-🇬🇧GB_36
+      - _36
       - _37
       - _38
-      - Relay_-🇬🇧GB_39
+      - _39
       - _40
-      - Pool__41
-      - Relay_-🇰🇷KR_42
-      - Pool__43
+      - _41
+      - _42
+      - _43
       - Pool__44
       - _45
       - _46
-      - Pool__47
+      - Relay_-🇫🇷FR_47
       - _48
       - _49
-      - Relay_-🇺🇸US_50
-      - Relay_-🇺🇸US_51
-      - Relay_-🇺🇸US_52
+      - _50
+      - _51
+      - _52
       - Relay_-🇺🇸US_53
       - _54
-      - Pool__55
-      - Pool__56
+      - Relay_-🇺🇸US_55
+      - Relay_-🇺🇸US_56
       - Relay_-🇺🇸US_57
-      - _58
-      - _59
+      - Relay_-🇺🇸US_58
+      - Relay_-🇺🇸US_59
       - _60
-      - _61
-      - Relay_-🇦🇺AU_62
-      - _63
-      - _64
-      - _65
-      - Relay_-🇨🇿CZ_66
-      - _67
-      - _68
-      - _69
-      - Relay_-🇨🇳CN_70
-      - Relay_-🇨🇳CN_71
-      - Relay_-🇨🇳CN_72
-      - _73
-      - Relay_-🇫🇷FR_74
-      - _75
-      - Relay_-🇺🇦UA_76
-      - Relay_-🇫🇷FR_77
-      - Relay_-🇨🇳CN_78
-      - Relay_-🇺🇸US_79
-      - Relay_-🇺🇸US_80
-      - Relay_-🇺🇸US_81
+      - Relay_-🇹🇼TW_61
+      - Relay_-🇹🇼TW_62
+      - Relay_-🇮🇷IR_63
+      - Relay_-🇹🇼TW_64
+      - Relay_-🇮🇷IR_65
+      - Pool__66
+      - Relay_-🇩🇪DE_67
+      - Relay_-🇺🇸US_68
+      - Relay_-🇹🇼TW_69
+      - Relay_-🇺🇸US_70
+      - Relay_-🇸🇬SG_71
+      - Relay_-🇫🇷FR_72
+      - Relay_-🇩🇪DE_73
+      - Relay_-🇨🇿CZ_74
+      - Relay_-🇺🇸US_75
+      - Relay_-🇺🇸US_76
+      - Relay_-🇺🇸US_77
+      - Relay_-🇺🇸US_78
+      - _79
+      - Relay_-🇰🇷KR_80
+      - Relay_-🇩🇪DE_81
       - Relay_-🇺🇸US_82
-      - Relay_-🇺🇸US_83
+      - _83
       - Relay_-🇺🇸US_84
-      - Relay_-🇺🇸US_85
-      - Relay_-🇺🇸US_86
-      - _87
-      - Pool__88
-      - Relay_-🇺🇸US_89
-      - _90
-      - Relay_-🇺🇸US_91
-      - Relay_-🇺🇸US_92
-      - Relay_-🇦🇺AU_93
-      - Relay_-🇮🇷IR_94
-      - Relay_-🇺🇸US_95
-      - Relay_-🇺🇸US_96
-      - _97
-      - _98
-      - Relay_-🇷🇺RU_99
-      - _100
-      - Relay_-🇨🇭CH_101
-      - Relay_-🇲🇩MD_102
-      - Relay_-🇱🇺LU_103
-      - Relay_-🇷🇺RU_104
-      - _105
-      - Relay_-🇺🇸US_106
-      - Relay_-🇺🇦UA_107
-      - Relay_-🇺🇸US_108
-      - Relay_-🇺🇸US_109
-      - Relay_-🇱🇧LB_110
-      - Relay_-🇫🇷FR_111
-      - Relay_-🇯🇵JP_112
-      - Relay_-🇰🇭KH_113
-      - _114
-      - Relay_-🇬🇧GB_115
-      - _116
-      - Relay_-🇺🇸US_117
-      - Relay_-🇺🇸US_118
-      - Relay_-🇯🇵JP_119
-      - Relay_-🇯🇵JP_120
-      - Relay_-🇯🇵JP_121
-      - _122
-      - Relay_-🇯🇵JP_123
-      - _124
-      - _125
-      - _126
-      - Relay_-🇯🇵JP_127
+      - Relay_-🇸🇬SG_85
   - name: 🌍 国外媒体
     type: select
     proxies:
@@ -537,8 +369,8 @@ proxy-groups:
       - ♻️ 自动选择
       - 🎯 全球直连
       - _01
-      - _02
-      - _03
+      - Pool__02
+      - Pool__03
       - _04
       - _05
       - _06
@@ -547,23 +379,23 @@ proxy-groups:
       - _09
       - _10
       - _11
-      - _12
+      - Pool__12
       - _13
       - _14
-      - Relay_-🏁ZZ_15
+      - _15
       - _16
       - _17
-      - Pool__18
-      - Relay_-🇺🇸US_19
+      - _18
+      - _19
       - _20
       - _21
       - _22
       - _23
       - _24
-      - Relay_-🇰🇷KR_25
+      - Pool__25
       - _26
       - _27
-      - _28
+      - Relay_-🏁ZZ_28
       - _29
       - _30
       - _31
@@ -571,98 +403,56 @@ proxy-groups:
       - _33
       - _34
       - _35
-      - Relay_-🇬🇧GB_36
+      - _36
       - _37
       - _38
-      - Relay_-🇬🇧GB_39
+      - _39
       - _40
-      - Pool__41
-      - Relay_-🇰🇷KR_42
-      - Pool__43
+      - _41
+      - _42
+      - _43
       - Pool__44
       - _45
       - _46
-      - Pool__47
+      - Relay_-🇫🇷FR_47
       - _48
       - _49
-      - Relay_-🇺🇸US_50
-      - Relay_-🇺🇸US_51
-      - Relay_-🇺🇸US_52
+      - _50
+      - _51
+      - _52
       - Relay_-🇺🇸US_53
       - _54
-      - Pool__55
-      - Pool__56
+      - Relay_-🇺🇸US_55
+      - Relay_-🇺🇸US_56
       - Relay_-🇺🇸US_57
-      - _58
-      - _59
+      - Relay_-🇺🇸US_58
+      - Relay_-🇺🇸US_59
       - _60
-      - _61
-      - Relay_-🇦🇺AU_62
-      - _63
-      - _64
-      - _65
-      - Relay_-🇨🇿CZ_66
-      - _67
-      - _68
-      - _69
-      - Relay_-🇨🇳CN_70
-      - Relay_-🇨🇳CN_71
-      - Relay_-🇨🇳CN_72
-      - _73
-      - Relay_-🇫🇷FR_74
-      - _75
-      - Relay_-🇺🇦UA_76
-      - Relay_-🇫🇷FR_77
-      - Relay_-🇨🇳CN_78
-      - Relay_-🇺🇸US_79
-      - Relay_-🇺🇸US_80
-      - Relay_-🇺🇸US_81
+      - Relay_-🇹🇼TW_61
+      - Relay_-🇹🇼TW_62
+      - Relay_-🇮🇷IR_63
+      - Relay_-🇹🇼TW_64
+      - Relay_-🇮🇷IR_65
+      - Pool__66
+      - Relay_-🇩🇪DE_67
+      - Relay_-🇺🇸US_68
+      - Relay_-🇹🇼TW_69
+      - Relay_-🇺🇸US_70
+      - Relay_-🇸🇬SG_71
+      - Relay_-🇫🇷FR_72
+      - Relay_-🇩🇪DE_73
+      - Relay_-🇨🇿CZ_74
+      - Relay_-🇺🇸US_75
+      - Relay_-🇺🇸US_76
+      - Relay_-🇺🇸US_77
+      - Relay_-🇺🇸US_78
+      - _79
+      - Relay_-🇰🇷KR_80
+      - Relay_-🇩🇪DE_81
       - Relay_-🇺🇸US_82
-      - Relay_-🇺🇸US_83
+      - _83
       - Relay_-🇺🇸US_84
-      - Relay_-🇺🇸US_85
-      - Relay_-🇺🇸US_86
-      - _87
-      - Pool__88
-      - Relay_-🇺🇸US_89
-      - _90
-      - Relay_-🇺🇸US_91
-      - Relay_-🇺🇸US_92
-      - Relay_-🇦🇺AU_93
-      - Relay_-🇮🇷IR_94
-      - Relay_-🇺🇸US_95
-      - Relay_-🇺🇸US_96
-      - _97
-      - _98
-      - Relay_-🇷🇺RU_99
-      - _100
-      - Relay_-🇨🇭CH_101
-      - Relay_-🇲🇩MD_102
-      - Relay_-🇱🇺LU_103
-      - Relay_-🇷🇺RU_104
-      - _105
-      - Relay_-🇺🇸US_106
-      - Relay_-🇺🇦UA_107
-      - Relay_-🇺🇸US_108
-      - Relay_-🇺🇸US_109
-      - Relay_-🇱🇧LB_110
-      - Relay_-🇫🇷FR_111
-      - Relay_-🇯🇵JP_112
-      - Relay_-🇰🇭KH_113
-      - _114
-      - Relay_-🇬🇧GB_115
-      - _116
-      - Relay_-🇺🇸US_117
-      - Relay_-🇺🇸US_118
-      - Relay_-🇯🇵JP_119
-      - Relay_-🇯🇵JP_120
-      - Relay_-🇯🇵JP_121
-      - _122
-      - Relay_-🇯🇵JP_123
-      - _124
-      - _125
-      - _126
-      - Relay_-🇯🇵JP_127
+      - Relay_-🇸🇬SG_85
   - name: 🌏 国内媒体
     type: select
     proxies:
@@ -674,8 +464,8 @@ proxy-groups:
       - 🎯 全球直连
       - 🔰 节点选择
       - _01
-      - _02
-      - _03
+      - Pool__02
+      - Pool__03
       - _04
       - _05
       - _06
@@ -684,23 +474,23 @@ proxy-groups:
       - _09
       - _10
       - _11
-      - _12
+      - Pool__12
       - _13
       - _14
-      - Relay_-🏁ZZ_15
+      - _15
       - _16
       - _17
-      - Pool__18
-      - Relay_-🇺🇸US_19
+      - _18
+      - _19
       - _20
       - _21
       - _22
       - _23
       - _24
-      - Relay_-🇰🇷KR_25
+      - Pool__25
       - _26
       - _27
-      - _28
+      - Relay_-🏁ZZ_28
       - _29
       - _30
       - _31
@@ -708,106 +498,64 @@ proxy-groups:
       - _33
       - _34
       - _35
-      - Relay_-🇬🇧GB_36
+      - _36
       - _37
       - _38
-      - Relay_-🇬🇧GB_39
+      - _39
       - _40
-      - Pool__41
-      - Relay_-🇰🇷KR_42
-      - Pool__43
+      - _41
+      - _42
+      - _43
       - Pool__44
       - _45
       - _46
-      - Pool__47
+      - Relay_-🇫🇷FR_47
       - _48
       - _49
-      - Relay_-🇺🇸US_50
-      - Relay_-🇺🇸US_51
-      - Relay_-🇺🇸US_52
+      - _50
+      - _51
+      - _52
       - Relay_-🇺🇸US_53
       - _54
-      - Pool__55
-      - Pool__56
+      - Relay_-🇺🇸US_55
+      - Relay_-🇺🇸US_56
       - Relay_-🇺🇸US_57
-      - _58
-      - _59
+      - Relay_-🇺🇸US_58
+      - Relay_-🇺🇸US_59
       - _60
-      - _61
-      - Relay_-🇦🇺AU_62
-      - _63
-      - _64
-      - _65
-      - Relay_-🇨🇿CZ_66
-      - _67
-      - _68
-      - _69
-      - Relay_-🇨🇳CN_70
-      - Relay_-🇨🇳CN_71
-      - Relay_-🇨🇳CN_72
-      - _73
-      - Relay_-🇫🇷FR_74
-      - _75
-      - Relay_-🇺🇦UA_76
-      - Relay_-🇫🇷FR_77
-      - Relay_-🇨🇳CN_78
-      - Relay_-🇺🇸US_79
-      - Relay_-🇺🇸US_80
-      - Relay_-🇺🇸US_81
+      - Relay_-🇹🇼TW_61
+      - Relay_-🇹🇼TW_62
+      - Relay_-🇮🇷IR_63
+      - Relay_-🇹🇼TW_64
+      - Relay_-🇮🇷IR_65
+      - Pool__66
+      - Relay_-🇩🇪DE_67
+      - Relay_-🇺🇸US_68
+      - Relay_-🇹🇼TW_69
+      - Relay_-🇺🇸US_70
+      - Relay_-🇸🇬SG_71
+      - Relay_-🇫🇷FR_72
+      - Relay_-🇩🇪DE_73
+      - Relay_-🇨🇿CZ_74
+      - Relay_-🇺🇸US_75
+      - Relay_-🇺🇸US_76
+      - Relay_-🇺🇸US_77
+      - Relay_-🇺🇸US_78
+      - _79
+      - Relay_-🇰🇷KR_80
+      - Relay_-🇩🇪DE_81
       - Relay_-🇺🇸US_82
-      - Relay_-🇺🇸US_83
+      - _83
       - Relay_-🇺🇸US_84
-      - Relay_-🇺🇸US_85
-      - Relay_-🇺🇸US_86
-      - _87
-      - Pool__88
-      - Relay_-🇺🇸US_89
-      - _90
-      - Relay_-🇺🇸US_91
-      - Relay_-🇺🇸US_92
-      - Relay_-🇦🇺AU_93
-      - Relay_-🇮🇷IR_94
-      - Relay_-🇺🇸US_95
-      - Relay_-🇺🇸US_96
-      - _97
-      - _98
-      - Relay_-🇷🇺RU_99
-      - _100
-      - Relay_-🇨🇭CH_101
-      - Relay_-🇲🇩MD_102
-      - Relay_-🇱🇺LU_103
-      - Relay_-🇷🇺RU_104
-      - _105
-      - Relay_-🇺🇸US_106
-      - Relay_-🇺🇦UA_107
-      - Relay_-🇺🇸US_108
-      - Relay_-🇺🇸US_109
-      - Relay_-🇱🇧LB_110
-      - Relay_-🇫🇷FR_111
-      - Relay_-🇯🇵JP_112
-      - Relay_-🇰🇭KH_113
-      - _114
-      - Relay_-🇬🇧GB_115
-      - _116
-      - Relay_-🇺🇸US_117
-      - Relay_-🇺🇸US_118
-      - Relay_-🇯🇵JP_119
-      - Relay_-🇯🇵JP_120
-      - Relay_-🇯🇵JP_121
-      - _122
-      - Relay_-🇯🇵JP_123
-      - _124
-      - _125
-      - _126
-      - Relay_-🇯🇵JP_127
+      - Relay_-🇸🇬SG_85
   - name: 📲 电报信息
     type: select
     proxies:
       - 🔰 节点选择
       - 🎯 全球直连
       - _01
-      - _02
-      - _03
+      - Pool__02
+      - Pool__03
       - _04
       - _05
       - _06
@@ -816,23 +564,23 @@ proxy-groups:
       - _09
       - _10
       - _11
-      - _12
+      - Pool__12
       - _13
       - _14
-      - Relay_-🏁ZZ_15
+      - _15
       - _16
       - _17
-      - Pool__18
-      - Relay_-🇺🇸US_19
+      - _18
+      - _19
       - _20
       - _21
       - _22
       - _23
       - _24
-      - Relay_-🇰🇷KR_25
+      - Pool__25
       - _26
       - _27
-      - _28
+      - Relay_-🏁ZZ_28
       - _29
       - _30
       - _31
@@ -840,98 +588,56 @@ proxy-groups:
       - _33
       - _34
       - _35
-      - Relay_-🇬🇧GB_36
+      - _36
       - _37
       - _38
-      - Relay_-🇬🇧GB_39
+      - _39
       - _40
-      - Pool__41
-      - Relay_-🇰🇷KR_42
-      - Pool__43
+      - _41
+      - _42
+      - _43
       - Pool__44
       - _45
       - _46
-      - Pool__47
+      - Relay_-🇫🇷FR_47
       - _48
       - _49
-      - Relay_-🇺🇸US_50
-      - Relay_-🇺🇸US_51
-      - Relay_-🇺🇸US_52
+      - _50
+      - _51
+      - _52
       - Relay_-🇺🇸US_53
       - _54
-      - Pool__55
-      - Pool__56
+      - Relay_-🇺🇸US_55
+      - Relay_-🇺🇸US_56
       - Relay_-🇺🇸US_57
-      - _58
-      - _59
+      - Relay_-🇺🇸US_58
+      - Relay_-🇺🇸US_59
       - _60
-      - _61
-      - Relay_-🇦🇺AU_62
-      - _63
-      - _64
-      - _65
-      - Relay_-🇨🇿CZ_66
-      - _67
-      - _68
-      - _69
-      - Relay_-🇨🇳CN_70
-      - Relay_-🇨🇳CN_71
-      - Relay_-🇨🇳CN_72
-      - _73
-      - Relay_-🇫🇷FR_74
-      - _75
-      - Relay_-🇺🇦UA_76
-      - Relay_-🇫🇷FR_77
-      - Relay_-🇨🇳CN_78
-      - Relay_-🇺🇸US_79
-      - Relay_-🇺🇸US_80
-      - Relay_-🇺🇸US_81
+      - Relay_-🇹🇼TW_61
+      - Relay_-🇹🇼TW_62
+      - Relay_-🇮🇷IR_63
+      - Relay_-🇹🇼TW_64
+      - Relay_-🇮🇷IR_65
+      - Pool__66
+      - Relay_-🇩🇪DE_67
+      - Relay_-🇺🇸US_68
+      - Relay_-🇹🇼TW_69
+      - Relay_-🇺🇸US_70
+      - Relay_-🇸🇬SG_71
+      - Relay_-🇫🇷FR_72
+      - Relay_-🇩🇪DE_73
+      - Relay_-🇨🇿CZ_74
+      - Relay_-🇺🇸US_75
+      - Relay_-🇺🇸US_76
+      - Relay_-🇺🇸US_77
+      - Relay_-🇺🇸US_78
+      - _79
+      - Relay_-🇰🇷KR_80
+      - Relay_-🇩🇪DE_81
       - Relay_-🇺🇸US_82
-      - Relay_-🇺🇸US_83
+      - _83
       - Relay_-🇺🇸US_84
-      - Relay_-🇺🇸US_85
-      - Relay_-🇺🇸US_86
-      - _87
-      - Pool__88
-      - Relay_-🇺🇸US_89
-      - _90
-      - Relay_-🇺🇸US_91
-      - Relay_-🇺🇸US_92
-      - Relay_-🇦🇺AU_93
-      - Relay_-🇮🇷IR_94
-      - Relay_-🇺🇸US_95
-      - Relay_-🇺🇸US_96
-      - _97
-      - _98
-      - Relay_-🇷🇺RU_99
-      - _100
-      - Relay_-🇨🇭CH_101
-      - Relay_-🇲🇩MD_102
-      - Relay_-🇱🇺LU_103
-      - Relay_-🇷🇺RU_104
-      - _105
-      - Relay_-🇺🇸US_106
-      - Relay_-🇺🇦UA_107
-      - Relay_-🇺🇸US_108
-      - Relay_-🇺🇸US_109
-      - Relay_-🇱🇧LB_110
-      - Relay_-🇫🇷FR_111
-      - Relay_-🇯🇵JP_112
-      - Relay_-🇰🇭KH_113
-      - _114
-      - Relay_-🇬🇧GB_115
-      - _116
-      - Relay_-🇺🇸US_117
-      - Relay_-🇺🇸US_118
-      - Relay_-🇯🇵JP_119
-      - Relay_-🇯🇵JP_120
-      - Relay_-🇯🇵JP_121
-      - _122
-      - Relay_-🇯🇵JP_123
-      - _124
-      - _125
-      - _126
-      - Relay_-🇯🇵JP_127
+      - Relay_-🇸🇬SG_85
   - name: 🍎 苹果服务
     type: select
     proxies:
@@ -939,8 +645,8 @@ proxy-groups:
       - 🎯 全球直连
       - ♻️ 自动选择
       - _01
-      - _02
-      - _03
+      - Pool__02
+      - Pool__03
       - _04
       - _05
       - _06
@@ -949,23 +655,23 @@ proxy-groups:
       - _09
       - _10
       - _11
-      - _12
+      - Pool__12
       - _13
       - _14
-      - Relay_-🏁ZZ_15
+      - _15
       - _16
       - _17
-      - Pool__18
-      - Relay_-🇺🇸US_19
+      - _18
+      - _19
       - _20
       - _21
       - _22
       - _23
       - _24
-      - Relay_-🇰🇷KR_25
+      - Pool__25
       - _26
       - _27
-      - _28
+      - Relay_-🏁ZZ_28
       - _29
       - _30
       - _31
@@ -973,98 +679,56 @@ proxy-groups:
       - _33
       - _34
       - _35
-      - Relay_-🇬🇧GB_36
+      - _36
       - _37
       - _38
-      - Relay_-🇬🇧GB_39
+      - _39
       - _40
-      - Pool__41
-      - Relay_-🇰🇷KR_42
-      - Pool__43
+      - _41
+      - _42
+      - _43
       - Pool__44
       - _45
       - _46
-      - Pool__47
+      - Relay_-🇫🇷FR_47
       - _48
       - _49
-      - Relay_-🇺🇸US_50
-      - Relay_-🇺🇸US_51
-      - Relay_-🇺🇸US_52
+      - _50
+      - _51
+      - _52
       - Relay_-🇺🇸US_53
       - _54
-      - Pool__55
-      - Pool__56
+      - Relay_-🇺🇸US_55
+      - Relay_-🇺🇸US_56
       - Relay_-🇺🇸US_57
-      - _58
-      - _59
+      - Relay_-🇺🇸US_58
+      - Relay_-🇺🇸US_59
       - _60
-      - _61
-      - Relay_-🇦🇺AU_62
-      - _63
-      - _64
-      - _65
-      - Relay_-🇨🇿CZ_66
-      - _67
-      - _68
-      - _69
-      - Relay_-🇨🇳CN_70
-      - Relay_-🇨🇳CN_71
-      - Relay_-🇨🇳CN_72
-      - _73
-      - Relay_-🇫🇷FR_74
-      - _75
-      - Relay_-🇺🇦UA_76
-      - Relay_-🇫🇷FR_77
-      - Relay_-🇨🇳CN_78
-      - Relay_-🇺🇸US_79
-      - Relay_-🇺🇸US_80
-      - Relay_-🇺🇸US_81
+      - Relay_-🇹🇼TW_61
+      - Relay_-🇹🇼TW_62
+      - Relay_-🇮🇷IR_63
+      - Relay_-🇹🇼TW_64
+      - Relay_-🇮🇷IR_65
+      - Pool__66
+      - Relay_-🇩🇪DE_67
+      - Relay_-🇺🇸US_68
+      - Relay_-🇹🇼TW_69
+      - Relay_-🇺🇸US_70
+      - Relay_-🇸🇬SG_71
+      - Relay_-🇫🇷FR_72
+      - Relay_-🇩🇪DE_73
+      - Relay_-🇨🇿CZ_74
+      - Relay_-🇺🇸US_75
+      - Relay_-🇺🇸US_76
+      - Relay_-🇺🇸US_77
+      - Relay_-🇺🇸US_78
+      - _79
+      - Relay_-🇰🇷KR_80
+      - Relay_-🇩🇪DE_81
       - Relay_-🇺🇸US_82
-      - Relay_-🇺🇸US_83
+      - _83
       - Relay_-🇺🇸US_84
-      - Relay_-🇺🇸US_85
-      - Relay_-🇺🇸US_86
-      - _87
-      - Pool__88
-      - Relay_-🇺🇸US_89
-      - _90
-      - Relay_-🇺🇸US_91
-      - Relay_-🇺🇸US_92
-      - Relay_-🇦🇺AU_93
-      - Relay_-🇮🇷IR_94
-      - Relay_-🇺🇸US_95
-      - Relay_-🇺🇸US_96
-      - _97
-      - _98
-      - Relay_-🇷🇺RU_99
-      - _100
-      - Relay_-🇨🇭CH_101
-      - Relay_-🇲🇩MD_102
-      - Relay_-🇱🇺LU_103
-      - Relay_-🇷🇺RU_104
-      - _105
-      - Relay_-🇺🇸US_106
-      - Relay_-🇺🇦UA_107
-      - Relay_-🇺🇸US_108
-      - Relay_-🇺🇸US_109
-      - Relay_-🇱🇧LB_110
-      - Relay_-🇫🇷FR_111
-      - Relay_-🇯🇵JP_112
-      - Relay_-🇰🇭KH_113
-      - _114
-      - Relay_-🇬🇧GB_115
-      - _116
-      - Relay_-🇺🇸US_117
-      - Relay_-🇺🇸US_118
-      - Relay_-🇯🇵JP_119
-      - Relay_-🇯🇵JP_120
-      - Relay_-🇯🇵JP_121
-      - _122
-      - Relay_-🇯🇵JP_123
-      - _124
-      - _125
-      - _126
-      - Relay_-🇯🇵JP_127
+      - Relay_-🇸🇬SG_85
   - name: 🎯 全球直连
     type: select
     proxies:
@@ -1076,8 +740,8 @@ proxy-groups:
       - 🎯 全球直连
       - ♻️ 自动选择
       - _01
-      - _02
-      - _03
+      - Pool__02
+      - Pool__03
       - _04
       - _05
       - _06
@@ -1086,23 +750,23 @@ proxy-groups:
       - _09
       - _10
       - _11
-      - _12
+      - Pool__12
       - _13
       - _14
-      - Relay_-🏁ZZ_15
+      - _15
       - _16
       - _17
-      - Pool__18
-      - Relay_-🇺🇸US_19
+      - _18
+      - _19
       - _20
       - _21
       - _22
       - _23
       - _24
-      - Relay_-🇰🇷KR_25
+      - Pool__25
       - _26
       - _27
-      - _28
+      - Relay_-🏁ZZ_28
       - _29
       - _30
       - _31
@@ -1110,98 +774,56 @@ proxy-groups:
       - _33
       - _34
       - _35
-      - Relay_-🇬🇧GB_36
+      - _36
       - _37
       - _38
-      - Relay_-🇬🇧GB_39
+      - _39
       - _40
-      - Pool__41
-      - Relay_-🇰🇷KR_42
-      - Pool__43
+      - _41
+      - _42
+      - _43
       - Pool__44
       - _45
       - _46
-      - Pool__47
+      - Relay_-🇫🇷FR_47
       - _48
       - _49
-      - Relay_-🇺🇸US_50
-      - Relay_-🇺🇸US_51
-      - Relay_-🇺🇸US_52
+      - _50
+      - _51
+      - _52
       - Relay_-🇺🇸US_53
       - _54
-      - Pool__55
-      - Pool__56
+      - Relay_-🇺🇸US_55
+      - Relay_-🇺🇸US_56
       - Relay_-🇺🇸US_57
-      - _58
-      - _59
+      - Relay_-🇺🇸US_58
+      - Relay_-🇺🇸US_59
       - _60
-      - _61
-      - Relay_-🇦🇺AU_62
-      - _63
-      - _64
-      - _65
-      - Relay_-🇨🇿CZ_66
-      - _67
-      - _68
-      - _69
-      - Relay_-🇨🇳CN_70
-      - Relay_-🇨🇳CN_71
-      - Relay_-🇨🇳CN_72
-      - _73
-      - Relay_-🇫🇷FR_74
-      - _75
-      - Relay_-🇺🇦UA_76
-      - Relay_-🇫🇷FR_77
-      - Relay_-🇨🇳CN_78
-      - Relay_-🇺🇸US_79
-      - Relay_-🇺🇸US_80
-      - Relay_-🇺🇸US_81
+      - Relay_-🇹🇼TW_61
+      - Relay_-🇹🇼TW_62
+      - Relay_-🇮🇷IR_63
+      - Relay_-🇹🇼TW_64
+      - Relay_-🇮🇷IR_65
+      - Pool__66
+      - Relay_-🇩🇪DE_67
+      - Relay_-🇺🇸US_68
+      - Relay_-🇹🇼TW_69
+      - Relay_-🇺🇸US_70
+      - Relay_-🇸🇬SG_71
+      - Relay_-🇫🇷FR_72
+      - Relay_-🇩🇪DE_73
+      - Relay_-🇨🇿CZ_74
+      - Relay_-🇺🇸US_75
+      - Relay_-🇺🇸US_76
+      - Relay_-🇺🇸US_77
+      - Relay_-🇺🇸US_78
+      - _79
+      - Relay_-🇰🇷KR_80
+      - Relay_-🇩🇪DE_81
       - Relay_-🇺🇸US_82
-      - Relay_-🇺🇸US_83
+      - _83
       - Relay_-🇺🇸US_84
-      - Relay_-🇺🇸US_85
-      - Relay_-🇺🇸US_86
-      - _87
-      - Pool__88
-      - Relay_-🇺🇸US_89
-      - _90
-      - Relay_-🇺🇸US_91
-      - Relay_-🇺🇸US_92
-      - Relay_-🇦🇺AU_93
-      - Relay_-🇮🇷IR_94
-      - Relay_-🇺🇸US_95
-      - Relay_-🇺🇸US_96
-      - _97
-      - _98
-      - Relay_-🇷🇺RU_99
-      - _100
-      - Relay_-🇨🇭CH_101
-      - Relay_-🇲🇩MD_102
-      - Relay_-🇱🇺LU_103
-      - Relay_-🇷🇺RU_104
-      - _105
-      - Relay_-🇺🇸US_106
-      - Relay_-🇺🇦UA_107
-      - Relay_-🇺🇸US_108
-      - Relay_-🇺🇸US_109
-      - Relay_-🇱🇧LB_110
-      - Relay_-🇫🇷FR_111
-      - Relay_-🇯🇵JP_112
-      - Relay_-🇰🇭KH_113
-      - _114
-      - Relay_-🇬🇧GB_115
-      - _116
-      - Relay_-🇺🇸US_117
-      - Relay_-🇺🇸US_118
-      - Relay_-🇯🇵JP_119
-      - Relay_-🇯🇵JP_120
-      - Relay_-🇯🇵JP_121
-      - _122
-      - Relay_-🇯🇵JP_123
-      - _124
-      - _125
-      - _126
-      - Relay_-🇯🇵JP_127
+      - Relay_-🇸🇬SG_85
 rules:
  - DOMAIN-SUFFIX,local,🎯 全球直连
  - IP-CIDR,192.168.0.0/16,🎯 全球直连,no-resolve
