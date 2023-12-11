@@ -288,7 +288,7 @@ getData() {
             read -p " 请输入v2ray监听端口[强烈建议443，默认443]：" PORT
             [[ -z "${PORT}" ]] && PORT=443
         else
-            read -p " 请输入v2ray监听端口[100-65535的一个数字]：" PORT
+            read -p " 请输入v2ray监听端口[1001-65535的一个数字]：" PORT
             [[ -z "${PORT}" ]] && PORT=`shuf -i200-65000 -n1`
             if [[ "${PORT:0:1}" = "0" ]]; then
                 colorEcho ${RED}  " 端口不能以0开头"
@@ -297,7 +297,7 @@ getData() {
         fi
         colorEcho ${BLUE}  " v2ray端口：$PORT"
     else
-        read -p " 请输入Nginx监听端口[100-65535的一个数字，默认443]：" PORT
+        read -p " 请输入Nginx监听端口[1001-65535的一个数字，默认443]：" PORT
         [[ -z "${PORT}" ]] && PORT=443
         if [ "${PORT:0:1}" = "0" ]; then
             colorEcho ${BLUE}  " 端口不能以0开头"
@@ -1651,7 +1651,7 @@ outputVmessKCP() {
   \"net\":\"kcp\",
   \"type\":\"${type}\",
   \"host\":\"\",
-  \"path\":\"\${seed}\",
+  \"path\":\"${seed}\",
   \"tls\":\"\"
 }"
     link=`echo -n ${raw} | base64 -w 0`
@@ -1835,11 +1835,11 @@ showLog() {
 
 menu() {
     clear
-    echo "################################################################"
+    echo "##################################################################"
     echo -e "#                   ${RED}Vmess一键安装脚本${PLAIN}                       #"
     echo -e "# ${GREEN}作者${PLAIN}: 爱分享的小企鹅                                            #"
-    echo -e "# ${GREEN}网址${PLAIN}: https://www.youtube.com/channel/UCLd2LDzFPFoUnuQsP8y1wRA #"
-    echo "################################################################"
+    echo -e "# ${GREEN}网址${PLAIN}: https://www.youtube.com/channel/UCLd2LDzFPFoUnuQsP8y1wRA  #"
+    echo "##################################################################"
 
     echo -e "  ${GREEN}1.${PLAIN}   安装V2ray-VMESS"
     echo -e "  ${GREEN}2.${PLAIN}   安装V2ray-${BLUE}VMESS+mKCP${PLAIN}${RED}(无域名使用)${PLAIN}"
