@@ -1842,9 +1842,9 @@ menu() {
     echo "################################################################"
 
     echo -e "  ${GREEN}1.${PLAIN}   安装V2ray-VMESS"
-    echo -e "  ${GREEN}2.${PLAIN}   安装V2ray-${BLUE}VMESS+mKCP${PLAIN}"
+    echo -e "  ${GREEN}2.${PLAIN}   安装V2ray-${BLUE}VMESS+mKCP${PLAIN}${RED}(无域名使用)${PLAIN}"
     echo -e "  ${GREEN}3.${PLAIN}   安装V2ray-VMESS+TCP+TLS"
-    echo -e "  ${GREEN}4.${PLAIN}   安装V2ray-${BLUE}VMESS+WS+TLS${PLAIN}${RED}(推荐)${PLAIN}"
+    echo -e "  ${GREEN}4.${PLAIN}   安装V2ray-${BLUE}VMESS+WS+TLS${PLAIN}${RED}(推荐使用)${PLAIN}"
     echo " -------------"
     echo -e "  ${GREEN}5.${PLAIN}  更新V2ray"
     echo -e "  ${GREEN}6.  ${RED}卸载V2ray${PLAIN}"
