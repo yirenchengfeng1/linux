@@ -943,7 +943,7 @@ vmessConfig() {
         {
           "id": "$uuid",
           "level": 1,
-          "alterId": $alterid
+          "alterId": 0
         }
       ]
     }
@@ -982,7 +982,7 @@ vmessKCPConfig() {
         {
           "id": "$uuid",
           "level": 1,
-          "alterId": $alterid
+          "alterId": 0
         }
       ]
     },
@@ -1435,12 +1435,12 @@ install() {
     configV2ray
 
     setSelinux
-    installBBR
+    #installBBR
 
     start
     showInfo
 
-    bbrReboot
+    #bbrReboot
 }
 
 bbrReboot() {
@@ -1836,7 +1836,7 @@ showLog() {
 menu() {
     clear
     echo "##################################################################"
-    echo -e "#                   ${RED}Vmess一键安装脚本${PLAIN}                       #"
+    echo -e "#                   ${RED}Vmess一键安装脚本${PLAIN}                               #"
     echo -e "# ${GREEN}作者${PLAIN}: 爱分享的小企鹅                                            #"
     echo -e "# ${GREEN}网址${PLAIN}: https://www.youtube.com/channel/UCLd2LDzFPFoUnuQsP8y1wRA  #"
     echo "##################################################################"
