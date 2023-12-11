@@ -412,10 +412,10 @@ getData() {
     fi
 
     echo ""
-    read -p " 是否安装BBR(默认安装)?[y/n]:" NEED_BBR
-    [[ -z "$NEED_BBR" ]] && NEED_BBR=y
-    [[ "$NEED_BBR" = "Y" ]] && NEED_BBR=y
-    colorEcho $BLUE " 安装BBR：$NEED_BBR"
+   # read -p " 是否安装BBR(默认安装)?[y/n]:" NEED_BBR
+   # [[ -z "$NEED_BBR" ]] && NEED_BBR=y
+   # [[ "$NEED_BBR" = "Y" ]] && NEED_BBR=y
+   # colorEcho $BLUE " 安装BBR：$NEED_BBR"
 }
 
 installNginx() {
@@ -1836,7 +1836,7 @@ showLog() {
 menu() {
     clear
     echo "##################################################################"
-    echo -e "#                   ${RED}Vmess一键安装脚本${PLAIN}                               #"
+    echo -e "#                   ${RED}Vmess一键安装脚本${PLAIN}                           #"
     echo -e "# ${GREEN}作者${PLAIN}: 爱分享的小企鹅                                            #"
     echo -e "# ${GREEN}网址${PLAIN}: https://www.youtube.com/channel/UCLd2LDzFPFoUnuQsP8y1wRA  #"
     echo "##################################################################"
