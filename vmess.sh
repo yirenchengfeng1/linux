@@ -1651,7 +1651,7 @@ outputVmessKCP() {
   \"net\":\"kcp\",
   \"type\":\"${type}\",
   \"host\":\"\",
-  \"path\":\"\/${seed}\",
+  \"path\":\"\${seed}\",
   \"tls\":\"\"
 }"
     link=`echo -n ${raw} | base64 -w 0`
