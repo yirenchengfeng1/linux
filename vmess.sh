@@ -1,6 +1,6 @@
 #!/bin/bash
-# V2Ray一键安装脚本
-# Author: 王超博客<https://www.wangchao.info/>
+# Vmess一键安装脚本
+# Author: 王超博客<https://www.youtube.com/channel/UCLd2LDzFPFoUnuQsP8y1wRA>
 
 
 RED="\033[31m"      # Error message
@@ -1836,31 +1836,25 @@ showLog() {
 menu() {
     clear
     echo "#############################################################"
-    echo -e "#                   ${RED}V2Ray一键安装脚本${PLAIN}                       #"
-    echo -e "# ${GREEN}作者${PLAIN}: 王超博客                                            #"
-    echo -e "# ${GREEN}网址${PLAIN}: https://www.wangchao.info                           #"
+    echo -e "#                   ${RED}Vmess一键安装脚本${PLAIN}                       #"
+    echo -e "# ${GREEN}作者${PLAIN}: 爱分享的小企鹅                                            #"
+    echo -e "# ${GREEN}网址${PLAIN}: https://www.youtube.com/channel/UCLd2LDzFPFoUnuQsP8y1wRA                           #"
     echo "#############################################################"
 
     echo -e "  ${GREEN}1.${PLAIN}   安装V2ray-VMESS"
     echo -e "  ${GREEN}2.${PLAIN}   安装V2ray-${BLUE}VMESS+mKCP${PLAIN}"
     echo -e "  ${GREEN}3.${PLAIN}   安装V2ray-VMESS+TCP+TLS"
     echo -e "  ${GREEN}4.${PLAIN}   安装V2ray-${BLUE}VMESS+WS+TLS${PLAIN}${RED}(推荐)${PLAIN}"
-    echo -e "  ${GREEN}5.${PLAIN}   安装V2ray-${BLUE}VLESS+mKCP${PLAIN}"
-    echo -e "  ${GREEN}6.${PLAIN}   安装V2ray-VLESS+TCP+TLS"
-    echo -e "  ${GREEN}7.${PLAIN}   安装V2ray-${BLUE}VLESS+WS+TLS${PLAIN}${RED}(可过cdn)${PLAIN}"
-    echo -e "  ${GREEN}8.${PLAIN}   安装V2ray-${BLUE}VLESS+TCP+XTLS${PLAIN}${RED}(推荐)${PLAIN}"
-    echo -e "  ${GREEN}9.${PLAIN}   安装${BLUE}trojan${PLAIN}${RED}(推荐)${PLAIN}"
-    echo -e "  ${GREEN}10.${PLAIN}  安装${BLUE}trojan+XTLS${PLAIN}${RED}(推荐)${PLAIN}"
     echo " -------------"
-    echo -e "  ${GREEN}11.${PLAIN}  更新V2ray"
-    echo -e "  ${GREEN}12.  ${RED}卸载V2ray${PLAIN}"
+    echo -e "  ${GREEN}5.${PLAIN}  更新V2ray"
+    echo -e "  ${GREEN}6.  ${RED}卸载V2ray${PLAIN}"
     echo " -------------"
-    echo -e "  ${GREEN}13.${PLAIN}  启动V2ray"
-    echo -e "  ${GREEN}14.${PLAIN}  重启V2ray"
-    echo -e "  ${GREEN}15.${PLAIN}  停止V2ray"
+    echo -e "  ${GREEN}7.${PLAIN}  启动V2ray"
+    echo -e "  ${GREEN}8.${PLAIN}  重启V2ray"
+    echo -e "  ${GREEN}9.${PLAIN}  停止V2ray"
     echo " -------------"
-    echo -e "  ${GREEN}16.${PLAIN}  查看V2ray配置"
-    echo -e "  ${GREEN}17.${PLAIN}  查看V2ray日志"
+    echo -e "  ${GREEN}10.${PLAIN}  查看V2ray配置"
+    echo -e "  ${GREEN}11.${PLAIN}  查看V2ray日志"
     echo " -------------"
     echo -e "  ${GREEN}0.${PLAIN}   退出"
     echo -n " 当前状态："
@@ -1889,57 +1883,24 @@ menu() {
             install
             ;;
         5)
-            VLESS="true"
-            KCP="true"
-            install
-            ;;
-        6)
-            VLESS="true"
-            TLS="true"
-            install
-            ;;
-        7)
-            VLESS="true"
-            TLS="true"
-            WS="true"
-            install
-            ;;
-        8)
-            VLESS="true"
-            TLS="true"
-            XTLS="true"
-            install
-            ;;
-        9)
-            TROJAN="true"
-            TLS="true"
-            install
-            ;;
-        10)
-            TROJAN="true"
-            TLS="true"
-            XTLS="true"
-            install
-            ;;
-        11)
             update
             ;;
-        12)
+        6)
             uninstall
             ;;
-        13)
+        7)
             start
             ;;
-        14)
+        8)
             restart
             ;;
-        15)
+        9)
             stop
             ;;
-        16)
+        10)
             showInfo
             ;;
-        17)
+        11)
             showLog
             ;;
         *)
