@@ -273,6 +273,7 @@ getData() {
             KEY_FILE="/etc/v2ray/${DOMAIN}.key"
         else
             resolve=$(curl -sm8 ipget.net/?ip=${DOMAIN})
+			#resolve=$(nslookup ${DOMAIN})
             res=`echo -n ${resolve} | grep ${IP}`
             if [[ -z "${res}" ]]; then
                 colorEcho ${BLUE}  "${DOMAIN} 解析结果：${resolve}"
@@ -1836,7 +1837,7 @@ showLog() {
 menu() {
     clear
     echo "##################################################################"
-    echo -e "#                   ${RED}Vmess一键安装脚本${PLAIN}                           #"
+    echo -e "#                   ${RED}Vmess一键安装脚本${PLAIN}                             #"
     echo -e "# ${GREEN}作者${PLAIN}: 爱分享的小企鹅                                            #"
     echo -e "# ${GREEN}网址${PLAIN}: https://www.youtube.com/channel/UCLd2LDzFPFoUnuQsP8y1wRA  #"
     echo "##################################################################"
