@@ -437,7 +437,7 @@ module_hotfixes=true' > /etc/yum.repos.d/nginx.repo
         fi
         $CMD_INSTALL nginx
         if [[ "$?" != "0" ]]; then
-            colorEcho $RED " Nginx安装失败，请到 https://www.wangchao.info/ 反馈"
+            colorEcho $RED " Nginx安装失败"
             exit 1
         fi
         systemctl enable nginx
