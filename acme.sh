@@ -60,13 +60,13 @@ install_base(){
     if [[ ! $SYSTEM == "CentOS" ]]; then
         ${PACKAGE_UPDATE[int]}
     fi
-    ${PACKAGE_INSTALL[int]} curl wget sudo socat openssl
+    ${PACKAGE_INSTALL[int]} curl wget sudo socat openssl 
     if [[ $SYSTEM == "CentOS" ]]; then
-        ${PACKAGE_INSTALL[int]} cronie
+        ${PACKAGE_INSTALL[int]} cronie bind-utils
         systemctl start crond
         systemctl enable crond
     else
-        ${PACKAGE_INSTALL[int]} cron
+        ${PACKAGE_INSTALL[int]} cron dnsutils
         systemctl start cron
         systemctl enable cron
     fi
@@ -163,7 +163,7 @@ acme_standalone(){
     read -rp "请输入解析完成的域名: " domain
     [[ -z $domain ]] && red "未输入域名，无法执行操作！" && exit 1
     green "已输入的域名：$domain" && sleep 1
-    domainIP=$(curl -sm8 ipget.net/?ip="${domain}")
+    domainIP=$(dig +short ${domain})
     
     if [[ $domainIP == $ipv6 ]]; then
         bash ~/.acme.sh/acme.sh --issue -d ${domain} --standalone -k ec-256 --listen-v6 --insecure
