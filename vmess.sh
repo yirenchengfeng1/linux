@@ -1402,11 +1402,12 @@ install() {
 
     $PMT clean all
     [[ "$PMT" = "apt" ]] && $PMT update
-    #echo $CMD_UPGRADE | bash
     $CMD_INSTALL wget vim unzip tar gcc openssl
     $CMD_INSTALL net-tools
     if [[ "$PMT" = "apt" ]]; then
-        $CMD_INSTALL libssl-dev g++
+        $CMD_INSTALL libssl-dev g++ dnsutils
+	else
+	    $CMD_INSTALL bind-utils
     fi
     res=`which unzip 2>/dev/null`
     if [[ $? -ne 0 ]]; then
