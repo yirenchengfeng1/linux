@@ -1747,6 +1747,7 @@ outputVmessWS() {
     echo -e "   ${BLUE}vmess链接:${PLAIN} $RED$link$PLAIN"
 }
 
+
 showInfo() {
     res=`status`
     if [[ $res -lt 2 ]]; then
@@ -1801,6 +1802,7 @@ showInfo() {
             echo -e "   ${BLUE}伪装域名/主机名(host)/SNI/peer名称：${PLAIN}${RED}${domain}${PLAIN}"
             echo -e "   ${BLUE}底层安全传输(tls)：${PLAIN}${RED}XTLS${PLAIN}"
         elif [[ "$ws" = "false" ]]; then
+	        link="vless://${uid}@${IP}:${port}?encryption=none&security=tls&sni=${domain}&type=tcp&headerType=none"
             echo -e "   ${BLUE}IP(address):  ${PLAIN}${RED}${IP}${PLAIN}"
             echo -e "   ${BLUE}端口(port)：${PLAIN}${RED}${port}${PLAIN}"
             echo -e "   ${BLUE}id(uuid)：${PLAIN}${RED}${uid}${PLAIN}"
@@ -1810,7 +1812,10 @@ showInfo() {
             echo -e "   ${BLUE}伪装类型(type)：${PLAIN}${RED}none$PLAIN"
             echo -e "   ${BLUE}伪装域名/主机名(host)/SNI/peer名称：${PLAIN}${RED}${domain}${PLAIN}"
             echo -e "   ${BLUE}底层安全传输(tls)：${PLAIN}${RED}TLS${PLAIN}"
+			echo  
+            echo -e "   ${BLUE}vless链接: ${PLAIN}$RED$link$PLAIN" 
         else
+		    #link="vless://${uid}@${IP}:${port}?encryption=none&security=tls&sni=${domain}&type=tcp&headerType=none"
             echo -e "   ${BLUE}IP(address): ${PLAIN} ${RED}${IP}${PLAIN}"
             echo -e "   ${BLUE}端口(port)：${PLAIN}${RED}${port}${PLAIN}"
             echo -e "   ${BLUE}id(uuid)：${PLAIN}${RED}${uid}${PLAIN}"
@@ -1821,6 +1826,8 @@ showInfo() {
             echo -e "   ${BLUE}伪装域名/主机名(host)/SNI/peer名称：${PLAIN}${RED}${domain}${PLAIN}"
             echo -e "   ${BLUE}路径(path)：${PLAIN}${RED}${wspath}${PLAIN}"
             echo -e "   ${BLUE}底层安全传输(tls)：${PLAIN}${RED}TLS${PLAIN}"
+			echo  
+            echo -e "   ${BLUE}vless链接: ${PLAIN}$RED$link$PLAIN" 
         fi
     fi
 }
