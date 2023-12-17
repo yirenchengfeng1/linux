@@ -316,7 +316,7 @@ getData() {
         echo "   3) 视频通话"
         echo "   4) 微信视频通话"
         echo "   5) dtls"
-        echo "   6) wiregard"
+        echo "   6) wireguard"
         read -p "  请选择伪装类型[默认：无]：" answer
         case $answer in
             2)
@@ -1855,9 +1855,9 @@ menu() {
     echo "##################################################################"
 
     echo -e "  ${GREEN}1.${PLAIN}   安装V2ray-VMESS"
-    echo -e "  ${GREEN}2.${PLAIN}   安装V2ray-${BLUE}VMESS+mKCP${PLAIN}"
+    echo -e "  ${GREEN}2.${PLAIN}   安装V2ray-VMESS+mKCP"
     echo -e "  ${GREEN}3.${PLAIN}   安装V2ray-VMESS+TCP+TLS"
-    echo -e "  ${GREEN}4.${PLAIN}   安装V2ray-${BLUE}VMESS+WS+TLS${PLAIN}${RED}(推荐)${PLAIN}"
+    echo -e "  ${GREEN}4.${PLAIN}   安装V2ray-${BLUE}VMESS+WS+TLS${PLAIN}${RED}(可过cdn)${PLAIN}"
     echo -e "  ${GREEN}5.${PLAIN}   安装V2ray-VLESS+TCP+TLS"
     echo -e "  ${GREEN}6.${PLAIN}   安装V2ray-${BLUE}VLESS+WS+TLS${PLAIN}${RED}(可过cdn)${PLAIN}"
     echo " -------------"
