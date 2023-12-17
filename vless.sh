@@ -1815,7 +1815,8 @@ showInfo() {
 			echo  
             echo -e "   ${BLUE}vless链接: ${PLAIN}$RED$link$PLAIN" 
         else
-		    #link="vless://${uid}@${IP}:${port}?encryption=none&security=tls&sni=${domain}&type=tcp&headerType=none"
+		    wspath_noslash="${wspath#/}"
+		    link="vless://${uid}@${IP}:${port}?encryption=none&security=tls&type=ws&host=${domain}&path=%2F${wspath_noslash}"
             echo -e "   ${BLUE}IP(address): ${PLAIN} ${RED}${IP}${PLAIN}"
             echo -e "   ${BLUE}端口(port)：${PLAIN}${RED}${port}${PLAIN}"
             echo -e "   ${BLUE}id(uuid)：${PLAIN}${RED}${uid}${PLAIN}"
