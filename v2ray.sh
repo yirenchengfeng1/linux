@@ -1792,6 +1792,7 @@ showInfo() {
             return 0
         fi
         if [[ "$xtls" = "true" ]]; then
+		  
             echo -e "   ${BLUE}IP(address): ${PLAIN} ${RED}${IP}${PLAIN}"
             echo -e "   ${BLUE}端口(port)：${PLAIN}${RED}${port}${PLAIN}"
             echo -e "   ${BLUE}id(uuid)：${PLAIN}${RED}${uid}${PLAIN}"
@@ -1801,6 +1802,8 @@ showInfo() {
             echo -e "   ${BLUE}伪装类型(type)：${PLAIN}${RED}none$PLAIN"
             echo -e "   ${BLUE}伪装域名/主机名(host)/SNI/peer名称：${PLAIN}${RED}${domain}${PLAIN}"
             echo -e "   ${BLUE}底层安全传输(tls)：${PLAIN}${RED}XTLS${PLAIN}"
+			echo  
+            echo -e "   ${BLUE}vless链接: ${PLAIN}$RED$link$PLAIN" 			
         elif [[ "$ws" = "false" ]]; then
 	        link="vless://${uid}@${IP}:${port}?encryption=none&security=tls&sni=${domain}&type=tcp&headerType=none"
             echo -e "   ${BLUE}IP(address):  ${PLAIN}${RED}${IP}${PLAIN}"
@@ -1851,20 +1854,22 @@ menu() {
     echo -e "# ${GREEN}网址${PLAIN}: https://www.youtube.com/channel/UCLd2LDzFPFoUnuQsP8y1wRA  #"
     echo "##################################################################"
 
-    echo -e "  ${GREEN}1.${PLAIN}   安装V2ray-${BLUE}VLESS+mKCP${PLAIN}"
-    echo -e "  ${GREEN}2.${PLAIN}   安装V2ray-VLESS+TCP+TLS"
-    echo -e "  ${GREEN}3.${PLAIN}   安装V2ray-${BLUE}VLESS+WS+TLS${PLAIN}${RED}(可过cdn)${PLAIN}"
-    echo -e "  ${GREEN}4.${PLAIN}   安装V2ray-${BLUE}VLESS+TCP+XTLS${PLAIN}${RED}(推荐)${PLAIN}"
+    echo -e "  ${GREEN}1.${PLAIN}   安装V2ray-VMESS"
+    echo -e "  ${GREEN}2.${PLAIN}   安装V2ray-${BLUE}VMESS+mKCP${PLAIN}"
+    echo -e "  ${GREEN}3.${PLAIN}   安装V2ray-VMESS+TCP+TLS"
+    echo -e "  ${GREEN}4.${PLAIN}   安装V2ray-${BLUE}VMESS+WS+TLS${PLAIN}${RED}(推荐)${PLAIN}"
+    echo -e "  ${GREEN}5.${PLAIN}   安装V2ray-VLESS+TCP+TLS"
+    echo -e "  ${GREEN}6.${PLAIN}   安装V2ray-${BLUE}VLESS+WS+TLS${PLAIN}${RED}(可过cdn)${PLAIN}"
     echo " -------------"
-    echo -e "  ${GREEN}5.${PLAIN}  更新V2ray"
-    echo -e "  ${GREEN}6.  ${RED}卸载V2ray${PLAIN}"
+    echo -e "  ${GREEN}7.${PLAIN}  更新V2ray"
+    echo -e "  ${GREEN}8.  ${RED}卸载V2ray${PLAIN}"
     echo " -------------"
-    echo -e "  ${GREEN}7.${PLAIN}  启动V2ray"
-    echo -e "  ${GREEN}8.${PLAIN}  重启V2ray"
-    echo -e "  ${GREEN}9.${PLAIN}  停止V2ray"
+    echo -e "  ${GREEN}9.${PLAIN}  启动V2ray"
+    echo -e "  ${GREEN}10.${PLAIN}  重启V2ray"
+    echo -e "  ${GREEN}11.${PLAIN}  停止V2ray"
     echo " -------------"
-    echo -e "  ${GREEN}10.${PLAIN}  查看V2ray配置"
-    echo -e "  ${GREEN}11.${PLAIN}  查看V2ray日志"
+    echo -e "  ${GREEN}12.${PLAIN}  查看V2ray配置"
+    echo -e "  ${GREEN}13.${PLAIN}  查看V2ray日志"
     echo " -------------"
     echo -e "  ${GREEN}0.${PLAIN}   退出"
     echo -n " 当前状态："
@@ -1877,46 +1882,51 @@ menu() {
             exit 0
             ;;
         1)
-            VLESS="true"
-            KCP="true"
             install
             ;;
         2)
+            KCP="true"
+            install
+            ;;
+        3)
+            TLS="true"
+            install
+            ;;
+        4)
+            TLS="true"
+            WS="true"
+            install
+            ;;
+        5)
             VLESS="true"
             TLS="true"
             install
             ;;
-        3)
+        6)
             VLESS="true"
             TLS="true"
             WS="true"
             install
             ;;
-        4)
-            VLESS="true"
-            TLS="true"
-            XTLS="true"
-            install
-            ;;
-        5)
+        7)
             update
             ;;
-        6)
+        8)
             uninstall
             ;;
-        7)
+        9)
             start
             ;;
-        8)
+        10)
             restart
             ;;
-        9)
+        11)
             stop
             ;;
-        10)
+        12)
             showInfo
             ;;
-        11)
+        13)
             showLog
             ;;
         *)
