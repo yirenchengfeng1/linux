@@ -1,0 +1,87 @@
+{
+  "inbounds": [{
+    "port": 9000,
+    "protocol": "vmess",
+    "settings": {
+      "clients": [
+        {
+          "id": "67be3dd6-e60c-4162-89a0-ae1b828c553b",
+          "level": 1,
+          "alterId": 0
+        }
+      ]
+    },
+    "streamSettings": {
+        "network": "mkcp",
+        "kcpSettings": {
+            "uplinkCapacity": 100,
+            "downlinkCapacity": 100,
+            "congestion": true,
+            "header": {
+                "type": "wireguard"
+            },
+            "seed": "e9bbe3b6-8066-42eb-832c-46dd0c31307b"
+        }
+    },
+              "sniffing": {
+                "enabled": true, 
+                "destOverride": [ 
+                    "http",
+                    "tls"                 
+                ] 
+            }				
+     }],
+    "outbounds": [
+        { 
+            "protocol": "freedom",
+            "settings": {
+                "domainStrategy": "AsIs"
+            }
+        },
+        { 
+            "tag": "WARP_out",
+            "protocol": "freedom",
+            "streamSettings": {
+                "sockopt": {
+                    "mark": 51888 
+                }
+            },
+            "settings": {
+                "domainStrategy": "UseIP" 
+            }
+        },
+        { 
+            "tag": "blocked",
+            "protocol": "blackhole"
+        }
+    ],
+    "routing": {
+        "domainStrategy": "AsIs",
+        "domainMatcher": "mph",
+        "rules": [ 
+            { 
+                "ip": [
+                    "geoip:private"
+                ],
+                "outboundTag": "blocked",
+                "type": "field"
+            },
+            { 
+                "domain": [
+				    "geosite:netflix",
+                    "geosite:openai",
+					"geosite:youtube"
+                ],
+                "outboundTag": "WARP_out",
+                "type": "field"
+            }
+        ]
+    },
+    "dns": {
+        "servers": [
+            "https://dns.google/dns-query",
+            "https://dns11.quad9.net/dns-query",
+            "localhost"
+        ]
+    }
+}
