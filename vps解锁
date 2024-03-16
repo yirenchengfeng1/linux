@@ -1,0 +1,14 @@
+一、准备工作
+一台vps、一个域名，并将域名解析到vps对应ip
+二、快速搭建一个vless+ws+tls节点
+wget https://raw.githubusercontent.com/yirenchengfeng1/linux/main/v2ray.sh
+三、自动配置 WARP WireGuard 双栈非全局网络
+bash <(curl -fsSL git.io/warp.sh) x
+四、获取命令帮助
+bash <(curl -fsSL git.io/warp.sh) help
+五、管理菜单
+bash <(curl -fsSL git.io/warp.sh) menu
+六、修改json配置文件
+从逗号开始
+七、抓取wgcf端口的流量
+tcpdump -i wgcf
