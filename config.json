@@ -45,8 +45,8 @@
             { 
                 "domain": [
 				    "geosite:netflix",
-                    "geosite:openai",
-					"geosite:youtube"
+                                       "geosite:openai"
+					
                 ],
                 "outboundTag": "WARP_out",
                 "type": "field"
