@@ -126,15 +126,15 @@ getuuid() {
     echo "正在生成UUID..."
 	/usr/local/bin/xray uuid > /usr/local/etc/xray/uuid
 	USER_UUID=`cat /usr/local/etc/xray/uuid`
-    colorEcho $BLUE " UUID： $USER_UUID"
+    colorEcho $BLUE " UUID：$USER_UUID"
 	echo ""
 }
 
 # 指定节点名称
 getname() {
-	read -p " 请输入您的节点名称，如果留空将保持默认：" USER_NAME
+	read -p "请输入您的节点名称，如果留空将保持默认：" USER_NAME
 	[[ -z "$USER_NAME" ]] && USER_NAME="Reality(by小企鹅)"
-    colorEcho $BLUE " 节点名称： $USER_NAME"
+    colorEcho $BLUE " 节点名称：$USER_NAME"
 	echo "$USER_NAME" > /usr/local/etc/xray/name
 	echo ""
 		
@@ -149,7 +149,7 @@ getkey() {
 	echo "$private_key" > /usr/local/etc/xray/privatekey
 	echo "$public_key" > /usr/local/etc/xray/publickey
 	KEY=`cat /usr/local/etc/xray/key`
-	colorEcho $BLUE " $KEY"
+	colorEcho $BLUE "$KEY"
     echo ""
 }
 
@@ -163,23 +163,23 @@ getport() {
     echo ""
     while true
     do
-        read -p " 请设置XRAY的端口号[1025-65535]，不输入则随机生成:" PORT
+        read -p "请设置XRAY的端口号[1025-65535]，不输入则随机生成:" PORT
         [[ -z "$PORT" ]] && PORT=`shuf -i1025-65000 -n1`
         if [[ "${PORT:0:1}" = "0" ]]; then
-            echo -e " ${RED}端口不能以0开头${PLAIN}"
+            echo -e "${RED}端口不能以0开头${PLAIN}"
             exit 1
         fi
         expr $PORT + 0 &>/dev/null
         if [[ $? -eq 0 ]]; then
             if [[ $PORT -ge 1025 ]] && [[ $PORT -le 65535 ]]; then
 	            echo "$PORT" > /usr/local/etc/xray/port				
-                colorEcho $BLUE " 端口号： $PORT"
+                colorEcho $BLUE "端口号：$PORT"
                 break
             else
-                colorEcho $RED " 输入错误，端口号为1025-65535的数字"
+                colorEcho $RED "输入错误，端口号为1025-65535的数字"
             fi
         else
-            colorEcho $RED " 输入错误，端口号为1025-65535的数字"
+            colorEcho $RED "输入错误，端口号为1025-65535的数字"
         fi
     done
 	
@@ -203,11 +203,11 @@ setFirewall() {
 # 生成或获取 dest
 getdest() {
     echo ""
-    read -p " 请输入您的 dest 地址（例如：www.amazon.com:443），如果留空将保持默认：" USER_DEST
+    read -p "请输入您的 dest 地址（例如：www.amazon.com:443），如果留空将保持默认：" USER_DEST
     [[ -z "$USER_DEST" ]] && USER_DEST="www.amazon.com:443"
 	echo $USER_DEST > /usr/local/etc/xray/dest
 	echo $USER_DEST | cut -d: -f1 > /usr/local/etc/xray/servername
-    colorEcho $BLUE " 目标网址： $USER_DEST"
+    colorEcho $BLUE "目标网址： $USER_DEST"
 	
 }
 
@@ -286,7 +286,7 @@ EOF
 start() {
     res=`status`
     if [[ $res -lt 2 ]]; then
-        echo -e " ${RED}xray未安装，请先安装！${PLAIN}"
+        echo -e "${RED}xray未安装，请先安装！${PLAIN}"
         return
     fi
     systemctl restart ${NAME}
@@ -294,16 +294,16 @@ start() {
     port=`grep -o '"port": [0-9]*' $CONFIG_FILE | awk '{print $2}'`
     res=`ss -ntlp| grep ${port} | grep xray`
     if [[ "$res" = "" ]]; then
-        colorEcho $RED " xray启动失败，请检查端口是否被占用！"
+        colorEcho $RED "xray启动失败，请检查端口是否被占用！"
     else
-        colorEcho $BLUE " xray启动成功！"
+        colorEcho $BLUE "xray启动成功！"
     fi
 }
 
 restart() {
     res=`status`
     if [[ $res -lt 2 ]]; then
-        echo -e " ${RED}xray未安装，请先安装！${PLAIN}"
+        echo -e "${RED}xray未安装，请先安装！${PLAIN}"
         return
     fi
 
@@ -314,11 +314,11 @@ restart() {
 stop() {
     res=`status`
     if [[ $res -lt 2 ]]; then
-        echo -e " ${RED}xray未安装，请先安装！${PLAIN}"
+        echo -e "${RED}xray未安装，请先安装！${PLAIN}"
         return
     fi
     systemctl stop ${NAME}
-    colorEcho $BLUE " xray停止成功"
+    colorEcho $BLUE "xray停止成功"
 }
 
 
