@@ -116,8 +116,16 @@ removeXray() {
     
     colorEcho $RED "正在卸载 Xray..."
     bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ remove --purge
+	rm -rf /etc/systemd/system/xray.service > /dev/null 2>&1
+    rm -rf /etc/systemd/system/xray@.service > /dev/null 2>&1
+    rm -rf /usr/local/bin/xray > /dev/null 2>&1
+    rm -rf /usr/local/etc/xray > /dev/null 2>&1
+    rm -rf /usr/local/share/xray > /dev/null 2>&1
+    rm -rf /var/log/xray > /dev/null 2>&1
 	
 }
+
+
 
 
 # 填写或生成 UUID
@@ -126,7 +134,7 @@ getuuid() {
     echo "正在生成UUID..."
 	/usr/local/bin/xray uuid > /usr/local/etc/xray/uuid
 	USER_UUID=`cat /usr/local/etc/xray/uuid`
-    colorEcho $BLUE " UUID：$USER_UUID"
+    colorEcho $BLUE "UUID：$USER_UUID"
 	echo ""
 }
 
@@ -134,7 +142,7 @@ getuuid() {
 getname() {
 	read -p "请输入您的节点名称，如果留空将保持默认：" USER_NAME
 	[[ -z "$USER_NAME" ]] && USER_NAME="Reality(by小企鹅)"
-    colorEcho $BLUE " 节点名称：$USER_NAME"
+    colorEcho $BLUE "节点名称：$USER_NAME"
 	echo "$USER_NAME" > /usr/local/etc/xray/name
 	echo ""
 		
@@ -142,7 +150,7 @@ getname() {
 
 # 生成私钥和公钥
 getkey() {
-    colorEcho $BLUE "正在生成私钥和公钥，请妥善保管好..."
+    echo "正在生成私钥和公钥，请妥善保管好..."
 	/usr/local/bin/xray x25519 > /usr/local/etc/xray/key
 	private_key=$(cat /usr/local/etc/xray/key | head -n 1 | awk '{print $3}')
 	public_key=$(cat /usr/local/etc/xray/key | sed -n '2p' | awk '{print $3}')
@@ -203,14 +211,32 @@ setFirewall() {
 # 生成或获取 dest
 getdest() {
     echo ""
-    read -p "请输入您的 dest 地址（例如：www.amazon.com:443），如果留空将保持默认：" USER_DEST
-    [[ -z "$USER_DEST" ]] && USER_DEST="www.amazon.com:443"
-	echo $USER_DEST > /usr/local/etc/xray/dest
-	echo $USER_DEST | cut -d: -f1 > /usr/local/etc/xray/servername
-    colorEcho $BLUE "目标网址： $USER_DEST"
+    read -p "请输入您的 dest 地址并确保该域名在国内的连通性（例如：www.amazon.com），如果留空将保持默认：" USER_DEST
+	if [[ -z "$USER_DEST" ]]; then
+		USER_DEST="www.amazon.com"
+		echo $USER_DEST:443 > /usr/local/etc/xray/dest
+		echo $USER_DEST > /usr/local/etc/xray/servername
+		colorEcho $BLUE "目标网址： $USER_DEST"	
+	else
+		echo "正在检查 \"${USER_DEST}\" 是否支持 TLSv1.3与h2"
+		# 检查是否支持 TLSv1.3与h2
+        check_num=$(echo QUIT | stdbuf -oL openssl s_client -connect "${USER_DEST}:443" -tls1_3 -alpn h2 2>&1 | grep -Eoi '(TLSv1.3)|(^ALPN\s+protocol:\s+h2$)|(X25519)' | sort -u | wc -l)
+		if [[ ${check_num} -eq 3 ]]; then
+			echo "\"${USER_DEST}\" 支持 TLSv1.3 与 h2"
+			echo $USER_DEST:443 > /usr/local/etc/xray/dest
+		    echo $USER_DEST > /usr/local/etc/xray/servername
+		    colorEcho $BLUE "目标网址： $USER_DEST"	
+		else
+			echo "\"${USER_DEST}\" 不支持 TLSv1.3 与 h2，将使用默认域名www.amazon.com"
+		    USER_DEST="www.amazon.com"
+		    echo $USER_DEST:443 > /usr/local/etc/xray/dest
+		    echo $USER_DEST > /usr/local/etc/xray/servername
+		    colorEcho $BLUE "目标网址： $USER_DEST"	
+		fi	   
+	fi
+
 	
 }
-
 
 
 # 生成 short ID
@@ -220,7 +246,7 @@ getsid() {
     echo "正在生成shortID..."
     USER_SID=$(openssl rand -hex 8)
     echo $USER_SID > /usr/local/etc/xray/sid
-    colorEcho $BLUE " shortID： $USER_SID"
+    colorEcho $BLUE "shortID： $USER_SID"
     echo ""
 
 }
