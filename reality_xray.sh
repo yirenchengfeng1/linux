@@ -109,19 +109,20 @@ preinstall() {
 installXray() {
     
     colorEcho $BLUE "正在安装 Xray..."
-    bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)"
+    bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" > /dev/null 2>&1
 	}
 
 removeXray() {
     
     colorEcho $RED "正在卸载 Xray..."
-    bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ remove --purge
+    bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ remove --purge > /dev/null 2>&1
 	rm -rf /etc/systemd/system/xray.service > /dev/null 2>&1
     rm -rf /etc/systemd/system/xray@.service > /dev/null 2>&1
     rm -rf /usr/local/bin/xray > /dev/null 2>&1
     rm -rf /usr/local/etc/xray > /dev/null 2>&1
     rm -rf /usr/local/share/xray > /dev/null 2>&1
     rm -rf /var/log/xray > /dev/null 2>&1
+	colorEcho $BULE "已全部卸载完毕！"
 	
 }
 
