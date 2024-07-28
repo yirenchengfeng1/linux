@@ -59,12 +59,16 @@ status() {
         return
     fi
     port=`grep -o '"port": [0-9]*' $CONFIG_FILE | awk '{print $2}'`
-    res=`ss -ntlp| grep ${port} | grep xray`
-    if [[ -z "$res" ]]; then
-        echo 2
-    else
-        echo 3
-    fi
+	if [[ -n "$port" ]]; then
+        res=`ss -ntlp| grep ${port} | grep xray`
+        if [[ -z "$res" ]]; then
+            echo 2
+        else
+            echo 3
+        fi
+	else
+	    echo 2
+	fi
 }
 
 statusText() {
@@ -148,10 +152,20 @@ random_website() {
 # 安装 Xray内核
 installXray() {
     echo ""
-    echo "正在安装/更新Xray..."
+    echo "正在安装Xray..."
     bash -c "$(curl -s -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" > /dev/null 2>&1
-	colorEcho $BLUE "xray内核已安装/更新完成"
-	}
+	colorEcho $BLUE "xray内核已安装完成"
+	sleep 5
+}
+
+# 更新 Xray内核
+updateXray() {
+    echo ""
+    echo "正在更新Xray..."
+    bash -c "$(curl -s -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" > /dev/null 2>&1
+	colorEcho $BLUE "xray内核已更新完成"
+	sleep 5
+}
 
 removeXray() {
     echo ""
@@ -168,6 +182,7 @@ removeXray() {
     rm -rf /usr/local/share/xray > /dev/null 2>&1
     rm -rf /var/log/xray > /dev/null 2>&1
 	colorEcho $RED "已完成xray卸载"
+	sleep 5
 }
 
 
@@ -205,9 +220,43 @@ getkey() {
 }
 
 getip() {
-    LOCAL_IP=$(curl -s https://api.ipify.org)
-	echo "$LOCAL_IP" > /usr/local/etc/xray/ip
-	colorEcho $YELLOW "本机ip："$LOCAL_IP""
+	
+	# 尝试获取 IP 地址
+    LOCAL_IPv4=$(curl -s -4 https://api.ipify.org)
+    LOCAL_IPv6=$(curl -s -6 https://api64.ipify.org)
+
+    # 检查 IPv是否存在且合法
+    if [[ -n "$LOCAL_IPv4" && "$LOCAL_IPv4" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+
+        # 检查 IPv6 是否存在且合法
+        if [[ -n "$LOCAL_IPv6" && "$LOCAL_IPv6" =~ ^([0-9a-fA-F:]+)$ ]]; then
+            colorEcho $YELLOW "本机 IPv4 地址："$LOCAL_IPv4""		    
+            colorEcho $YELLOW "本机 IPv6 地址："$LOCAL_IPv6""
+	        read -p "请确定你的节点ip，默认ipv4（0：ipv4；1：ipv6）:" USER_IP
+	        if [[ $USER_IP == 1 ]]; then
+                LOCAL_IP=$LOCAL_IPv6
+	            colorEcho $BLUE "节点ip："$LOCAL_IP""				
+            else
+                LOCAL_IP=$LOCAL_IPv4
+	            colorEcho $BLUE "节点ip："$LOCAL_IP""						
+            fi								
+        else
+		    colorEcho $YELLOW "本机仅有 IPv4 地址："$LOCAL_IPv4""		
+		    LOCAL_IP=$LOCAL_IPv4
+            colorEcho $BLUE "节点ip："$LOCAL_IP""
+        fi
+    else
+	    if [[ -n "$LOCAL_IPv6" && "$LOCAL_IPv6" =~ ^([0-9a-fA-F:]+)$ ]]; then
+	        colorEcho $YELLOW "本机仅有 IPv6 地址："$LOCAL_IPv6""		
+		    LOCAL_IP=$LOCAL_IPv6
+            colorEcho $BLUE "节点ip："$LOCAL_IP""
+		else
+            colorEcho $RED "未能获取到有效的公网 IP 地址。"		
+		fi
+    fi
+    # 将 IP 地址写入文件
+    echo "$LOCAL_IP" > /usr/local/etc/xray/ip
+	
 }
 
 getport() {
@@ -383,6 +432,45 @@ EOF
 	echo ""
 }
 
+# 输出 VLESS 配置
+print_config() {
+
+    # Print the server details
+    echo ""
+    colorEcho $BLUE "reality节点配置信息如下："
+    colorEcho $YELLOW "Server IP: ${PLAIN}$(cat /usr/local/etc/xray/ip)"
+    colorEcho $YELLOW "Listen Port: ${PLAIN}$(cat /usr/local/etc/xray/port)"
+    colorEcho $YELLOW "Server Name: ${PLAIN}$(cat /usr/local/etc/xray/servername)"
+    colorEcho $YELLOW "Public Key: ${PLAIN}$(cat /usr/local/etc/xray/publickey)"
+    colorEcho $YELLOW "Short ID: ${PLAIN}$(cat /usr/local/etc/xray/sid)"
+    colorEcho $YELLOW "UUID: ${PLAIN}$(cat /usr/local/etc/xray/uuid)"
+    echo ""
+    echo ""
+
+	
+}	
+
+# 输出 VLESS 链接
+generate_link() {
+	
+    LOCAL_IP=`cat /usr/local/etc/xray/ip`
+	if [[ "$LOCAL_IP" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        LINK="vless://$(cat /usr/local/etc/xray/uuid)@$(cat /usr/local/etc/xray/ip):$(cat /usr/local/etc/xray/port)?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$(cat /usr/local/etc/xray/servername)&fp=chrome&pbk=$(cat /usr/local/etc/xray/publickey)&sid=$(cat /usr/local/etc/xray/sid)&type=tcp&headerType=none#$(cat /usr/local/etc/xray/name)"
+	elif [[ "$LOCAL_IP" =~ ^([0-9a-fA-F:]+)$ ]]; then 
+        LINK="vless://$(cat /usr/local/etc/xray/uuid)@[$(cat /usr/local/etc/xray/ip)]:$(cat /usr/local/etc/xray/port)?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$(cat /usr/local/etc/xray/servername)&fp=chrome&pbk=$(cat /usr/local/etc/xray/publickey)&sid=$(cat /usr/local/etc/xray/sid)&type=tcp&headerType=none#$(cat /usr/local/etc/xray/name)"
+	else
+	    colorEcho $RED "没有获取到有效ip！"
+	fi
+    colorEcho $BLUE "${BLUE}reality订阅链接${PLAIN}：${LINK}"
+	echo ""
+    echo ""	
+	colorEcho $YELLOW "reality节点二维码（可直接扫码导入到v2rayN、shadowrocket等客户端...）："
+	qrencode -o - -t utf8 -s 1 ${LINK}
+    #qrencode -o /tmp/reality.png -s 10 ${LINK}
+	#colorEcho $BLUE " 订阅二维码已保存在/tmp/reality.png，请下载使用..."	
+}	
+
+
 Modify_xrayconfig() {
 
     echo ""
@@ -427,9 +515,47 @@ Modify_xrayconfig() {
    
    
     echo ""
-    LOCAL_IP=$(curl -s https://api.ipify.org)
-	echo "$LOCAL_IP" > /usr/local/etc/xray/ip
-	colorEcho $YELLOW "本机ip："$LOCAL_IP""
+
+	read -p "是否需要更换节点ip（0：保持不变；1：重新选择）:" CHAIP
+	if [[ $CHAIP == 1 ]]; then	    	
+		# 尝试获取 IP 地址
+		LOCAL_IPv4=$(curl -s -4 https://api.ipify.org)
+		LOCAL_IPv6=$(curl -s -6 https://api64.ipify.org)
+
+		# 检查 IPv是否存在且合法
+		if [[ -n "$LOCAL_IPv4" && "$LOCAL_IPv4" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+
+			# 检查 IPv6 是否存在且合法
+			if [[ -n "$LOCAL_IPv6" && "$LOCAL_IPv6" =~ ^([0-9a-fA-F:]+)$ ]]; then
+				colorEcho $YELLOW "本机 IPv4 地址："$LOCAL_IPv4""		    
+				colorEcho $YELLOW "本机 IPv6 地址："$LOCAL_IPv6""
+				read -p "请确定你的节点ip，默认ipv4（0：ipv4；1：ipv6）:" USER_IP
+				if [[ $USER_IP == 1 ]]; then
+					LOCAL_IP=$LOCAL_IPv6
+					colorEcho $BLUE "节点ip："$LOCAL_IP""				
+				else
+					LOCAL_IP=$LOCAL_IPv4
+					colorEcho $BLUE "节点ip："$LOCAL_IP""						
+				fi								
+			else
+				colorEcho $YELLOW "本机仅有 IPv4 地址："$LOCAL_IPv4""		
+				LOCAL_IP=$LOCAL_IPv4
+				colorEcho $BLUE "节点ip："$LOCAL_IP""
+			fi
+		else
+			if [[ -n "$LOCAL_IPv6" && "$LOCAL_IPv6" =~ ^([0-9a-fA-F:]+)$ ]]; then
+				colorEcho $YELLOW "本机仅有 IPv6 地址："$LOCAL_IPv6""		
+				LOCAL_IP=$LOCAL_IPv6
+				colorEcho $BLUE "节点ip："$LOCAL_IP""
+			else
+				colorEcho $RED "未能获取到有效的公网 IP 地址。"		
+			fi
+		fi
+		# 将 IP 地址写入文件
+		echo "$LOCAL_IP" > /usr/local/etc/xray/ip
+    else
+	    colorEcho $BLUE "节点ip保持不变!"  		
+    fi
 
     echo ""
 	read -p "是否需要更换端口（0：保持不变；1：更换端口）:" PORT
@@ -587,40 +713,8 @@ stop() {
 }
 
 
-# 输出 VLESS 配置
-print_config() {
-    server_link="vless://$uuid@$server_ip:$listen_port?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$server_name&fp=chrome&pbk=$public_key&sid=$short_id&type=tcp&headerType=none#$node_name"
 
-    # Print the server details
-    echo ""
-    colorEcho $BLUE "reality节点配置信息如下："
-    colorEcho $YELLOW "Server IP: ${PLAIN}$(cat /usr/local/etc/xray/ip)"
-    colorEcho $YELLOW "Listen Port: ${PLAIN}$(cat /usr/local/etc/xray/port)"
-    colorEcho $YELLOW "Server Name: ${PLAIN}$(cat /usr/local/etc/xray/servername)"
-    colorEcho $YELLOW "Public Key: ${PLAIN}$(cat /usr/local/etc/xray/publickey)"
-    colorEcho $YELLOW "Short ID: ${PLAIN}$(cat /usr/local/etc/xray/sid)"
-    colorEcho $YELLOW "UUID: ${PLAIN}$(cat /usr/local/etc/xray/uuid)"
-    echo ""
-    echo ""
-
-	
-}	
-
-# 输出 VLESS 链接
-generate_link() {
-
-    LINK="vless://$(cat /usr/local/etc/xray/uuid)@$(cat /usr/local/etc/xray/ip):$(cat /usr/local/etc/xray/port)?encryption=none&flow=xtls-rprx-vision&security=reality&sni=$(cat /usr/local/etc/xray/servername)&fp=chrome&pbk=$(cat /usr/local/etc/xray/publickey)&sid=$(cat /usr/local/etc/xray/sid)&type=tcp&headerType=none#$(cat /usr/local/etc/xray/name)"
-    colorEcho $BLUE "${BLUE}vless订阅链接${PLAIN}：${LINK}"
-	echo ""
-    echo ""	
-	colorEcho $YELLOW "vless节点二维码（可直接扫码导入到v2rayN、shadowrocket等客户端...）："
-	qrencode -o - -t utf8 -s 1 ${LINK}
-    #qrencode -o /tmp/reality.png -s 10 ${LINK}
-	#colorEcho $BLUE " 订阅二维码已保存在/tmp/reality.png，请下载使用..."
-	
-}	
-
-menu() {
+Xray() {
     clear
     echo "##################################################################"
     echo -e "#                   ${RED}Reality一键安装脚本${PLAIN}                                    #"
@@ -631,9 +725,9 @@ menu() {
     echo "##################################################################"
 
     echo -e "  ${GREEN}  <Xray内核版本>  ${YELLOW}"	
-    echo -e "  ${GREEN}1.${PLAIN}  安装Xray"	
+    echo -e "  ${GREEN}1.${PLAIN}  安装xray"	
     echo -e "  ${GREEN}2.${PLAIN}  更新xray"
-    echo -e "  ${GREEN}3.${RED}  卸载Xray${PLAIN}"
+    echo -e "  ${GREEN}3.${RED}  卸载ray${PLAIN}"
     echo " -------------"	
     echo -e "  ${GREEN}4.${PLAIN}  搭建VLESS-Vision-uTLS-REALITY（xray）"
     echo -e "  ${GREEN}5.${PLAIN}  查看reality链接"
@@ -658,10 +752,11 @@ menu() {
 		    checkSystem
             preinstall
 	        installXray
-			menu
+			Xray
             ;;
         2)
-	        installXray
+	        updateXray
+			Xray
             ;;	
         3)
             removeXray
@@ -692,15 +787,18 @@ menu() {
             ;;
         7)
             start
+			Xray
             ;;
         8)
             restart
+			Xray
             ;;
-        9
+        9)
             stop
+			Xray
             ;;
 		10)
-			menu
+			Xray
             ;;
         *)
             echo " 请选择正确的操作！"
@@ -709,4 +807,4 @@ menu() {
     esac
 }
 
-menu
+Xray
