@@ -15,12 +15,12 @@ colorEcho() {
 
 Xray() {
     clear
-    bash -c "$(curl -s -L https://raw.githubusercontent.com/yirenchengfeng1/linux/main/reality_xray.sh)" > /dev/null 2>&1
+    bash -c "$(curl -s -L https://raw.githubusercontent.com/yirenchengfeng1/linux/main/reality_xray.sh)"
 }
 
 Singbox() {
     clear
-    bash -c "$(curl -s -L https://raw.githubusercontent.com/yirenchengfeng1/linux/main/reality_singbox.sh)" > /dev/null 2>&1
+    bash -c "$(curl -s -L https://raw.githubusercontent.com/yirenchengfeng1/linux/main/reality_singbox.sh)"
 }
 
 
