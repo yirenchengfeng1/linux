@@ -1028,7 +1028,7 @@ stop_singbox() {
 
 menu() {
     clear
-    bash -c "$(curl -s -L https://raw.githubusercontent.com/yirenchengfeng1/linux/main/reality.sh)" > /dev/null 2>&1
+    bash -c "$(curl -s -L https://raw.githubusercontent.com/yirenchengfeng1/linux/main/reality.sh)"
 }
 
 	
