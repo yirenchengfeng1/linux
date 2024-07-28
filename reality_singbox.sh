@@ -1025,6 +1025,12 @@ stop_singbox() {
     systemctl stop sing-box
     colorEcho $BLUE "singbox停止成功"
 }
+
+menu() {
+    clear
+    bash -c "$(curl -s -L https://raw.githubusercontent.com/yirenchengfeng1/linux/main/reality.sh)" > /dev/null 2>&1
+}
+
 	
 Singbox() {
     clear
@@ -1095,7 +1101,7 @@ Singbox() {
 			Singbox
             ;;			
 		10)
-			Singbox
+			menu
             ;;
         *)
             echo " 请选择正确的操作！"
