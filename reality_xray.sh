@@ -801,7 +801,7 @@ Xray() {
 			Xray
             ;;
 		10)
-			menu
+			Xray
             ;;
         *)
             echo " 请选择正确的操作！"
