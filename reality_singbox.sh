@@ -210,11 +210,12 @@ installSingbox() {
     chown root:root /root/sing-box
     chmod +x /root/sing-box
 	mkdir -p /root/singbox
+	touch /root/reality.json
     colorEcho $BLUE "已安装最新$latest_version版本"
 	sleep 5
 }
 
-install_xray() {
+install_singbox() {
 
     # Generate uuid
 	echo ""
@@ -1080,7 +1081,7 @@ Singbox() {
             UninstallSingbox
             ;;
         4)
-            install_xray
+            install_singbox
             ;;
         5)
 			Show_Link  
