@@ -398,13 +398,12 @@ Xray() {
     echo " -------------"	
     echo -e "  ${GREEN}4.${PLAIN}  搭建VLESS-Vision-uTLS-REALITY（xray）"
     echo -e "  ${GREEN}5.${PLAIN}  查看reality链接"
-    echo -e "  ${GREEN}6.  ${RED}修改reality配置${PLAIN}"		
     echo " -------------"
-    echo -e "  ${GREEN}7.${PLAIN}  启动xray"
-    echo -e "  ${GREEN}8.${PLAIN}  重启xray"
-    echo -e "  ${GREEN}9.${PLAIN}  停止xray"
+    echo -e "  ${GREEN}6.${PLAIN}  启动xray"
+    echo -e "  ${GREEN}7.${PLAIN}  重启xray"
+    echo -e "  ${GREEN}8.${PLAIN}  停止xray"
     echo " -------------"
-    echo -e "  ${GREEN}10.${PLAIN}  返回上一级菜单"	
+    echo -e "  ${GREEN}9.${PLAIN}  返回上一级菜单"	
     echo -e "  ${GREEN}0.${PLAIN}  退出"
     echo -n " 当前xray状态："
 	statusText
@@ -435,25 +434,18 @@ Xray() {
 			cat /root/link.txt 
             ;;
         6)
-            Modify_xrayconfig
-			generate_config
-		    restart
-			print_config
-			generate_link      
-            ;;
-        7)
             start
 			Xray
             ;;
-        8)
+        7)
             restart
 			Xray
             ;;
-        9)
+        8)
             stop
 			Xray
             ;;
-		10)
+		9)
 			menu
             ;;
         *)
