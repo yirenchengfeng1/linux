@@ -1,19 +1,23 @@
 #!/bin/bash
 
 # 检查输入参数数量
-if [ $# -ne 1 ]; then
-  echo "用法: $0 <网络接口>"
-  echo "例如: $0 eth0"
+if [ $# -ne 2 ]; then
+  echo "用法: $0 <网络接口> <IPv6地址文件>"
+  echo "例如: $0 eth0 ipv6.txt"
   exit 1
 fi
 
 # 解析输入参数
 INTERFACE=$1
+FILE=$2
 
-# 提示用户输入IPv6地址列表
-echo "请粘贴一串IPv6地址，按Ctrl+D结束输入："
+# 检查文件是否存在
+if [ ! -f "$FILE" ]; then
+  echo "文件 $FILE 不存在。"
+  exit 1
+fi
 
-# 读取输入直到结束
+# 逐行读取文件
 while IFS= read -r ipv6_address; do
   # 检查输入是否为空
   if [ -z "$ipv6_address" ]; then
@@ -33,4 +37,4 @@ while IFS= read -r ipv6_address; do
   else
     echo "分配IPv6地址 $ipv6_address 失败"
   fi
-done
+done < "$FILE"
