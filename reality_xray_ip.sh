@@ -320,6 +320,7 @@ EOF
 
 # 输出 VLESS 链接
 generate_link() {
+    > /root/link.txt
     colorEcho $BLUE "${BLUE}reality订阅链接${PLAIN}："
 	# 循环遍历 IP 和端口
 	for ((i = 0; i < ${#IP_ADDRESSES[@]}; i++)); do
@@ -331,6 +332,7 @@ generate_link() {
 			colorEcho $RED "没有获取到有效ip！"
 		fi
 	colorEcho $YELLOW ${LINK[$i]}
+	echo ${LINK[$i]} >> /root/link.txt
 	done
 }	
 
@@ -430,7 +432,7 @@ Xray() {
             config_nodes
             ;;
         5)
-			generate_link  
+			cat /root/link.txt 
             ;;
         6)
             Modify_xrayconfig
