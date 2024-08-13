@@ -1,3 +1,4 @@
+### Ubuntu 18.04 及更高版本 ###
 network:
   version: 2
   ethernets:
@@ -8,6 +9,7 @@ network:
         - 2001:19f0:4400:64f1:7a39:0194:4103:5f64/128
         - 2001:19f0:4400:64f1:6d13:3b58:114f:28a3/128
 
+### Debian和较旧的 Ubuntu 版本 ###
 auto enp1s0
 iface enp1s0 inet6 static
     address 2001:19f0:4400:64f1:5400:5ff:fe09:2df1/64 
