@@ -1914,7 +1914,7 @@ menu() {
     echo -e "  ${GREEN}1.${PLAIN}  Xray版"
     echo -e "  ${GREEN}2.${PLAIN}  Singbox版"	
     echo " -------------"
-    echo -e "  ${GREEN}2.${PLAIN}  Xray分流"	
+    echo -e "  ${GREEN}3.${PLAIN}  Xray分流"	
     echo " -------------"
     echo -e "  ${GREEN}0.${PLAIN}   退出"
     echo -n " 当前xray状态：   "
