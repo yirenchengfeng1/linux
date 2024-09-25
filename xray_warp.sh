@@ -1912,10 +1912,9 @@ menu() {
     echo "##################################################################"
 
     echo -e "  ${GREEN}1.${PLAIN}  Xray版"
-    echo -e "  ${GREEN}2.${PLAIN}  Xray分流"	
+    echo -e "  ${GREEN}2.${PLAIN}  Singbox版"	
     echo " -------------"
-    echo -e "  ${GREEN}3.${PLAIN}  Singbox版"
-    echo -e "  ${GREEN}4.${PLAIN}  Singbox分流"	
+    echo -e "  ${GREEN}2.${PLAIN}  Xray分流"	
     echo " -------------"
     echo -e "  ${GREEN}0.${PLAIN}   退出"
     echo -n " 当前xray状态：   "
@@ -1932,14 +1931,11 @@ menu() {
         1)
             Xray
             ;;
-        2)
-	        Xray_dis
-            ;;
-        3)	    
+        2)	    
 	        Singbox
             ;;	
-        4)
-	        Singbox_dis
+        3)
+	        Xray_dis
             ;;			
         *)
             echo " 请选择正确的操作！"
